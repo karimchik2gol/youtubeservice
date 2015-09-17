@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Youtubeservice</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<ul>
+	<li><a href="/search">Поиск</a></li>
+	<% if session[:youtube_info_id] || session[:user_id] %><li><%= YoutubeInfoId.find(session[:youtube_info_id]).name %></li><% end %>
+</ul>
+<%= yield %>
+
+</body>
+</html>

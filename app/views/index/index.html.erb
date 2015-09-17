@@ -1,0 +1,5 @@
+<h1>Index#index</h1>
+<p>Find me in app/views/index/index.html.erb</p>
+<% if !session[:youtube_info_id] and !session[:user_id] %>
+	<%= link_to 'Start', "/index/start" %>
+<% end %>

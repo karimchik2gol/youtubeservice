@@ -1,0 +1,6 @@
+<div class="list-category">
+	<% categories=Category.all.sort_by!{ |m| m.name.downcase } %>
+	<% categories.each do |f| %>
+		<div class="item-list-category"><a href="/category/<%= f.id %>"><%= f.name %></a></div>
+	<% end %>
+</div>

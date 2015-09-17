@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  email: MyString
+  phone: MyString
+  category: MyString
+  city: MyString
+  youtube_info_id: 1
+  anketa_id: 1
+
+two:
+  email: MyString
+  phone: MyString
+  category: MyString
+  city: MyString
+  youtube_info_id: 1
+  anketa_id: 1

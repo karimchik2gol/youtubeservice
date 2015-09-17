@@ -1,0 +1,12 @@
+<% @users.each do |f| %>
+	<% begin %>
+		<% youtubeinfoid=YoutubeInfoId.find(f.youtube_info_id) %>
+	<% rescue %>
+		<% youtubeinfoid=f %>
+		<% f=User.find(f.user_id) %>
+	<% end %>
+	<div class="item-channel">
+		<%= youtubeinfoid.name %>
+		<img src="<%= youtubeinfoid.image %>">
+	</div>
+<% end %>

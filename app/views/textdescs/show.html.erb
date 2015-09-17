@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @textdesc.name %>
+</p>
+
+<p>
+  <b>Text:</b>
+  <%= @textdesc.text %>
+</p>
+
+
+<%= link_to 'Edit', edit_textdesc_path(@textdesc) %> |
+<%= link_to 'Back', textdescs_path %>

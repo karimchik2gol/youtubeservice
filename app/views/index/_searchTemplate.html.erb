@@ -1,0 +1,159 @@
+<div class="search-block">
+	<div class="item-select-search">
+		<label>Male</label><br/>
+		<input type="checkbox" name="search[gender_cont]" value="male"><br/>
+		<label>Female</label><br/>
+		<input type="checkbox" name="search[gender_cont]" value="female"><br/>
+	</div>
+
+	<div class="item-select-search">
+		<label>Age</label><br/>
+		<input type="text" name="search[age_gteq_gteq]" value="">
+		<input type="text" name="search[age_lteq_lteq]" value="">
+	</div>
+
+	<div class="item-select-search">
+		<label>Subscribers</label><br/>
+		<input type="text" name="search[subscribers_gteq]" value="">
+		<input type="text" name="search[subscribers_lteq]" value="">
+	</div>
+
+	<div class="item-select-search">
+		<label>Views per month</label><br/>
+		<input type="text" name="search[views_per_month_gteq]" value="">
+		<input type="text" name="search[views_per_month_lteq]" value="">
+	</div>
+
+	<div class="item-select-search">
+		<label>Average views per video</label><br/>
+		<input type="text" name="search[average_views_per_video_gteq]" value="">
+		<input type="text" name="search[average_views_per_video_lteq]" value="">
+	</div>
+
+	<div class="item-select-search">
+		<label>Average sharing</label><br/>
+		<input type="text" name="search[average_sharing_gteq]" value="">
+		<input type="text" name="search[average_sharing_lteq]" value="">
+	</div>
+
+	<div class="item-select-search">
+		<label>Average likes</label><br/>
+		<input type="text" name="search[average_likes_gteq]" value="">
+		<input type="text" name="search[average_likes_lteq]" value="">
+	</div>
+
+	<div class="item-select-search">
+		<label>Average videos per month</label><br/>
+		<input type="text" name="search[average_posted_videos_per_month_gteq]" value="">
+		<input type="text" name="search[average_posted_videos_per_month_lteq]" value="">
+	</div>
+
+	<div class="item-select-search">
+		<label>Creating videos together</label><br/>
+		<input type="checkbox" name="search[create_videos_eq]"><br/>
+	</div>
+
+	<div class="item-select-search">
+		<label>Making channel together</label><br/>
+		<input type="checkbox" name="search[making_channel_toghether_eq]"><br/>
+	</div>
+
+	<div class="item-select-search">
+		<label>Cross promotions and email lists</label><br/>
+		<input type="checkbox" name="search[cross_promotions_and_email_lists_eq]"><br/>
+	</div>
+
+	<div class="item-select-search">
+		<label>Recommend channel swapping</label><br/>
+		<input type="checkbox" name="search[recommended_channel_swapping_eq]"><br/>
+	</div>
+
+	<div class="item-select-search">
+		<label>Annotation/End Card/Description link swapping</label><br/>
+		<input type="checkbox" name="search[annotation_or_end_card_or_link_swapping_eq]"><br/>
+	</div>
+
+	<div class="item-select-search">
+		<label>Open to other types of collaborations</label><br/>
+		<input type="checkbox" name="search[open_to_other_types_eq]"><br/>
+	</div>
+
+	<div class="item-select-search">
+		<label>Brand product integration</label><br/>
+		<input type="checkbox" name="search[brand_product_integration_eq]"><br/>
+	</div>
+
+	<div class="item-select-search">
+		<label>Product reviews</label><br/>
+		<input type="checkbox" name="search[product_reviews_eq]"><br/>
+	</div>
+
+	<div class="item-select-search">
+		<label>Dedicated videos</label><br/>
+		<input type="checkbox" name="search[dedicated_videos_eq]"><br/>
+	</div>
+
+	<div class="item-select-search">
+		<label>Revenue afiliate</label><br/>
+		<input type="checkbox" name="search[revenue_affiliate_eq]"><br/>
+	</div>
+
+	<div class="item-select-search">
+		<label>Spokesperson</label><br/>
+		<input type="checkbox" name="search[spokesperson_eq]"><br/>
+	</div>
+
+	<div class="item-select-search">
+		<label>Offyoutube promotions</label><br/>
+		<input type="checkbox" name="search[offyoutube_promotion_eq]"><br/>
+	</div>
+
+	<div class="item-select-search">
+		<label>Including brand videos</label><br/>
+		<input type="checkbox" name="search[including_brand_videos_eq]"><br/>
+	</div>
+</div>
+<script type="text/javascript">
+	$(".item-select-search input[type='checkbox']").change(function(){
+		go=true;
+		if(!$(this).is(":checked"))
+			go=false;
+
+		$(this).parents(".item-select-search").find("input").prop("checked", false);
+		$(this).prop("checked", go);
+		sendAjaxSearch();
+	})
+
+	$("input[type='text']").change(function(){
+		sendAjaxSearch();
+	})
+
+	function sendAjaxSearch(){
+		searchingHash={}
+		$(".item-select-search input[type='checkbox']").each(function(){
+			if($(this).is(":checked")){
+				if(!$(this).val() || $(this).val()=="on"){
+					$(this).val("true");
+				}
+
+				searchingHash[$(this).attr("name")]=$(this).val();
+			}
+		});
+
+		$(".item-select-search input[type='text']").each(function(){
+			searchingHash[$(this).attr("name")]=$(this).val();
+		});
+
+		$.ajax({
+	          async: true,
+	          type: "GET",
+	          dataType: 'html',
+	          url: "/index/searchingCheckbox",
+	          data: searchingHash, 
+	          success: function(data){
+	          	$(".channels").empty();
+	          	$(".channels").append(data);
+	          }
+	    });
+	}
+</script>

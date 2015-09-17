@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  anketa_id: 1
+  name: MyString
+  description: MyText
+  trailer: MyString
+  video_count: 1
+  published_at: 2015-09-15 18:59:50
+  channel_id: MyString
+  demographic: MyText
+  views_per_month: 1
+  views: 1
+  average_views_per_video: 1.5
+  average_sharing: 1.5
+  average_likes: 1.5
+  average_posted_videos_per_month: 1.5
+  country: MyText
+  subscribers: 1
+
+two:
+  user_id: 1
+  anketa_id: 1
+  name: MyString
+  description: MyText
+  trailer: MyString
+  video_count: 1
+  published_at: 2015-09-15 18:59:50
+  channel_id: MyString
+  demographic: MyText
+  views_per_month: 1
+  views: 1
+  average_views_per_video: 1.5
+  average_sharing: 1.5
+  average_likes: 1.5
+  average_posted_videos_per_month: 1.5
+  country: MyText
+  subscribers: 1
