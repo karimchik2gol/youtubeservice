@@ -22,6 +22,15 @@ end
 gem 'google-api-client', '~> 0.8.6'
 gem 'trollop'
 
+group :production do
+  gem 'pg', '0.15.1'
+  gem 'rails_12factor', '0.0.2'
+end
+
+group :development do
+  gem 'sqlite3'
+end
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
