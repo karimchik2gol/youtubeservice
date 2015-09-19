@@ -1,11 +1,11 @@
 #!/usr/bin/ruby
 
 require 'rubygems'
-require "google/api_client"
-require "google/api_client/client_secrets"
-require "google/api_client/auth/file_storage"
-require "google/api_client/auth/installed_app"
-require 'openssl'
+#require "google/api_client"
+#require "google/api_client/client_secrets"
+#require "google/api_client/auth/file_storage"
+#require "google/api_client/auth/installed_app"
+#require 'openssl'
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 class YoutubeApi
