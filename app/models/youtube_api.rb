@@ -124,7 +124,7 @@ class YoutubeApi
 
   def average_posted_videos_per_month
     time_in_month=(Time.now - $hash_DATA[:published_at]).to_f/(3600*24)
-    ($hash_DATA[:video_count].to_i/time_in_month)*30
+    (($hash_DATA[:video_count].to_i/time_in_month)*30).round(2)
   end
 
   def average_likes(opts)

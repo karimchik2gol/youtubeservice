@@ -1,0 +1,73 @@
+<% youtubeinfooid=YoutubeInfoId.find(session[:youtube_info_id]) %>
+<% user=User.find(youtubeinfooid.user_id) %>
+<div><%= youtubeinfooid.name %></div>
+<div><a href="https://www.youtube.com/channel/<%= youtubeinfooid.channel_id %>" target="_blank">https://www.youtube.com/<%= youtubeinfooid.channel_id %></a></div>
+<div>
+	<% categoryIds=user.category.split(",").map{|f| f=f.gsub("id", "").to_i} %>
+	<% Category.find(categoryIds).each do |f| %>
+		<a href="/category/<%= f.id %>"><%= f.name %></a>
+	<% end %>
+</div>
+
+<div>
+	<h3>Featured videos</h3>
+	<div>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/<%= youtubeinfooid.trailer %>" frameborder="0" allowfullscreen></iframe>
+	</div>
+</div>
+
+<div>
+	<h3>Statistics</h3>
+	<div>Monthly Views <%= youtubeinfooid.views_per_month %></div>
+	<div>Avg. views per video <%= youtubeinfooid.average_views_per_video %></div>
+	<div>Aveg. likes per video <%= youtubeinfooid.average_likes %></div>
+	<div>Aveg. videos posted per month <%= youtubeinfooid.average_posted_videos_per_month %></div>
+</div>
+
+<div>
+	<h3>Demographic</h3>
+	<% gender={} %>
+	<% i=0 %>
+	<% demographic=youtubeinfooid.demographic.split(",") %>
+	<% demographic.each do |f| %>
+		<% if i%3==0 %>
+			<% gend=demographic[i+1] %>
+			<% if !gender[gend] %>
+				<% gender[gend]={} %>
+			<% end %>
+
+			<% percent=demographic[i] %>
+			<% if gender[gend][percent] %>
+				<% gender[gend][percent]+=demographic[i+2].to_f %>
+			<% else %>
+				<% gender[gend][percent]=demographic[i+2].to_f %>
+			<% end %>
+		<% end %>
+		<% i+=1 %>
+	<% end %>
+	<% x=0 %>
+
+	<div>
+		<% gender.each do |k,v| %>
+			<span><%= k %></span>
+			<% v.each do |key,value| %>
+				<div style="display: inline-block; vertical-aling: bottom;">
+					<div style="display: inline-block; height: <%= (value+1).to_i %>px; background-color:red;"><%= value %></div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+
+</div>
+
+<div>
+	<h3>Top countries by views</h3>
+	<% index=0 %>
+	<% countries=youtubeinfooid.country.split(",") %>
+	<% countries.each do |f| %>
+		<% if index%2==0 %>
+			<div><%= "#{f} #{countries[index+1]}" %></div>
+		<% end %>
+		<% index+=1 %>
+	<% end %>
+</div>

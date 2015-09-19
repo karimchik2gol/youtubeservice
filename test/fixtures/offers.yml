@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  project_type: MyString
+  name: MyString
+  description: MyText
+  application_deadline: MyString
+  targe_audience_geos: MyString
+  location_dependent: MyString
+  location_dependent_boolean: false
+  target_channel_categories: MyString
+  subscriber_range: MyString
+
+two:
+  project_type: MyString
+  name: MyString
+  description: MyText
+  application_deadline: MyString
+  targe_audience_geos: MyString
+  location_dependent: MyString
+  location_dependent_boolean: false
+  target_channel_categories: MyString
+  subscriber_range: MyString

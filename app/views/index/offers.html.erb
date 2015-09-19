@@ -1,0 +1,6 @@
+<%= render "offersLayout" %>
+<div>
+	<% @offers.each do |f| %>
+		<div><%= f.name %> <a href="/editoffer/<%= f.id %>">edit</a> <a href="/destroyoffer/<%= f.id %>">destroy</a></div>
+	<% end %>
+</div>

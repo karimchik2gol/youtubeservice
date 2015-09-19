@@ -1,4 +1,7 @@
 Youtubeservice::Application.routes.draw do
+  resources :offers
+
+
   resources :categories
 
 
@@ -17,7 +20,21 @@ Youtubeservice::Application.routes.draw do
 
   get "/index/searchingCheckbox"
   
+  get "/profile", to: "index#profile"
+
+  get "/offer", to: "index#offers"
+
+  get "/createoffer", to: "index#createoffer"
+  
   get "admin", to: "index#admin"
+
+  post "/index/createofferpost"
+
+  get "/editoffer/:id", to: "index#editoffer"
+
+  get "/destroyoffer/:id", to: "index#destroyoffer"
+
+  put "/index/:id/updateoffer", to: "index#updateoffer"
 
   post "index/checkAdmin"
 

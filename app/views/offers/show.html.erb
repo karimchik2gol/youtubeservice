@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Project type:</b>
+  <%= @offer.project_type %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @offer.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @offer.description %>
+</p>
+
+<p>
+  <b>Application deadline:</b>
+  <%= @offer.application_deadline %>
+</p>
+
+<p>
+  <b>Targe audience geos:</b>
+  <%= @offer.targe_audience_geos %>
+</p>
+
+<p>
+  <b>Location dependent:</b>
+  <%= @offer.location_dependent %>
+</p>
+
+<p>
+  <b>Location dependent boolean:</b>
+  <%= @offer.location_dependent_boolean %>
+</p>
+
+<p>
+  <b>Target channel categories:</b>
+  <%= @offer.target_channel_categories %>
+</p>
+
+<p>
+  <b>Subscriber range:</b>
+  <%= @offer.subscriber_range %>
+</p>
+
+
+<%= link_to 'Edit', edit_offer_path(@offer) %> |
+<%= link_to 'Back', offers_path %>

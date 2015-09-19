@@ -1,9 +1,18 @@
 class IndexController < ApplicationController
   skip_before_filter :check_admin
+  before_filter :check_user, only: [:offers, :createoffer, :createofferpost, :editoffer]
   layout "public"
+
+  def check_user
+  	unless session[:user_id] || session[:youtube_info_id]
+  		redirect_to root_url 
+  		return nil
+  	end
+  end
+
   def index
-  	session[:youtube_info_id]=nil
-  	session[:user_id]=nil
+  	#session[:youtube_info_id]=nil
+  	#session[:user_id]=nil
   end
 
   def registration
@@ -57,11 +66,61 @@ class IndexController < ApplicationController
   end
 
   def category
-  	puts "id"+params[:id]+","
   	search=User.order("created_at DESC").search(:category_cont=>"id"+params[:id]+",")
   	@users=search.result
   end
 
+  def profile
+  	if session[:user_id]
+  		@user=User.find(session[:user_id])
+  	else
+  		redirect_to "/registration"
+  	end
+  end
+
+  def offers
+  	@offers=Offer.where(:user_id=>session[:user_id])
+  end
+
+  def createoffer
+  	@offer=Offer.new
+  	@url="/index/createofferpost"
+  end
+
+  def createofferpost
+  	params[:offer][:user_id]=session[:user_id]
+  	offer=Offer.create(params[:offer])
+  	redirect_to request.referrer
+  end
+
+  def editoffer
+  	@offer=Offer.find(params[:id])
+  	if @offer.user_id==session[:user_id]
+  		@url="/index/#{@offer.id}/updateoffer"
+  	else
+  		redirect_to root_url
+  	end
+  end
+
+  def updateoffer
+  	@offer=Offer.find(params[:id])
+  	if @offer.user_id==session[:user_id]
+  		@offer.update_attributes(params[:offer])
+  		redirect_to "/editoffer/#{@offer.id}"
+  	else
+  		redirect_to root_url
+  	end
+  end
+
+  def destroyoffer
+  	@offer=Offer.find(params[:id])
+  	if @offer.user_id==session[:user_id]
+  		@offer.destroy
+  		redirect_to "/offer"
+  	else
+  		redirect_to root_url
+  	end
+  end
   #LOGIN ADMIN
   def admin
   end

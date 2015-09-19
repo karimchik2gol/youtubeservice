@@ -18,6 +18,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
+gem 'google-api-client', '~> 0.8.6'
 gem 'trollop'
 
 group :production do
