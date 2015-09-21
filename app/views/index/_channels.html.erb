@@ -5,8 +5,22 @@
 		<% youtubeinfoid=f %>
 		<% f=User.find(f.user_id) %>
 	<% end %>
-	<div class="item-channel">
-		<%= youtubeinfoid.name %>
-		<img src="<%= youtubeinfoid.image %>">
-	</div>
+	<% @user=f %>
+	<% if !@id || f.category.include?("id"+@id+",") %>
+		<div class="item-channel">
+			<div><img src="<%= youtubeinfoid.image %>"><%= youtubeinfoid.name %></div>
+			<% catArray=f.category.split(",") %>
+			<div>
+				<% catArray.each do |f| %>
+					<% category=Category.find(f.gsub("id", "").to_i) %>
+					<span><%= category.name %><% if catArray.last!=f %>, <% end %></span>
+				<% end %>
+			</div>
+			<div>
+				<% genders=youtubeinfoid.gender.split(",") %>
+				<span><%= genders[0] %> <%= genders[1] %>%, <%= genders[2] %> <%= genders[3] %>%</span>
+			</div>
+		</div>
+	<% end %>
+
 <% end %>

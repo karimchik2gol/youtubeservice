@@ -1,9 +1,9 @@
-<div class="search-block">
+<div class="search-block" data-id="<%= @id=params[:id] %>">
 	<div class="item-select-search">
 		<label>Male</label><br/>
-		<input type="checkbox" name="search[gender_cont]" value="male"><br/>
+		<input type="checkbox" name="search[gender_percentage_cont]" value="male"><br/>
 		<label>Female</label><br/>
-		<input type="checkbox" name="search[gender_cont]" value="female"><br/>
+		<input type="checkbox" name="search[gender_percentage_cont]" value="female"><br/>
 	</div>
 
 	<div class="item-select-search">
@@ -129,7 +129,8 @@
 	})
 
 	function sendAjaxSearch(){
-		searchingHash={}
+		searchingHash={"id":$(".search-block").data("id")}
+
 		$(".item-select-search input[type='checkbox']").each(function(){
 			if($(this).is(":checked")){
 				if(!$(this).val() || $(this).val()=="on"){

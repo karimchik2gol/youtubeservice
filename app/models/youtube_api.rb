@@ -1,11 +1,11 @@
 #!/usr/bin/ruby
 
 require 'rubygems'
-#require "google/api_client"
-#require "google/api_client/client_secrets"
-#require "google/api_client/auth/file_storage"
-#require "google/api_client/auth/installed_app"
-#require 'openssl'
+require "google/api_client"
+require "google/api_client/client_secrets"
+require "google/api_client/auth/file_storage"
+require "google/api_client/auth/installed_app"
+require 'openssl'
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 class YoutubeApi
@@ -39,7 +39,7 @@ class YoutubeApi
     file_storage = Google::APIClient::FileStorage.new("#{$PROGRAM_NAME}-oauth2.json")
     
     
-    if file_storage.authorization.nil?
+    if file_storage.authorization.nil? || true
       client_secrets = Google::APIClient::ClientSecrets.load("#{Rails.root}/client_secrets.json")
       flow = Google::APIClient::InstalledAppFlow.new(
         :client_id => client_secrets.client_id,
@@ -91,7 +91,7 @@ class YoutubeApi
       $hash_DATA[:name], $hash_DATA[:description], $hash_DATA[:trailer], $hash_DATA[:video_count], $hash_DATA[:published_at] = channel_name_and_description_and_trailer(ids)
       $hash_DATA[:channel_id]="#{ids}"
       $hash_DATA[:demographic]=demographic(opts)
-      $hash_DATA[:gender]=gender(opts)
+      $hash_DATA[:gender], $hash_DATA[:gender_percentage]=gender(opts)
       $hash_DATA[:age_gteq], $hash_DATA[:age_lteq]=age(opts)
       $hash_DATA[:views_per_month]=views_per_month(opts)
       $hash_DATA[:views]=views(opts)
@@ -144,13 +144,14 @@ class YoutubeApi
     opts[:metrics] = 'viewerPercentage'
     gender=get_data(opts)
     genders=gender.split(",")
+    genderTwo=nil
     if(genders[1].to_i>=75)
-      return genders[0]
+      genderTwo=genders[0]
     elsif(genders[3].to_i>=75)
-      return genders[2]
+      genderTwo=genders[2]
     end
 
-    return nil
+    return gender, genderTwo
   end
 
   def age(opts)

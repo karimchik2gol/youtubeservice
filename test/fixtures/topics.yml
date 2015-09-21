@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  to: 1
+  from: 1
+  name: MyString
+  type: 
+  project_type: MyString
+  happing_to: MyString
+  date_happing: MyString
+  description: MyText
+  best: MyString
+
+two:
+  to: 1
+  from: 1
+  name: MyString
+  type: 
+  project_type: MyString
+  happing_to: MyString
+  date_happing: MyString
+  description: MyText
+  best: MyString

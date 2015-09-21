@@ -1,0 +1,24 @@
+<div>Colabration detail</div>
+<div>
+	<h3><%= @offer.name %></h3>
+	<div>
+		<% if Offermessage.where(:user_id=>session[:user_id], :offer_id=>params[:id]).count>0 %><span>You have sent the message to this user</span><% else %><a href="/offerapplycreate/<%= params[:id] %>">Apply project</a><% end %>
+	</div>
+	<div>
+		<p>Offered by</p>
+		<% @user=User.find(@offer.user_id) %>
+		<%= render "userinfo" %>
+		<p><b>Project Type</b> <%= @offer.project_type %></p>
+		<p><b>Description</b> <%= @offer.description %></p>
+		<p><b>Application deadline</b> <%= @offer.application_deadline %></p>
+		<p><b>Channel Partners Wanted</b> 0</p>
+	</div>
+
+	<div>
+		<h3>Applicant Requirements</h3>
+		<% if !@offer.targe_audience_geos.empty? %><div><b>Target Audience Geos</b> <%= @offer.targe_audience_geos %></div><% end %>
+		<% if !@offer.location_dependent.empty? %><div><b>Location Dependent?</b> <%= @offer.location_dependent %></div><% end %>
+		<% if !@offer.target_channel_categories.empty? %><div><b>Target Channel Categories</b> <%= @offer.target_channel_categories %></div><% end %>
+		<% if !@offer.subscriber_range.empty? %><div><b>Subscriber Range	(0 - 100)</b> <%= @offer.subscriber_range %></div><% end %>
+	</div>
+</div>

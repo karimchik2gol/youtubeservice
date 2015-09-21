@@ -1,0 +1,22 @@
+<table>
+	<tr>
+		<td>Applicant</td>
+		<td>Date</td>
+		<td>Email</td>
+		<td>Subscribers</td>
+		<td>Avg. views per video</td>
+		<td>Actions</td>
+	</tr>
+	<% @offermessages.each do |f| %>
+		<tr>
+			<% @user=User.find(f.user_id) %>
+			<% youtubeinfoid=YoutubeInfoId.find(@user.youtube_info_id) %>
+			<td><a href="/profile/<%= @user.id %>"><%= youtubeinfoid.name %></a></td>
+			<td><%= f.created_at.strftime("%d-%m-%Y") %><br><%= f.created_at.strftime("%H:%M:%S") %></td>
+			<td><%= @user.email %></td>
+			<td><%= youtubeinfoid.subscribers %></td>
+			<td><%= youtubeinfoid.average_views_per_video %></td>
+			<td><a href="/profile/<%= @user.id %>">View profile</a></td>
+		</tr>
+	<% end %>
+</table>

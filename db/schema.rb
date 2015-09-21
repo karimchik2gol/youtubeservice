@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150918165045) do
+ActiveRecord::Schema.define(:version => 20150921175322) do
 
   create_table "admins", :force => true do |t|
     t.string   "email"
@@ -44,6 +44,23 @@ ActiveRecord::Schema.define(:version => 20150918165045) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "messages", :force => true do |t|
+    t.integer  "from_message"
+    t.integer  "to_message"
+    t.string   "text"
+    t.integer  "topic_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "offermessages", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "offer_id"
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "offers", :force => true do |t|
     t.string   "project_type"
     t.string   "name"
@@ -64,6 +81,20 @@ ActiveRecord::Schema.define(:version => 20150918165045) do
     t.text     "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "topics", :force => true do |t|
+    t.integer  "to_topic"
+    t.integer  "from_topic"
+    t.string   "name"
+    t.string   "type"
+    t.string   "project_type"
+    t.string   "happing_to"
+    t.string   "date_happing"
+    t.text     "description"
+    t.string   "best"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -117,6 +148,8 @@ ActiveRecord::Schema.define(:version => 20150918165045) do
     t.boolean  "spokesperson"
     t.boolean  "offyoutube_promotion"
     t.boolean  "including_brand_videos"
+    t.boolean  "open_to_other_types_sponsor"
+    t.string   "gender_percentage"
   end
 
 end

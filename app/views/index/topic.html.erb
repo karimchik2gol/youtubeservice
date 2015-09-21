@@ -1,0 +1,24 @@
+<div>
+	<% user=User.find(@topic.from_topic) %>
+	<% youtubeinfoid=YoutubeInfoId.find_by_user_id(user.id) %>
+	<h3><%= @topic.name %></h3>
+	<div>From: <a href="/profile/<%= user.id %>"><%= youtubeinfoid.name %></a></div>
+	<div>Project type: <%= @topic.project_type %></div>
+	<div><%= @topic.happing_to %> date: <%= @topic.happing_to %></div>
+	<div><%= @topic.description %></div>
+</div>
+
+<div>
+	<% @messages.each do |f| %>
+		<% youtubeinfoid=YoutubeInfoId.find_by_user_id(f.from_message) %>
+		<div>
+			<p><%= youtubeinfoid.name %> <span><%= f.created_at.strftime("%d/%m/%Y %H:%M:S") %></span></p>
+			<p><%= f.text %></p>
+		</div>
+	<% end %>
+	<%= form_for(Message.new, :url=>"/index/createmessage/#{user.id}") do |f| %>
+		<%= f.hidden_field :topic_id, :value=>"#{@topic.id}" %>
+		<%= f.text_area :text %>
+		<button>GO</button>
+	<% end %>
+</div>

@@ -20,7 +20,7 @@ Youtubeservice::Application.routes.draw do
 
   get "/index/searchingCheckbox"
   
-  get "/profile", to: "index#profile"
+  get "/profile/:id", to: "index#profile"
 
   get "/offer", to: "index#offers"
 
@@ -34,8 +34,28 @@ Youtubeservice::Application.routes.draw do
 
   get "/destroyoffer/:id", to: "index#destroyoffer"
 
+  get "/offer/details/:id", to: "index#offerdetails"
+
   put "/index/:id/updateoffer", to: "index#updateoffer"
 
+  get "/collabration", to: "index#collabration"
+
+  get "/offerapplycreate/:id", to: "index#offerapplycreate"
+
+  get "/offers/applicants/:id", to: "index#applicants"
+
+  post "/index/createtopic/:id", to: "index#createtopic"
+  
+  get "/directmessages", to: "index#directmessages"
+
+  get "/topic/:id", to: "index#topic"
+
+  post "/index/createmessage/:id", to: "index#createmessage"
+
+  get "/account", to: "index#account"
+
+  put "/index/:id/update_account", to: "index#update_account"
+  
   post "index/checkAdmin"
 
   post "index/create"

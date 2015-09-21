@@ -11,7 +11,9 @@
 	<li><a href="/search">Поиск</a></li>
 	<% if session[:youtube_info_id] || session[:user_id] %>
 		<li><a href="/offer">Предложения</a></li>
-		<li><a href="/profile">Профиль</a></li>
+		<li><a href="/profile/<%= session[:user_id] %>">Профиль</a></li>
+		<li><a href="/account">Акаунт</a></li>
+		<li><a href="/directmessages">Сообщения</a></li>
 		<li><%= YoutubeInfoId.find(session[:youtube_info_id]).name %></li>
 	<% end %>
 </ul>

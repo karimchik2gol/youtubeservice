@@ -1,5 +1,5 @@
-<% youtubeinfooid=YoutubeInfoId.find(session[:youtube_info_id]) %>
-<% user=User.find(youtubeinfooid.user_id) %>
+<% youtubeinfooid=YoutubeInfoId.find_by_user_id(@user.id) %>
+<% user=@user %>
 <div><%= youtubeinfooid.name %></div>
 <div><a href="https://www.youtube.com/channel/<%= youtubeinfooid.channel_id %>" target="_blank">https://www.youtube.com/<%= youtubeinfooid.channel_id %></a></div>
 <div>
@@ -8,6 +8,49 @@
 		<a href="/category/<%= f.id %>"><%= f.name %></a>
 	<% end %>
 </div>
+
+<% if session[:user_id]!=params[:id] %>
+	<div>
+		<a href="#" class="new_topic">Collabration</a>
+	</div>
+	<div class="topic-new" style="display:none;">
+		<%= form_for(Topic.new, :url=>"/index/createtopic/#{params[:id]}") do |f| %>
+			<div>
+				<%= f.label :name %>
+				<%= f.text_field :name %>
+			</div>
+
+			<div>
+				<%= f.label :project_type %>
+				<select name="topic[project_type]">
+					<option value="GAVNO">GAVNO</option>
+					<option value="GAVNO">GAVNO</option>
+					<option value="GAVNO">GAVNO</option>
+					<option value="GAVNO">GAVNO</option>
+				</select>
+			</div>
+
+			<div>
+				<%= f.label :hepping_to, "I'm happing to" %>
+				<%= f.text_field :happing_to %>
+				<%= f.label :date_happing %>
+				<%= f.text_field :date_happing %>
+
+			</div>
+
+			<div>
+				<%= f.label :description %>
+				<%= f.text_area :description %>
+			</div>
+
+			<div>
+				<%= f.label :best %>
+				<%= f.text_field :best %>
+			</div>
+			<button>GO</button>
+		<% end %>
+	</div>	
+<% end %>
 
 <div>
 	<h3>Featured videos</h3>
@@ -71,3 +114,9 @@
 		<% index+=1 %>
 	<% end %>
 </div>
+
+<script type="text/javascript">
+	$(".new_topic").click(function(){
+		$(".topic-new").show();
+	})
+</script>
