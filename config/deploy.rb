@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.2.1'
+lock '3.4.0'
 # Define the name of the application
 
 
@@ -43,14 +43,16 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
 # set :keep_releases, 5
 
 namespace :deploy do
+
   %w[start stop restart].each do |command|
-  	desc "Manage Unicorn"
-  	task comman do 
-  		on roles(:app), in: :sequence, wait: 1 do
-  			execute "/etc/init.d/unicorn_#{fetch(:application)} #{command}"
-  		end
-  	end
+    desc 'Manage Unicorn'
+    task command do
+      on roles(:app), in: :sequence, wait: 1 do
+        execute "/etc/init.d/unicorn_#{fetch(:application)} #{command}"
+      end      
+    end
   end
 
-  task :setup_config, roles: :app
+  after :publishing, :restart
+
 end
