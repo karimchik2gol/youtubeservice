@@ -11,7 +11,7 @@ server '45.79.176.251', user: 'deployer', roles: %w{web}
 set :ssh_options, {
     forward_agent: false,
     auth_methods: %w(password),
-    password: 'user_deployers_password',
+    password: 'Youtubechannel2015',
     user: 'deployer',
 }
 # server-based syntax
