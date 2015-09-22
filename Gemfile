@@ -21,9 +21,6 @@ gem 'google-api-client', '~> 0.8.6'
 gem 'trollop'
 
 group :production do
-  gem 'pg', '0.15.1'
-  gem 'activerecord-postgresql-adapter'
-  gem 'rails_12factor', '0.0.2'
 end
 
 gem "json"
@@ -39,6 +36,9 @@ platforms :ruby do # linux
 end
 
 gem 'jquery-rails'
+gem 'pg', '0.15.1'
+gem 'activerecord-postgresql-adapter'
+gem 'rails_12factor', '0.0.2'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'
