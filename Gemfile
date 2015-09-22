@@ -25,7 +25,7 @@ group :production do
   gem 'rails_12factor', '0.0.2'
 end
 
-gem "json", "~>1.8.3"
+gem "json", "~> 1.8.3"
 
 group :development do
   	gem 'sqlite3'
