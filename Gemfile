@@ -36,7 +36,7 @@ platforms :ruby do # linux
 end
 
 gem 'jquery-rails'
-gem 'pg', '0.15.1'
+gem 'pg'
 gem 'activerecord-postgresql-adapter'
 gem 'rails_12factor', '0.0.2'
 
