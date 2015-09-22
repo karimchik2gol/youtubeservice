@@ -10,7 +10,7 @@ set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
 set :deploy_to, "/home/deployer/apps/blog"
 set :user, "deployer"
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
-set :rbenv_ruby, '1.9.3-p484'
+set :rbenv_ruby, '2.1.2'
 # Define where to put your application code
 
 # Default branch is :master
