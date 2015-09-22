@@ -27,7 +27,9 @@ group :production do
 end
 
 group :development do
-  gem 'sqlite3'
+  	gem 'sqlite3'
+	gem 'capistrano'
+	gem 'capistrano3-ubuntu-server-prepare' 
 end
 
 gem 'jquery-rails'
@@ -39,10 +41,9 @@ gem 'ransack'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
