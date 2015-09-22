@@ -1,5 +1,5 @@
 worker_processes 2
-my_root="/home/deployer/apps/blog/releases/current"
+my_root="/home/deployer/apps/blog/current"
 working_directory "#{my_root}" # available in 0.94.0+
 
 # listen on both a Unix domain socket and a TCP port,
