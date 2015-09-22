@@ -1,19 +1,16 @@
 # config valid only for current version of Capistrano
-
+lock '3.2.1'
 # Define the name of the application
-set :application, 'blog'
+
 
 # Define where can Capistrano access the source repository
 # set :repo_url, 'https://github.com/[user name]/[application name].git'
-set :scm, :git
+set :application, 'blog'
 set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
-
-# Define where to put your application code
 set :deploy_to, "/home/deployer/apps/blog"
-
-set :pty, true
-
-set :format, :pretty
+set :user, "deployer"
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
+# Define where to put your application code
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -45,13 +42,15 @@ set :format, :pretty
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-#namespace :deploy do
-#  %w[start stop restart].each do |command|
-#  	desc "#{command} unicorn server"
-#  	task command, roles: :app, except: {no_release: true} do 
-#  		run "/etc/init.d/unicorn_#{application} #{command}"
-#  	end
-#  end
-#
-#  task :setup_config, roles: :app
-#end
+namespace :deploy do
+  %w[start stop restart].each do |command|
+  	desc "Manage Unicorn"
+  	task comman do 
+  		on roles(:app), in: :sequence, wait: 1 do
+  			execute "/etc/init.d/unicorn_#{fetch(:application)} #{command}"
+  		end
+  	end
+  end
+
+  task :setup_config, roles: :app
+end

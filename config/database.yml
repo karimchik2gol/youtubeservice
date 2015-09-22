@@ -20,6 +20,6 @@ test:
 
 production:
   adapter: postgresql
-  database: 
-  pool: 5
-  timeout: 5000
+  database: db/production.psql
+  username: blog_production
+  password: Youtubechannel2015
