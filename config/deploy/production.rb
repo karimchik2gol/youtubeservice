@@ -1,6 +1,6 @@
 role :web, %w{45.79.176.251}
 role :db,  %w{45.79.176.251}
-role :app, %w{45.79.176.251}, :primary => true
+role :app, %w{45.79.176.251}
 
 server '45.79.176.251', user: 'deployer', roles: %w{web app db}
 
