@@ -1,9 +1,7 @@
-role :web, %w{deployer@45.79.176.251}
-role :db,  %w{deployer@45.79.176.251}
-role :app, %w{deployer@45.79.176.251}, :primary => true
-set :stage, :production
-# Define server(s)
-#server '45.79.176.251', user: 'deployer', :app, :web, :db, :primary => true
+role :web, %w{45.79.176.251}
+role :db,  %w{45.79.176.251}
+role :app, %w{45.79.176.251}, :primary => true
+
 server '45.79.176.251', user: 'deployer', roles: %w{web app db}
 
 # SSH Options

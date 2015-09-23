@@ -6,9 +6,10 @@ lock '3.4.0'
 # Define where can Capistrano access the source repository
 # set :repo_url, 'https://github.com/[user name]/[application name].git'
 set :application, 'blog'
-set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
-set :scm, :git
 set :branch, "master"
+set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
+set :pty, true
+set :scm, :git
 set :scm_passphrase, "Youtubechannel2015"
 
 set :deploy_to, "/home/deployer/apps/blog"
