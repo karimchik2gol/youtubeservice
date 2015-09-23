@@ -9,13 +9,7 @@ set :application, 'blog'
 set :branch, "master"
 set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
 set :pty, true
-set :default_env, {
-  'PATH' => "/usr/bin/ruby1.9.1/bin:/home/USER/.rvm/bin:$PATH",
-  'RUBY_VERSION' => 'ruby-2.2.0',
-  'GEM_HOME'     => '/home/USER/.rvm/gems/ruby-2.2.0',
-  'GEM_PATH'     => '/home/USER/.rvm/gems/ruby-2.2.0',
-  'BUNDLE_PATH'  => '/home/USER/.rvm/gems/ruby-2.2.0'
-}
+
 
 set :scm, :git
 set :scm_passphrase, "Youtubechannel2015"
