@@ -23,7 +23,6 @@ GEM
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
     activerecord-postgresql-adapter (0.0.1)
-      pg
     activeresource (3.2.13)
       activemodel (= 3.2.13)
       activesupport (= 3.2.13)
@@ -107,7 +106,6 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
-    pg (0.15.1)
     polyglot (0.3.5)
     rack (1.4.7)
     rack-cache (1.2)
@@ -185,7 +183,6 @@ DEPENDENCIES
   google-api-client (~> 0.8.6)
   jquery-rails
   json
-  pg
   rails (= 3.2.13)
   rails_12factor (= 0.0.2)
   sass-rails (~> 3.2.3)

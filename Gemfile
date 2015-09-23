@@ -36,7 +36,6 @@ platforms :ruby do # linux
 end
 
 gem 'jquery-rails'
-gem 'pg'
 gem 'activerecord-postgresql-adapter'
 gem 'rails_12factor', '0.0.2'
 # To use ActiveModel has_secure_password
