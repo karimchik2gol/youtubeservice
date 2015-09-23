@@ -6,7 +6,7 @@ require 'capistrano/deploy'
 require 'capistrano/rails'
 # Include tasks from other gems included in y
 require "rvm/capistrano"
-require "bundler/capistranoЭ
+require "bundler/capistrano"
 #
 # For documentation on these, see for example:
 #
