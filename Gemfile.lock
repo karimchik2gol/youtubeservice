@@ -188,7 +188,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-postgresql-adapter
-  bcrypt-ruby
+  bcrypt-ruby (~> 3.1.10)
   capistrano
   capistrano-rails
   capistrano3-ubuntu-server-prepare
