@@ -22,7 +22,6 @@ gem 'trollop'
 
 group :production do
   gem 'unicorn'
-  gem 'pg', '0.15.1'
   gem 'activerecord-postgresql-adapter'
 end
 
@@ -32,6 +31,7 @@ group :development do
 	#gem 'unicorn'
 	gem 'capistrano3-ubuntu-server-prepare' 
 end
+gem 'pg', '0.15.1'
 
 gem 'jquery-rails'
 gem 'rails_12factor', '0.0.2'
