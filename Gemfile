@@ -37,7 +37,7 @@ gem 'rails_12factor', '0.0.2'
 
 gem 'bcrypt-ruby', "~> 3.1.5"
 
-gem 'capistrano', "~> 2.11.2"
+gem 'capistrano', "~> 3.4.0"
 gem 'capistrano-rails'
 
 # Add this if you're using rbenv
