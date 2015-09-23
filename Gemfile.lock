@@ -104,8 +104,8 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
-    pg (0.17.1)
-    pg (0.17.1-x86-mingw32)
+    pg (0.18.3)
+    pg (0.18.3-x86-mingw32)
     polyglot (0.3.5)
     rack (1.4.7)
     rack-cache (1.2)
@@ -184,7 +184,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   google-api-client (~> 0.8.6)
   jquery-rails
-  pg
+  pg (~> 0.18.3)
   rails (= 3.2.13)
   rails_12factor (= 0.0.2)
   sass-rails (~> 3.2.3)

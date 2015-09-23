@@ -30,7 +30,7 @@ group :development do
 end
 
 
-gem 'pg'
+gem 'pg', "~> 0.18.3"
 gem 'activerecord-postgresql-adapter'
 gem 'jquery-rails'
 gem 'rails_12factor', '0.0.2'
