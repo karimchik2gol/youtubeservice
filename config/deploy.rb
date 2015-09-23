@@ -9,6 +9,7 @@ set :application, 'blog'
 set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
 set :deploy_to, "/home/deployer/apps/blog"
 set :user, "deployer"
+set :bundle_flags, "--quiet"
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
 set :bundle_flags, '--deployment --verbose'
 # Define where to put your application code
