@@ -28,10 +28,6 @@ end
 
 group :development do
 end
-
-platform :ruby do
-	gem 'unicorn'
-end
 gem 'pg'
 gem 'activerecord-postgresql-adapter'
 gem 'sqlite3'
@@ -52,4 +48,3 @@ gem 'bcrypt-ruby', "~> 3.1.5"
 
 # To use debugger
 # gem 'debugger'
-"gem 'pg'" 
