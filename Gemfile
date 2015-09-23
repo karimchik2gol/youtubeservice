@@ -31,7 +31,7 @@ group :development do
 end
 
 platforms :ruby do # linux
-	gem 'unicorn'
+	gem 'unicorn', "~> 4.9.0"
 end
 
 gem 'jquery-rails'

@@ -196,4 +196,4 @@ DEPENDENCIES
   sqlite3
   trollop
   uglifier (>= 1.0.3)
-  unicorn
+  unicorn (~> 4.9.0)
