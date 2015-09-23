@@ -22,4 +22,4 @@ production:
   adapter: postgresql
   database: production.psql
   username: blog_production
-  password: 'Youtubechannel2015'
+  password: secret
