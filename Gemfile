@@ -23,7 +23,6 @@ gem 'trollop'
 group :production do
 end
 
-gem "json"
 
 group :development do
   	gem 'sqlite3'

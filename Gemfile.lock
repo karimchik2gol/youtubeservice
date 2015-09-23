@@ -195,7 +195,6 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   google-api-client (~> 0.8.6)
   jquery-rails
-  json
   rails (= 3.2.13)
   rails_12factor (= 0.0.2)
   sass-rails (~> 3.2.3)
