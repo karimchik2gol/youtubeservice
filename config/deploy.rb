@@ -1,17 +1,21 @@
 # config valid only for current version of Capistrano
+require "bundler/capistrano"
+
 lock '3.4.0'
 # Define the name of the application
 
-
+server '45.79.176.251', roles: %w{web app db}, primary: true
 # Define where can Capistrano access the source repository
 # set :repo_url, 'https://github.com/[user name]/[application name].git'
 set :application, 'blog'
-set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
 set :deploy_to, "/home/deployer/apps/blog"
 set :user, "deployer"
-set :bundle_flags, "--quiet"
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
-set :bundle_flags, '--deployment --verbose'
+set :use_sudo, false
+set :deploy_via, :remote_cache
+
+set :scm, "git"
+set :repository, 'https://github.com/karimchik2gol/youtubeservice'
+set :branch, "master"
 # Define where to put your application code
 
 # Default branch is :master

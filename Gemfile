@@ -32,6 +32,7 @@ group :development do
 	#gem 'unicorn'
 end
 
+gem 'capistrano-postgresql', '~> 4.2.0'
 gem 'jquery-rails'
 gem 'rails_12factor', '0.0.2'
 # To use ActiveModel has_secure_password
