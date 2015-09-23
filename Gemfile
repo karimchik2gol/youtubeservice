@@ -21,6 +21,7 @@ gem 'google-api-client', '~> 0.8.6'
 gem 'trollop'
 
 group :production do
+  gem 'unicorn'
 end
 
 
@@ -28,10 +29,6 @@ group :development do
   	gem 'sqlite3'
 	#gem 'unicorn'
 	gem 'capistrano3-ubuntu-server-prepare' 
-end
-
-platforms :ruby do # linux
-	gem 'unicorn', "~> 4.9.0"
 end
 
 gem 'jquery-rails'
