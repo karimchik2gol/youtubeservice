@@ -22,11 +22,7 @@ set :rails_env, "production"
 set :deploy_via, :copy
 
 
-# Define server(s)
-set :linked_files, fetch(:linked_files, []).
-  push("#{Rails.root}/config/database.yml")
-set :linked_dirs, fetch(:linked_dirs, []).
-  push("#{Rails.root}/log", "#{Rails.root}/tmp/pids", "#{Rails.root}/tmp/cache", "#{Rails.root}/tmp/sockets")
+
 # SSH Options
 # See the example commented out section in the file
 # for more options.
