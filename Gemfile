@@ -21,6 +21,8 @@ gem 'google-api-client', '~> 0.8.6'
 gem 'trollop'
 
 group :production do
+  gem 'capistrano3-ubuntu-server-prepare' 
+  gem 'pg', '0.15.1'
   gem 'unicorn'
   gem 'activerecord-postgresql-adapter'
 end
@@ -29,8 +31,6 @@ end
 group :development do
   	gem 'sqlite3'
 	#gem 'unicorn'
-	gem 'capistrano3-ubuntu-server-prepare' 
-	gem 'pg', '0.15.1'
 end
 
 gem 'jquery-rails'
