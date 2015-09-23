@@ -20,16 +20,20 @@ end
 gem 'google-api-client', '~> 0.8.6'
 gem 'trollop'
 
+group :production do
+  gem 'capistrano3-ubuntu-server-prepare' 
+  gem 'unicorn'
+end
+
 
 group :development do
-	gem 'capistrano-deploy', '~> 0.1.1', :require => nil
-end
-group :production do
-	gem 'unicorn', '~> 3.6.2', :require => nil
 end
 
-
-
+platform :ruby do
+	gem 'unicorn'
+end
+gem 'sqlite3'
+gem 'capistrano-postgresql', '~> 4.2.0'
 gem 'jquery-rails'
 gem 'rails_12factor', '0.0.2'
 # To use ActiveModel has_secure_password
@@ -46,3 +50,4 @@ gem 'bcrypt-ruby', "~> 3.1.5"
 
 # To use debugger
 # gem 'debugger'
+"gem 'pg'" 
