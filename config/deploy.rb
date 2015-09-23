@@ -1,6 +1,4 @@
 # config valid only for current version of Capistrano
-require "rvm/capistrano"
-require "bundler/capistrano"
 lock '3.4.0'
 # Define the name of the application
 

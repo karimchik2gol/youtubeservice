@@ -4,7 +4,9 @@ require 'capistrano/setup'
 # Include default deployment tasks
 require 'capistrano/deploy'
 require 'capistrano/rails'
-# Include tasks from other gems included in your Gemfile
+# Include tasks from other gems included in y
+require "rvm/capistrano"
+require "bundler/capistranoЭ
 #
 # For documentation on these, see for example:
 #
