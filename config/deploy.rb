@@ -78,7 +78,10 @@ namespace :deploy do
   after :publishing, 'deploy:restart'
   after :finishing, 'deploy:cleanup'
 
-  task :setup_config, roles: :app do
+ 
+end
+
+ task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
     run "mkdir -p #{shared_path}/config"
@@ -101,4 +104,3 @@ namespace :deploy do
     end
   end
   before "deploy", "deploy:check_revision"
-end
