@@ -39,11 +39,11 @@ gem 'jquery-rails'
 gem 'pg'
 gem 'activerecord-postgresql-adapter'
 gem 'rails_12factor', '0.0.2'
-gem 'rvm-capistrano'
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.1'
 gem 'capistrano'
 gem 'capistrano-rails'
+gem 'capistrano-rvm', github: 'capistrano/rvm'
 #gem 'ransack'
 #gem "kgio", "~> 2.8.1"
 # To use Jbuilder templates for JSON
