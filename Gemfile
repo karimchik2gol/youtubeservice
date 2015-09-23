@@ -32,7 +32,6 @@ end
 
 gem 'pg'
 gem 'activerecord-postgresql-adapter'
-gem 'capistrano-postgresql', '~> 4.2.0'
 gem 'jquery-rails'
 gem 'rails_12factor', '0.0.2'
 
@@ -41,6 +40,7 @@ gem 'bcrypt-ruby', "~> 3.1.5"
 gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rails'
+gem 'capistrano-postgresql', '~> 4.2.0'
 
 # Add this if you're using rbenv
 # gem 'capistrano-rbenv', github: "capistrano/rbenv"
