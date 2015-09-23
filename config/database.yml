@@ -19,5 +19,7 @@ test:
   timeout: 5000
 
 production:
-  <<: *default
-  database: testapp_production
+  adapter: postgresql
+  database: production.psql
+  username: blog_production
+  password: Youtubechannel2015
