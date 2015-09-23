@@ -39,7 +39,7 @@ gem 'jquery-rails'
 gem 'activerecord-postgresql-adapter'
 gem 'rails_12factor', '0.0.2'
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.1'
+gem 'bcrypt-ruby'
 gem 'capistrano'
 gem 'capistrano-rails'
 #gem 'ransack'
