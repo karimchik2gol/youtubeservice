@@ -32,6 +32,7 @@ end
 platform :ruby do
 	gem 'unicorn'
 end
+
 gem 'sqlite3'
 gem 'capistrano-postgresql', '~> 4.2.0'
 gem 'jquery-rails'
