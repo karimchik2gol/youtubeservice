@@ -7,10 +7,31 @@ lock '3.4.0'
 # set :repo_url, 'https://github.com/[user name]/[application name].git'
 set :application, 'blog'
 set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
+set :scm, :git
+set :branch, "master"
+set :scm_passphrase, "Youtubechannel2015"
+
 set :deploy_to, "/home/deployer/apps/blog"
 set :user, "deployer"
-set :password, "Youtubechannel2015"
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
+set :use_sudo, false
+set :rails_env, "production"
+set :deploy_via, :copy
+
+set :ssh_options, { :forward_agent => true, :port => 4321 }
+
+# Define server(s)
+server '45.79.176.251', user: 'deployer', roles: %w{web app db}, :primary => true
+
+# SSH Options
+# See the example commented out section in the file
+# for more options.
+set :ssh_options, {
+    forward_agent: false,
+    auth_methods: %w(password),
+    password: 'Youtubechannel2015',
+    user: 'deployer',
+}
+
 # Define where to put your application code
 
 # Default branch is :master
@@ -42,6 +63,7 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+after "deploy", "deploy:cleanup"
 
 namespace :deploy do
 
