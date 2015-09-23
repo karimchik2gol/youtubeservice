@@ -20,7 +20,6 @@ set :use_sudo, false
 set :rails_env, "production"
 set :deploy_via, :copy
 
-set :ssh_options, { :forward_agent => true, :port => 4321 }
 
 # Define server(s)
 server '45.79.176.251', user: 'deployer', roles: %w{web app db}, :primary => true
