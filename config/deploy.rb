@@ -1,4 +1,5 @@
 # config valid only for current version of Capistrano
+require "rvm/capistrano"
 lock '3.4.0'
 # Define the name of the application
 
@@ -10,6 +11,7 @@ set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
 set :deploy_to, "/home/deployer/apps/blog"
 set :user, "deployer"
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
+set :bundle_flags, '--deployment --verbose'
 # Define where to put your application code
 
 # Default branch is :master
