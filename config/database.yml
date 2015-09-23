@@ -19,7 +19,5 @@ test:
   timeout: 5000
 
 production:
-  adapter: postgresql
-  database: production.psql
-  username: youtubeklkl_production
-  password: Youtubechannel2015
+  adapter: sqlite3
+  database: db/test.sqlite3
