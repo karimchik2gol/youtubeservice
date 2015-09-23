@@ -30,8 +30,8 @@ group :development do
   	gem 'sqlite3'
 	#gem 'unicorn'
 	gem 'capistrano3-ubuntu-server-prepare' 
+	gem 'pg', '0.15.1'
 end
-gem 'pg', '0.15.1'
 
 gem 'jquery-rails'
 gem 'rails_12factor', '0.0.2'
