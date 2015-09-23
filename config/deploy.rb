@@ -19,6 +19,8 @@ set :deploy_via, :copy
 
 set :ssh_options, { :forward_agent => true, :port => 4321 }
 
+set :linked_files, %w{config/database.yml}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 # Define server(s)
 server '45.79.176.251', user: 'deployer', roles: %w{web app db}, :primary => true
 
@@ -63,7 +65,6 @@ set :ssh_options, {
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
-after "deploy", "deploy:cleanup"
 
 namespace :deploy do
 
@@ -76,6 +77,6 @@ namespace :deploy do
     end
   end
 
-  after :publishing, :restart
-
+  after :publishing, 'deploy:restart'
+  after :finishing, 'deploy:cleanup'
 end

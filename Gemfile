@@ -21,30 +21,29 @@ gem 'google-api-client', '~> 0.8.6'
 gem 'trollop'
 
 group :production do
-  gem 'capistrano3-ubuntu-server-prepare' 
   gem 'unicorn'
 end
 
 
 group :development do
+	gem 'sqlite3'
 end
+
+
 gem 'pg'
 gem 'activerecord-postgresql-adapter'
-gem 'sqlite3'
 gem 'capistrano-postgresql', '~> 4.2.0'
 gem 'jquery-rails'
 gem 'rails_12factor', '0.0.2'
-# To use ActiveModel has_secure_password
+
 gem 'bcrypt-ruby', "~> 3.1.5"
-#gem 'ransack'
-#gem "kgio", "~> 2.8.1"
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
 
-# Use unicorn as the app server
-#
+gem 'capistrano'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
 
-# Deploy with Capistrano
+# Add this if you're using rbenv
+# gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
-# To use debugger
-# gem 'debugger'
+# Add this if you're using rvm
+# gem 'capistrano-rvm', github: "capistrano/rvm"
