@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/capistrano/rvm.git
+  revision: 9cfef39cf0022839dca6b5b330dfefeb5fc363e7
+  specs:
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -142,8 +150,6 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     retriable (1.4.1)
-    rvm-capistrano (1.5.0)
-      capistrano (>= 2.15.4)
     sass (3.4.18)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -185,6 +191,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.1)
   capistrano
   capistrano-rails
+  capistrano-rvm!
   capistrano3-ubuntu-server-prepare
   coffee-rails (~> 3.2.1)
   google-api-client (~> 0.8.6)
@@ -193,7 +200,6 @@ DEPENDENCIES
   pg
   rails (= 3.2.13)
   rails_12factor (= 0.0.2)
-  rvm-capistrano
   sass-rails (~> 3.2.3)
   sqlite3
   trollop
