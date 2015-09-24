@@ -21,14 +21,13 @@ gem 'google-api-client', '~> 0.8.6'
 gem 'trollop'
 
 group :production do
-  gem 'unicorn'
+	gem 'unicorn'
 end
 
 
 group :development do
 	#gem 'sqlite3'
 end
-
 
 gem 'pg', "~> 0.18.3"
 gem 'activerecord-postgresql-adapter'
