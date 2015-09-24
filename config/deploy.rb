@@ -18,7 +18,7 @@ set :scm_passphrase, "Youtubechannel2015"
 set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
 
 set :user, "deployer"
-#set :rails_env, "production"
+set :rails_env, "production"
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
 
 
