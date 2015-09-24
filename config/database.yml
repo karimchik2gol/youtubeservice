@@ -18,6 +18,10 @@ test:
   pool: 5
   timeout: 5000
 
-production:
-  adapter: sqlite3
-  database: db/test.sqlite3
+adapter: postgresql
+  encoding: utf8
+  database: youtube_production
+  username: youtube
+  password: Youtubechannel2015
+  socket: /var/lib/postgresql/9.3/main
+  port: 5432
