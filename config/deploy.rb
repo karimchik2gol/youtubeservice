@@ -65,11 +65,10 @@ set :ssh_options, {
 # set :keep_releases, 5
 
 namespace :deploy do
-  task :install_dependencies do
-    on roles(:web), in: :sequence, wait: 5 do
-      within release_path do
-        execute :bundle, "--without development test"
-      end
+  %w[start stop restart].each do |command|
+    desc "#{command} unicorn server"
+    task command, roles: :app, except: {no_release: true} do
+      run "/etc/init.d/unicorn_#{application} #{command}"
     end
   end
   after :published, :install_dependencies
