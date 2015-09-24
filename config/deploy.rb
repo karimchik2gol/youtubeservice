@@ -17,7 +17,7 @@ set :scm_passphrase, "Youtubechannel2015"
 
 set :deploy_to, "/home/deployer/apps/blog"
 set :user, "deployer"
-set :use_sudo, false
+set :use_sudo, true
 set :rails_env, "production"
 set :deploy_via, :copy
 
