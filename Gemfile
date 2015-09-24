@@ -21,7 +21,7 @@ gem 'google-api-client', '~> 0.8.6'
 gem 'trollop'
 
 platform :ruby do
-	gem 'unicorn'
+	gem 'unicorn', "~> 3.6.2"
 end
 
 
