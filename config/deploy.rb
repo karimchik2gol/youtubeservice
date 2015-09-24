@@ -75,4 +75,5 @@ namespace :deploy do
   end
 
   #after :publishing, :restart
+  after :publishing, :restart
 end
