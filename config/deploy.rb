@@ -7,19 +7,19 @@ server '45.79.176.251', user: 'deployer', roles: %w{web app db}, :primary => tru
 # Define where can Capistrano access the source repository
 # set :repo_url, 'https://github.com/[user name]/[application name].git'
 set :application, 'blog'
-set :pty, true
+#set :pty, true
 set :deploy_to, "/home/deployer/apps/blog"
-set :deploy_via, :remote_cache
-set :use_sudo, false
+#set :deploy_via, :remote_cache
+#set :use_sudo, false
 
 set :scm, :git
 set :scm_passphrase, "Youtubechannel2015"
-set :branch, "master"
+#set :branch, "master"
 set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
 
 set :user, "deployer"
-set :rails_env, "production"
-
+#set :rails_env, "production"
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
 
 
 # SSH Options
