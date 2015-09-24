@@ -20,8 +20,8 @@ end
 gem 'google-api-client', '~> 0.8.6'
 gem 'trollop'
 
-platform :ruby do
-	gem 'unicorn', "~> 3.6.2"
+group :production do
+	gem 'unicorn'
 end
 
 
