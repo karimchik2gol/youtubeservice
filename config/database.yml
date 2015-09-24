@@ -18,8 +18,8 @@ test:
   pool: 5
   timeout: 5000
 
-development:
-  adapter: sqlite3
-  database: db/development.sqlite3
-  pool: 5
-  timeout: 5000
+#adapter: postgresql
+#  database: youtube_production
+#  username: youtube
+#  password: Youtubechannel2015
+#  port: 5432
