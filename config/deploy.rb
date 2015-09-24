@@ -65,11 +65,14 @@ set :ssh_options, {
 # set :keep_releases, 5
 
 namespace :deploy do
-  %w[start stop restart].each do |command|
-    desc "#{command} unicorn server"
-    task command, roles: :app, except: {no_release: true} do
-      run "/etc/init.d/unicorn_#{application} #{command}"
+   %w[start stop restart].each do |command|
+    desc 'Manage Unicorn'
+    task command do
+      on roles(:app), in: :sequence, wait: 1 do
+        execute "/etc/init.d/unicorn_#{fetch(:application)} #{command}"
+      end      
     end
   end
-  after :published, :install_dependencies
+
+  after :publishing, :restart
 end
