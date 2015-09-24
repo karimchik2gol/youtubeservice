@@ -188,6 +188,7 @@ DEPENDENCIES
   rails (= 3.2.13)
   rails_12factor (= 0.0.2)
   sass-rails (~> 3.2.3)
+  sqlite3
   trollop
   uglifier (>= 1.0.3)
   unicorn

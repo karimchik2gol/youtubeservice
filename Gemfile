@@ -26,10 +26,10 @@ end
 
 
 group :development do
-	#gem 'sqlite3'
+	
 end
 
-
+gem 'sqlite3'
 gem 'pg', "~> 0.18.3"
 gem 'activerecord-postgresql-adapter'
 gem 'jquery-rails'
