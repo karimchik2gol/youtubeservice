@@ -23,4 +23,5 @@ production:
   database: youtube_production
   username: youtube
   password: Youtubechannel2015
+  host: localhost
   port: 5432
