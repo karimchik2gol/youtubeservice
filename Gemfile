@@ -29,6 +29,7 @@ group :development do
 	#gem 'sqlite3'
 end
 gem 'pg', "~> 0.18.3"
+gem 'unicorn'
 gem 'activerecord-postgresql-adapter'
 gem 'jquery-rails'
 gem 'rails_12factor', '0.0.2'
