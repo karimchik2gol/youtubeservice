@@ -65,7 +65,7 @@ set :ssh_options, {
 # set :keep_releases, 5
 after "deploy", "deploy:cleanup"
 namespace :deploy do
-   %w[start stop restart].each do |command|
+   %w[start stop reload].each do |command|
     desc 'Manage Unicorn'
     task command do
       on roles(:app), in: :sequence, wait: 1 do
@@ -73,7 +73,7 @@ namespace :deploy do
       end      
     end
   end
-  
+
   #after :publishing, :restart
   after :publishing, :restart
 end
