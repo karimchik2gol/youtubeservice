@@ -36,6 +36,7 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
+    bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     builder (3.0.4)
     capistrano (3.4.0)
@@ -183,4 +184,4 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   trollop
   uglifier (>= 1.0.3)
-  unicorn (~> 3.6.2)
+  unicorn
