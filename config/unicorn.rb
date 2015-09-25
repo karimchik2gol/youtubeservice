@@ -20,4 +20,9 @@ preload_app true
 timeout 30
 
 # Set up socket location
-listen "#{shared_dir}/tmp/sockets/unicorn.sock"
+listen "#{shared_dir}/sockets/unicorn.sock"
+
+if gid && Process.egid != gid
+  Process.initgroups(user, gid)
+  Process::GID.change_privilege(gid)
+end
