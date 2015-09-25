@@ -1,8 +1,8 @@
 root="/home/deployer/apps/blog/current"
 working_directory root
 pid "#{root}/tmp/pids/unicorn.pid"
-stderr_path "#{root}/log/unicorn.log"
-stdout_path "#{root}/log/unicorn.log"
+stderr_path "#{root}/log/myunicorn.log"
+stdout_path "#{root}/log/myunicorn.log"
 
 listen "/tmp/unicorn.blog.sock"
 worker_processes 2
@@ -23,8 +23,8 @@ timeout 30
 listen "#{shared_dir}/sockets/unicorn.sock", :backlog => 64
 
 # Logging
-stderr_path "#{shared_dir}/log/unicorn.stderr.log"
-stdout_path "#{shared_dir}/log/unicorn.stdout.log"
+stderr_path "#{shared_dir}/log/myunicorn.stderr.log"
+stdout_path "#{shared_dir}/log/myunicorn.stdout.log"
 
 # Set master PID location
 pid "#{shared_dir}/pids/unicorn.pid"
