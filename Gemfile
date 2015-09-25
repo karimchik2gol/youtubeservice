@@ -34,7 +34,7 @@ gem 'activerecord-postgresql-adapter'
 gem 'jquery-rails'
 gem 'rails_12factor', '0.0.2'
 
-gem 'bcrypt-ruby', "~> 3.1.5"
+gem 'bcrypt-ruby', "~> 3.0.0"
 
 gem 'capistrano', "~> 3.4.0"
 gem 'capistrano-rails'
