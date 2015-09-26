@@ -29,7 +29,6 @@ group :development do
 	#gem 'sqlite3'
 end
 gem 'pg', "~> 0.18.3"
-gem 'unicorn'
 gem 'activerecord-postgresql-adapter'
 gem 'jquery-rails'
 gem 'rails_12factor', '0.0.2'
@@ -38,6 +37,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'capistrano', "~> 3.4.0"
 gem 'capistrano-rails'
+gem 'capistrano-unicorn'
 # Add this if you're using rbenv
 # gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
