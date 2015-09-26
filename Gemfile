@@ -27,8 +27,6 @@ end
 
 group :development do
 	#gem 'sqlite3'
-	gem 'capistrano-rails'
-	gem 'capistrano3-unicorn'
 end
 gem 'pg', "~> 0.18.3"
 gem 'unicorn'
@@ -39,6 +37,8 @@ gem 'rails_12factor', '0.0.2'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'capistrano', "~> 3.4.0"
+gem 'capistrano-rails'
+gem 'capistrano-rvm', github: "capistrano/rvm"
 # Add this if you're using rbenv
 # gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
