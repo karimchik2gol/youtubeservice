@@ -28,7 +28,6 @@ end
 group :development do
 	#gem 'sqlite3'
 	gem 'capistrano-rails'
-	gem 'capistrano-rvm'
 	gem 'capistrano3-unicorn'
 end
 gem 'pg', "~> 0.18.3"
