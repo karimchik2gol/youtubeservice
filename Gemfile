@@ -17,16 +17,16 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-#gem 'google-api-client', '~> 0.8.6', require: 'google/api_client'
+gem 'google-api-client', '~> 0.8.6'#, require: 'google/api_client'
 gem 'trollop'
-
+gem 'ransack'
 group :production do
 	gem 'unicorn'
 end
 
 
 group :development do
-	#gem 'sqlite3'
+	gem 'sqlite3'
 end
 gem 'pg', "~> 0.18.3"
 gem 'activerecord-postgresql-adapter'

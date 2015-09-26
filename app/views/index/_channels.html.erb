@@ -1,6 +1,6 @@
 <% @users.each do |f| %>
 	<% begin %>
-		<% youtubeinfoid=YoutubeInfoId.find(f.youtube_info_id) %>
+		<% youtubeinfoid=YoutubeInfoId.find(f.youtube_info_id.to_i) %>
 	<% rescue %>
 		<% youtubeinfoid=f %>
 		<% f=User.find(f.user_id) %>

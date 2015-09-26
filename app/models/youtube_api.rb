@@ -170,12 +170,16 @@ class YoutubeApi
       index+=1
     end
 
-    splited=splited[curMax-1].gsub("age","").split("-")
+    if splited[curMax-1]
+      splited=splited[curMax-1].gsub("age","").split("-")
 
-    splited[0]=0 if splited[0].to_i==0
-    splited[1]=100 if splited[1].to_i==0 
+      splited[0]=0 if splited[0].to_i==0
+      splited[1]=100 if splited[1].to_i==0 
 
-    return splited[0].to_i, splited[1].to_i
+      return splited[0].to_i, splited[1].to_i
+    else
+      return nil
+    end
   end
 
   def views(opts)
