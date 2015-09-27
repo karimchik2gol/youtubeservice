@@ -15,7 +15,6 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 set :rbenv_type, :deployer
 set :rbenv_ruby, '1.9.3-p545'
 
-
 # SSH Options
 # See the example commented out section in the file
 # for more options.
