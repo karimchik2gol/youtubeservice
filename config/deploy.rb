@@ -1,27 +1,27 @@
-# config valid only for current version of Capistrano
-lock '3.4.0'
-
 set :application, 'blog'
-set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
-set :bundle_without, :development#, :test]
-set :unicorn_config_path, "#{current_path}/config/production/unicorn/unicorn.rb"
-set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system') # Строчка есть по умолчанию в deploy.rb, ее просто надо откомментировать
-after "deploy", "deploy:cleanup"
+set :repo_url, 'git@github.com:karimchik2gol/youtubeservice.git'
+
+set :deploy_to, '/home/deployer/apps'
+
+set :linked_files, %w{config/database.yml}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
+set :ssh_options, {
+    forward_agent: true,
+    auth_methods: %w(password),
+    password: 'Youtubechannel2015',
+    user: 'deployer',
+}
+
 namespace :deploy do
-  task :setup do
-    before "deploy:migrate", :create_db
-    invoke :deploy
-  end
-  task :create_db do
-    on roles(:all) do
-      within release_path do
-        with rails_env: fetch(:rails_env) do
-          execute :rake, "db:create"
-        end
-      end
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
     end
   end
-  task :restart do
-    invoke 'unicorn:legacy_restart'
-  end
+
+  after :publishing, 'deploy:restart'
+  after :finishing, 'deploy:cleanup'
 end

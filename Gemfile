@@ -27,14 +27,9 @@ end
 
 group :development do
 	#gem 'sqlite3'
-	gem 'capistrano', "~> 3.4.0"
-	gem 'capistrano3-git-push'
-    gem 'capistrano3-ubuntu-server-prepare' 
-	gem 'capistrano-rails'
+	gem 'capistrano', '~> 3.4.0'
 	gem 'capistrano-bundler'
-	gem 'capistrano3-unicorn'
-	gem 'capistrano-rvm'
-	gem 'capistrano3-delayed-job'
+	gem 'capistrano-rails'
 end
 
 gem 'pg', "~> 0.18.3"
