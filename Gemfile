@@ -27,16 +27,22 @@ end
 
 group :development do
 	#gem 'sqlite3'
+	gem 'capistrano', "~> 3.4.0"
+	gem 'capistrano3-git-push'
+    gem 'capistrano3-ubuntu-server-prepare' 
+	gem 'capistrano-rails'
+	gem 'capistrano-bundler'
+	gem 'capistrano3-unicorn'
+	gem 'capistrano-rvm'
+	gem 'capistrano3-delayed-job'
 end
+
 gem 'pg', "~> 0.18.3"
 gem 'activerecord-postgresql-adapter'
 gem 'jquery-rails'
 gem 'rails_12factor', '0.0.2'
 
 gem 'bcrypt-ruby', '~> 3.0.0'
-
-gem 'capistrano', "~> 3.4.0"
-gem 'capistrano-rails'
 # Add this if you're using rbenv
 # gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
