@@ -1,10 +1,10 @@
 #!/usr/bin/ruby
-
+root="/home/deployer/apps/blog/shared/bundle/ruby/1.9.1/gems/google-api-client-0.8.6/lib"
 require 'rubygems'
-require "google/api_client"
-require "google/api_client/client_secrets"
-require "google/api_client/auth/file_storage"
-require "google/api_client/auth/installed_app"
+require "#{root}/google/api_client"
+require "#{root}/google/api_client/client_secrets"
+require "#{root}/google/api_client/auth/file_storage"
+require "#{root}/google/api_client/auth/installed_app"
 require 'openssl'
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
