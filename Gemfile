@@ -22,7 +22,6 @@ gem 'trollop'
 gem 'ransack'
 group :production do
 	gem 'unicorn'
-	gem 'kgio'
 end
 
 
