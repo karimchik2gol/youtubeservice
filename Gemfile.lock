@@ -48,9 +48,6 @@ GEM
       sshkit (~> 1.2)
     capistrano-rails (1.0.0)
       capistrano
-    capistrano-rvm (0.1.2)
-      capistrano (~> 3.0)
-      sshkit (~> 1.2)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -190,7 +187,6 @@ DEPENDENCIES
   capistrano (~> 3.4.0)
   capistrano-bundler
   capistrano-rails
-  capistrano-rvm
   coffee-rails (~> 3.2.1)
   google-api-client (~> 0.8.6)
   jquery-rails

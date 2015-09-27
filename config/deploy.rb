@@ -1,15 +1,5 @@
-# config valid only for current version of Capistrano
-lock '3.4.0'
-# Define the name of the application
-
-
-# Define where can Capistrano access the source repository
-# set :repo_url, 'https://github.com/[user name]/[application name].git'
 set :application, 'blog'
-#set :pty, true
 set :deploy_to, "/home/deployer/apps/blog"
-#set :deploy_via, :remote_cache
-#set :use_sudo, false
 
 set :scm, :git
 set :scm_passphrase, "Youtubechannel2015"
@@ -18,12 +8,14 @@ set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
 
 set :user, "deployer"
 set :rails_env, "production"
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
 
 
-set :rvm_ruby_version, '1.9.3-p545'
-set :default_env, { rvm_bin_path: '~/.rbenv/bin' }
-SSHKit.config.command_map[:rake] = "#{fetch(:default_env)[:rvm_bin_path]}/rbenv ruby-#{fetch(:rvm_ruby_version)} do bundle exec rake"
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
+
+set :rbenv_ruby_version, '1.9.3-p545'
+set :default_env, { rbenv_bin_path: '~/.rbenv/bin' }
+SSHKit.config.command_map[:rake] = "#{fetch(:default_env)[:rbenv_bin_path]}/rbenv ruby-#{fetch(:rbenv_ruby_version)} do bundle exec rake"
 
 
 # SSH Options
