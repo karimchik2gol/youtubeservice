@@ -37,5 +37,5 @@ namespace :deploy do
 
   after :publishing, 'deploy:restart'
   after :finishing, 'deploy:cleanup'
-  after "deploy:update_code", "deploy:migrate"
+  after :finishing, "deploy:migrate"
 end
