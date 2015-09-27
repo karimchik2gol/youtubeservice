@@ -14,11 +14,16 @@ set :deploy_to, "/home/deployer/apps/blog"
 set :scm, :git
 set :scm_passphrase, "Youtubechannel2015"
 #set :branch, "master"
-set :repo_url, 'git@github.com:karimchik2gol/youtubeservice.git'
+set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
 
 set :user, "deployer"
 set :rails_env, "production"
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
+
+
+set :rvm_ruby_version, '1.9.3-p545'
+set :default_env, { rvm_bin_path: '~/.rbenv/bin' }
+SSHKit.config.command_map[:rake] = "#{fetch(:default_env)[:rvm_bin_path]}/rbenv ruby-#{fetch(:rvm_ruby_version)} do bundle exec rake"
 
 
 # SSH Options
