@@ -3,7 +3,7 @@ lock '3.4.0'
 
 set :application, 'blog'
 set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
-set :bundle_without, [:development, :test]
+set :bundle_without, :development#, :test]
 set :unicorn_config_path, "#{current_path}/config/production/unicorn/unicorn.rb"
 set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system') # Строчка есть по умолчанию в deploy.rb, ее просто надо откомментировать
 
