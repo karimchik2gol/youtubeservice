@@ -2,7 +2,6 @@
 lock '3.4.0'
 # Define the name of the application
 
-server '45.79.176.251', user: 'deployer', roles: %w{web app db}, :primary => true
 
 # Define where can Capistrano access the source repository
 # set :repo_url, 'https://github.com/[user name]/[application name].git'
@@ -15,7 +14,7 @@ set :deploy_to, "/home/deployer/apps/blog"
 set :scm, :git
 set :scm_passphrase, "Youtubechannel2015"
 #set :branch, "master"
-set :repo_url, 'https://github.com/karimchik2gol/youtubeservice'
+set :repo_url, 'git@github.com:karimchik2gol/youtubeservice.git'
 
 set :user, "deployer"
 set :rails_env, "production"
