@@ -5,6 +5,7 @@ require 'capistrano/setup'
 require 'capistrano/deploy'
 require 'capistrano/bundler'
 require 'capistrano/rails'
+#require 'capistrano/rvm'
 # Include tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:
@@ -17,7 +18,7 @@ require 'capistrano/rails'
 #   https://github.com/capistrano/passenger
 #
 # 
-# require 'capistrano/rbenv'
+require 'capistrano/rbenv'
 # require 'capistrano/chruby'
 # require 'capistrano/bundler'
 # require 'capistrano/rails/assets'

@@ -12,10 +12,8 @@ set :rails_env, "production"
 
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
-
-set :rbenv_ruby_version, '1.9.3-p545'
-set :default_env, { rbenv_bin_path: '~/.rbenv/bin' }
-SSHKit.config.command_map[:rake] = "#{fetch(:default_env)[:rbenv_bin_path]}/rbenv ruby-#{fetch(:rbenv_ruby_version)} do bundle exec rake"
+set :rbenv_type, :deployer
+set :rbenv_ruby, '1.9.3-p545'
 
 
 # SSH Options
