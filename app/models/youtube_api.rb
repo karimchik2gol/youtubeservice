@@ -46,7 +46,7 @@ class YoutubeApi
         :client_secret => client_secrets.client_secret,
         :scope => YOUTUBE_SCOPES
       )
-      puts client_secrets
+      puts client_secrets[:authorization_uri]
       $client.authorization = flow.authorize(file_storage)
     else
       $client.authorization = file_storage.authorization
