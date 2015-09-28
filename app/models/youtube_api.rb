@@ -34,10 +34,7 @@ class YoutubeApi
     )
     youtube = $client.discovered_api(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION)
     youtube_analytics = $client.discovered_api(YOUTUBE_ANALYTICS_API_SERVICE_NAME, YOUTUBE_ANALYTICS_API_VERSION)
-    plus = $client.discovered_api(YOUTUBE_GOOGLE_PLUS_API_SERVICE_NAME, YOUTUBE_GOOGLE_PLUS_API_VERSION)
-
-    file_storage = Google::APIClient::FileStorage.new("#{$PROGRAM_NAME}-oauth2.json")
-    
+    plus = $client.discovered_api(YOUTUBE_GOOGLE_PLUS_API_SERVICE_NAME, YOUTUBE_GOOGLE_PLUS_API_VERSION) 
     
     if true
       if Rails.root.to_s.include?("releases/")
@@ -45,6 +42,8 @@ class YoutubeApi
       else
         root=Rails.root
       end
+      
+      file_storage = Google::APIClient::FileStorage.new("#{root}/#{$PROGRAM_NAME}-oauth2.json") 
 
       client_secrets = Google::APIClient::ClientSecrets.load("#{root}/client_secrets.json")
       flow = Google::APIClient::InstalledAppFlow.new(
