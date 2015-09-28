@@ -39,13 +39,14 @@ class YoutubeApi
     file_storage = Google::APIClient::FileStorage.new("#{$PROGRAM_NAME}-oauth2.json")
     
     
-    if file_storage.authorization.nil? || true
+    if true
       client_secrets = Google::APIClient::ClientSecrets.load("#{Rails.root}/client_secrets.json")
       flow = Google::APIClient::InstalledAppFlow.new(
         :client_id => client_secrets.client_id,
         :client_secret => client_secrets.client_secret,
         :scope => YOUTUBE_SCOPES
       )
+      puts client_secrets
       $client.authorization = flow.authorize(file_storage)
     else
       $client.authorization = file_storage.authorization
