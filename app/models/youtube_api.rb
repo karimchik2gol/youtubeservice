@@ -1,12 +1,12 @@
 #!/usr/bin/ruby
-root="/home/deployer/apps/blog/shared/bundle/ruby/1.9.1/gems/google-api-client-0.8.6/lib"
+root="/home/deployer/apps/blog/shared/bundle/ruby/1.9.1/gems/google-api-client-0.8.6/lib/"
 require 'rubygems'
-require "#{root}/google/api_client"
-require "#{root}/google/api_client/client_secrets"
-require "#{root}/google/api_client/auth/file_storage"
-require "#{root}/google/api_client/auth/installed_app"
+require "#{root}google/api_client"
+require "#{root}google/api_client/client_secrets"
+require "#{root}google/api_client/auth/file_storage"
+require "#{root}google/api_client/auth/installed_app"
 require 'openssl'
-
+require_relative "my_youtube_api"
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 class YoutubeApi
   # These OAuth 2.0 access scopes allow for read-only access to the authenticated
@@ -28,39 +28,42 @@ class YoutubeApi
   $hash_DATA={}
 
   def get_authenticated_services
+    client_secrets = Google::APIClient::ClientSecrets.load("client_secrets.json")
+    flow = MyYoutubeApi.new(
+      :client_id => client_secrets.client_id,
+      :client_secret => client_secrets.client_secret,
+      :scope => YOUTUBE_SCOPES
+    )
+    authorization_uri, $auth=flow.authorize
+    return authorization_uri
+  end
+
+  def return_main_datas(obj_auth)
     $client = Google::APIClient.new(
       :application_name => $PROGRAM_NAME,
       :application_version => '1.0.0'
     )
+    $auth.code=obj_auth
+    if $auth.code
+      $auth.fetch_access_token!
+    end
+    if $auth.access_token
+      auth_obj=$auth
+    else
+      auth_obj=nil
+    end
+    $client.authorization=(auth_obj)
     youtube = $client.discovered_api(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION)
     youtube_analytics = $client.discovered_api(YOUTUBE_ANALYTICS_API_SERVICE_NAME, YOUTUBE_ANALYTICS_API_VERSION)
     plus = $client.discovered_api(YOUTUBE_GOOGLE_PLUS_API_SERVICE_NAME, YOUTUBE_GOOGLE_PLUS_API_VERSION) 
     
-    if true
-      if Rails.root.to_s.include?("releases/")
-        root="/home/deployer/apps/blog/current"
-      else
-        root=Rails.root
-      end
-      
-      file_storage = Google::APIClient::FileStorage.new("#{root}/#{$PROGRAM_NAME}-oauth2.json") 
-
-      client_secrets = Google::APIClient::ClientSecrets.load("#{root}/client_secrets.json")
-      flow = Google::APIClient::InstalledAppFlow.new(
-        :client_id => client_secrets.client_id,
-        :client_secret => client_secrets.client_secret,
-        :scope => YOUTUBE_SCOPES
-      )
-      $client.authorization = flow.authorize(file_storage)
+    if Rails.root.to_s.include?("releases/")
+      root="/home/deployer/apps/blog/current"
     else
-      $client.authorization = file_storage.authorization
+      root=Rails.root
     end
-    $hash_DATA[:refresh_token]=file_storage.authorization.refresh_token
 
-
-
-
-    return youtube, youtube_analytics, plus#, google_plus
+    return youtube, youtube_analytics, plus
   end
 
   def opts_initialize
@@ -84,10 +87,10 @@ class YoutubeApi
     channels_response
   end
 
-  def main
+  def main(obj_auth)
     begin
       opts=opts_initialize
-      $youtube, $youtube_analytics, $plus = get_authenticated_services
+      $youtube, $youtube_analytics, $plus = return_main_datas(obj_auth)
       channels_response=execute_data_analytic
 
       ids="#{channels_response.data.items[0].id}"
@@ -107,8 +110,6 @@ class YoutubeApi
       $hash_DATA[:country]=countries(opts)
       $hash_DATA[:subscribers]=subscribers(opts)
       $hash_DATA[:image]=getProfileImage
-
-      puts $hash_DATA
     rescue Google::APIClient::TransmissionError => e
       puts e.result.body
     end

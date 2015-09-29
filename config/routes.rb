@@ -30,6 +30,10 @@ Youtubeservice::Application.routes.draw do
 
   post "/index/createofferpost"
 
+  get '/youtube/auth', to: "index#getyoutubeauth"
+
+  get '/index/wait_new_user', to: "index#wait_new_user"
+
   get "/editoffer/:id", to: "index#editoffer"
 
   get "/destroyoffer/:id", to: "index#destroyoffer"

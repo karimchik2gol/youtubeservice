@@ -1,5 +1,22 @@
 <h1>Index#index</h1>
 <p>Find me in app/views/index/index.html.erb</p>
 <% if !session[:youtube_info_id] and !session[:user_id] %>
-	<%= link_to 'Start', "/index/start" %>
+	<%= link_to 'Start', "/index/start", :class=>"ajax_start" %>
 <% end %>
+
+<script type="text/javascript">
+	$newWindow=true;
+	$(".ajax_start").click(function(e){
+		e.preventDefault();
+		$.ajax({
+	          async: true,
+	          type: "GET",
+	          dataType: 'json',
+	          url: "/index/start",
+	          success: function(data){
+				window.location=data;
+	          }
+	    });
+	})
+
+</script>

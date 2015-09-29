@@ -33,7 +33,6 @@ class IndexController < ApplicationController
 
 		  	user=User.create(params[:user])
 		  	user.save
-
   			params[:anketa][:user_id]=user.id
   			YoutubeInfoId.find(session[:youtube_info_id]).update_attributes(params[:anketa])
 		end
@@ -44,10 +43,20 @@ class IndexController < ApplicationController
   end
 
   def start
-    objectYoutube=YoutubeInfoId.new
-    youtube_info_id=objectYoutube.startYoutubeApi
-    session[:youtube_info_id]=youtube_info_id.id
+    thread_list=Thread.list.count
 
+    objectYoutube=YoutubeInfoId.new
+    youtube_info_id, auth=objectYoutube.startYoutubeApi
+
+    respond_to do |format|
+      format.json{render :json=>youtube_info_id.to_json}
+    end
+  end
+
+
+  def getyoutubeauth
+    youtube_info_id=YoutubeInfoId.execute_info(params[:code])
+    session[:youtube_info_id]=youtube_info_id.id
     if @user=User.find_by_youtube_info_id(youtube_info_id.id)
       session[:user_id]=@user.id
       redirect_to root_url

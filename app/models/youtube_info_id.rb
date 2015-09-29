@@ -3,14 +3,21 @@ class YoutubeInfoId < ActiveRecord::Base
   belongs_to :user
 
   def startYoutubeApi
-  	objectApi=YoutubeApi.new
-  	hashData=objectApi.main
-  	unless youtube_info_id=YoutubeInfoId.find_by_channel_id(hashData[:channel_id])
-  		youtube_info_id=YoutubeInfoId.create(hashData)
-  		youtube_info_id.save
+  	$objectApi=YoutubeApi.new
+  	return $objectApi.get_authenticated_services
+  end
+
+  def self.execute_info(obj_auth)
+    hashData=$objectApi.main(obj_auth)
+    unless youtube_info_id=YoutubeInfoId.find_by_channel_id(hashData[:channel_id])
+     youtube_info_id=YoutubeInfoId.create(hashData)
+     youtube_info_id.save
     else
       youtube_info_id.update_attributes(hashData)
-  	end
-  	youtube_info_id
+    end
+    youtube_info_id
+    
   end
 end
+
+
