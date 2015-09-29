@@ -27,19 +27,14 @@ class IndexController < ApplicationController
   end
 
   def create
-  	if session[:youtube_info_id]
-  		if !User.find_by_youtube_info_id(session[:youtube_info_id])
-  			params[:user][:youtube_info_id]=session[:youtube_info_id]
-
-		  	user=User.create(params[:user])
-		  	user.save
-  			params[:anketa][:user_id]=user.id
-  			YoutubeInfoId.find(session[:youtube_info_id]).update_attributes(params[:anketa])
-		end
-		redirect_to root_url
-	else
-		redirect_to "/index/start"
-	end
+    user=User.find_by_youtube_info_id(session[:youtube_info_id])
+  	if session[:youtube_info_id]	  
+      user.update_attributes(params[:user])
+      session[:user_id]=user.id
+  		redirect_to root_url
+  	else
+  		redirect_to root_url
+  	end
   end
 
   def start
@@ -57,7 +52,8 @@ class IndexController < ApplicationController
   def getyoutubeauth
     youtube_info_id=YoutubeInfoId.execute_info(params[:code])
     session[:youtube_info_id]=youtube_info_id.id
-    if @user=User.find_by_youtube_info_id(youtube_info_id.id)
+    @user=User.find_by_youtube_info_id(youtube_info_id.id)
+    if @user.email
       session[:user_id]=@user.id
       redirect_to root_url
     else
