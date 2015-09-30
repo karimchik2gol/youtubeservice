@@ -125,7 +125,24 @@ class YoutubeApi
   def countries(opts)
     opts[:dimensions] = 'country'
     opts[:metrics] = 'views'
-    get_data(opts)
+    convert_datas=get_data(opts)
+    allCountries=convert_datas.split(",")
+    tableCountries=[]
+    i=0
+    counter=0
+    while i<allCountries.count
+      tableCountries<<[allCountries[i], allCountries[i+1]]
+      counter+=allCountries[i+1].to_i
+      i+=2
+    end
+    tableCountries=tableCountries.sort {|a,b| b[1].to_i <=> a[1].to_i}
+    top3Countries=[]
+    3.times do |f|
+      iterator=tableCountries[f.to_i]
+      iterator[1]=(iterator[1].to_f/(counter.to_f/100.to_f)).round(2)
+      top3Countries<<iterator
+    end
+    top3Countries.join(",")
   end
 
   def average_posted_videos_per_month

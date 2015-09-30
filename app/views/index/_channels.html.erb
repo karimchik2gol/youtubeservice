@@ -8,7 +8,7 @@
 	<% @user=f %>
 	<% if !@id || f.category.include?("id"+@id+",") %>
 		<div class="item-channel">
-			<div><img src="<%= youtubeinfoid.image %>"><%= youtubeinfoid.name %></div>
+			<div><a href="/profile/<%= f.id %>"><img src="<%= youtubeinfoid.image %>"></a><a href="/profile/<%= f.id %>"><%= youtubeinfoid.name %></a></div>
 			<% catArray=f.category.split(",") %>
 			<div>
 				<% catArray.each do |f| %>
