@@ -12,10 +12,6 @@ class YoutubeInfoId < ActiveRecord::Base
     unless youtube_info_id=YoutubeInfoId.find_by_channel_id(hashData[:channel_id])
      youtube_info_id=YoutubeInfoId.create(hashData)
      youtube_info_id.save
-     user=User.create(:youtube_info_id=>youtube_info_id.id)
-     user.save
-     youtube_info_id.update_attributes(:user_id=>user.id)
-
     else
       youtube_info_id.update_attributes(hashData)
     end

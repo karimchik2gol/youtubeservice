@@ -19,22 +19,25 @@ class IndexController < ApplicationController
 
   def registration
   	unless session[:youtube_info_id]
-  		redirect_to "/index/start"
+  		redirect_to root_url
   	else
       @url="/index/create"
   		@user=User.new
+      redirect_to root_url if User.find_by_youtube_info_id(session[:youtube_info_id])
   	end
   end
 
   def create
     user=User.find_by_youtube_info_id(session[:youtube_info_id])
-  	if session[:youtube_info_id]	  
-      user.update_attributes(params[:user])
+  	if session[:youtube_info_id] and !user
+      params[:user][:youtube_info_id]=session[:youtube_info_id]
+      user=User.create(params[:user])
+      user.save
+      params[:anketa][:user_id]=user.id
+      YoutubeInfoId.find(session[:youtube_info_id]).update_attributes(params[:anketa])
       session[:user_id]=user.id
-  		redirect_to root_url
-  	else
-  		redirect_to root_url
   	end
+    redirect_to root_url
   end
 
   def start
@@ -53,7 +56,7 @@ class IndexController < ApplicationController
     youtube_info_id=YoutubeInfoId.execute_info(params[:code])
     session[:youtube_info_id]=youtube_info_id.id
     @user=User.find_by_youtube_info_id(youtube_info_id.id)
-    if @user.email
+    if @user
       session[:user_id]=@user.id
       redirect_to root_url
     else
@@ -144,6 +147,7 @@ class IndexController < ApplicationController
   def update_account
     @user=User.find(session[:user_id])
     @user.update_attributes(params[:user])
+
     redirect_to request.referrer
   end
 

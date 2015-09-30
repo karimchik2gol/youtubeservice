@@ -57,77 +57,77 @@
     <%= f.label :city %><br />
     <%= f.text_field :city %>
   </div>
-  <%= f.fields_for :youtube_info_id do |builder| %>
-	  <div class="first-block wrap-checkbox">
-	  	  <div class="field">
-		    <%= builder.label :create_videos %><br />
-		    <%= builder.check_box :create_videos %>
-		  </div>
-		  <div class="field">
-		    <%= builder.label :making_channel_toghether %><br />
-		    <%= builder.check_box :making_channel_toghether %>
-		  </div>
-		  <div class="field">
-		    <%= builder.label :cross_promotions_and_email_lists %><br />
-		    <%= builder.check_box :cross_promotions_and_email_lists %>
-		  </div>
-		  <div class="field">
-		    <%= builder.label :recommended_channel_swapping %><br />
-		    <%= builder.check_box :recommended_channel_swapping %>
-		  </div>
-		  <div class="field">
-		    <%= builder.label :annotation_or_end_card_or_link_swapping %><br />
-		    <%= builder.check_box :annotation_or_end_card_or_link_swapping %>
-		  </div>
-		  <div class="field">
-		    <%= builder.label :open_to_other_types %><br />
-		    <%= builder.check_box :open_to_other_types %>
-		  </div>
-		  <div class="field not-interested">
-		  	<label>Not interesting</label>
-			<input type="checkbox" class="signup-form-not_interested" name="not_interested">
-		  </div>
+  <% youtubeinfoid=YoutubeInfoId.find(session[:youtube_info_id]) %>
+  <% check_action=params[:action]=="registration" %>
+  <div class="first-block wrap-checkbox">
+	  <div class="field">
+	    <label for="anketa[create_videos]">create_videos</label><br />
+	    <input type="checkbox" <% if youtubeinfoid.create_videos || check_action %>checked<% end %> name="anketa[create_videos]">
 	  </div>
+	  <div class="field">
+	    <label for="anketa[making_channel_toghether]">making_channel_toghether</label><br />
+	    <input type="checkbox" <% if youtubeinfoid.making_channel_toghether || check_action %>checked<% end %> name="anketa[making_channel_toghether]">
+	  </div>
+	  <div class="field">
+	    <label for="anketa[cross_promotions_and_email_lists]">cross_promotions_and_email_lists</label><br />
+	    <input type="checkbox" <% if youtubeinfoid.cross_promotions_and_email_lists || check_action %>checked<% end %> name="anketa[cross_promotions_and_email_lists]">
+	  </div>
+	  <div class="field">
+	    <label for="anketa[recommended_channel_swapping]">recommended_channel_swapping</label><br />
+    	<input type="checkbox" <% if youtubeinfoid.recommended_channel_swapping || check_action %>checked<% end %> name="anketa[recommended_channel_swapping]">
+	  </div>
+	  <div class="field">
+	    <label for="anketa[annotation_or_end_card_or_link_swapping]">annotation_or_end_card_or_link_swapping</label><br />
+	    <input type="checkbox" <% if youtubeinfoid.annotation_or_end_card_or_link_swapping || check_action %>checked<% end %> name="anketa[annotation_or_end_card_or_link_swapping]">
+	  </div>
+	  <div class="field">
+	    <label for="anketa[open_to_other_types]">open_to_other_types</label><br />
+	    <input type="checkbox" <% if youtubeinfoid.open_to_other_types || check_action %>checked<% end %> name="anketa[open_to_other_types]">
+	  </div>
+	  <div class="field not-interested">
+	  	<label>Not interesting</label>
+  		<input type="checkbox" class="signup-form-not_interested" name="not_interested">
+	  </div>
+  </div>
 
-	  <div class="second-block wrap-checkbox">
-	  	  <div class="field">
-		    <%= builder.label :brand_product_integration %><br />
-		    <%= builder.check_box :brand_product_integration %>
-		  </div>
-		  <div class="field">
-		    <%= builder.label :product_reviews %><br />
-		    <%= builder.check_box :product_reviews %>
-		  </div>
-		  <div class="field">
-		    <%= builder.label :dedicated_videos %><br />
-		    <%= builder.check_box :dedicated_videos %>
-		  </div>
-		  <div class="field">
-		    <%= builder.label :revenue_affiliate %><br />
-		    <%= builder.check_box :revenue_affiliate %>
-		  </div>
-		  <div class="field">
-		    <%= builder.label :spokesperson %><br />
-		    <%= builder.check_box :spokesperson %>
-		  </div>
-		  <div class="field">
-		    <%= builder.label :offyoutube_promotion %><br />
-		    <%= builder.check_box :offyoutube_promotion %>
-		  </div>
-		  <div class="field">
-		    <%= builder.label :including_brand_videos %><br />
-		    <%= builder.check_box :including_brand_videos %>
-		  </div>
-		  <div class="field">
-		    <%= builder.label :open_to_other_types_sponsor %><br />
-		    <%= builder.check_box :open_to_other_types_sponsor %>
-		  </div>
-		  <div class="field not-interested">
-		  	<label>Not interesting</label>
-			<input type="checkbox" class="signup-form-not_interested" name="not_interested">
-		  </div>
+  <div class="second-block wrap-checkbox">
+	  <div class="field">
+		   <label for="anketa[brand_product_integration]">brand_product_integration</label><br />
+		   <input type="checkbox" <% if youtubeinfoid.brand_product_integration || check_action %>checked<% end %> name="anketa[brand_product_integration]">
 	  </div>
-  <% end %>
+	  <div class="field">
+		   <label for="anketa[product_reviews]">product_reviews</label><br />
+		   <input type="checkbox" <% if youtubeinfoid.product_reviews || check_action %>checked<% end %> name="anketa[product_reviews]">
+	  </div>
+	  <div class="field">
+		   <label for="anketa[dedicated_videos]">dedicated_videos</label><br />
+		   <input type="checkbox" <% if youtubeinfoid.dedicated_videos || check_action %>checked<% end %> name="anketa[dedicated_videos]">
+	  </div>
+	  <div class="field">
+		   <label for="anketa[revenue_affiliate]">revenue_affiliate</label><br />
+		   <input type="checkbox" <% if youtubeinfoid.revenue_affiliate || check_action %>checked<% end %> name="anketa[revenue_affiliate]">
+	  </div>
+	  <div class="field">
+		   <label for="anketa[spokesperson]">spokesperson</label><br />
+		   <input type="checkbox" <% if youtubeinfoid.spokesperson || check_action %>checked<% end %> name="anketa[spokesperson]">
+	  </div>
+	  <div class="field">
+		   <label for="anketa[offyoutube_promotion]">offyoutube_promotion</label><br />
+		   <input type="checkbox" <% if youtubeinfoid.offyoutube_promotion || check_action %>checked<% end %> name="anketa[offyoutube_promotion]">
+	  </div>
+	  <div class="field">
+		   <label for="anketa[including_brand_videos]">including_brand_videos</label><br />
+		   <input type="checkbox" <% if youtubeinfoid.including_brand_videos || check_action %>checked<% end %> name="anketa[including_brand_videos]">
+	  </div>
+	  <div class="field">
+		   <label for="anketa[open_to_other_types_sponsor]">open_to_other_types_sponsor</label><br />
+		   <input type="checkbox" <% if youtubeinfoid.open_to_other_types_sponsor || check_action %>checked<% end %> name="anketa[open_to_other_types_sponsor]">
+	  </div>
+	  <div class="field not-interested">
+	  	<label>Not interesting</label>
+  		<input type="checkbox" class="signup-form-not_interested" name="not_interested">
+	  </div>
+  </div>
   <div class="actions">
     <%= submit_tag %>
   </div>

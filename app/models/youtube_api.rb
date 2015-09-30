@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-root="/home/deployer/apps/blog/shared/bundle/ruby/1.9.1/gems/google-api-client-0.8.6/lib/"
+root=""#/home/deployer/apps/blog/shared/bundle/ruby/1.9.1/gems/google-api-client-0.8.6/lib/"
 require 'rubygems'
 require "#{root}google/api_client"
 require "#{root}google/api_client/client_secrets"
