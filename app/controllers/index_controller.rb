@@ -13,8 +13,8 @@ class IndexController < ApplicationController
   end
 
   def index
-  	#session[:youtube_info_id]=nil
-  	#session[:user_id]=nil
+  	session[:youtube_info_id]=nil
+  	session[:user_id]=nil
   end
 
   def registration
