@@ -172,4 +172,19 @@
 
 		$(".hidden_category").val(str);
 	}
+
+	$("input[type='submit']").click(function(e){
+		e.preventDefault();
+		$.ajax({
+	          async: true,
+	          type: "POST",
+	          dataType: 'json',
+	          url: "/index/create",
+	          data: $("form").serialize(), 
+	          success: function(data){
+	          	//if(!data)
+	          	//	window.location="/";
+	          }
+	    });
+	})
 </script>

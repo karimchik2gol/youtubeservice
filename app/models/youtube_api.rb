@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-root="/home/deployer/apps/blog/shared/bundle/ruby/1.9.1/gems/google-api-client-0.8.6/lib/"
+root=""#/home/deployer/apps/blog/shared/bundle/ruby/1.9.1/gems/google-api-client-0.8.6/lib/"
 require 'rubygems'
 require "#{root}google/api_client"
 require "#{root}google/api_client/client_secrets"
@@ -139,8 +139,10 @@ class YoutubeApi
     top3Countries=[]
     3.times do |f|
       iterator=tableCountries[f.to_i]
-      iterator[1]=(iterator[1].to_f/(counter.to_f/100.to_f)).round(2)
-      top3Countries<<iterator
+      if iterator
+        iterator[1]=(iterator[1].to_f/(counter.to_f/100.to_f)).round(2)
+        top3Countries<<iterator
+      end
     end
     top3Countries.join(",")
   end

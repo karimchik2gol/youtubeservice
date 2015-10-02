@@ -2,21 +2,21 @@
 <html>
 <head>
   <title>Youtubeservice</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<ul>
+<!--<ul>
 	<li><a href="/search">Поиск</a></li>
 	<% if session[:youtube_info_id] || session[:user_id] %>
 		<li><a href="/offer">Предложения</a></li>
-		<li><a href="/profile/<%= session[:user_id] %>">Профиль</a></li>
+		<li><a href="/profile/<% if session[:user_id] %><%= session[:user_id] %><% else %>0<% end %>">Профиль</a></li>
 		<li><a href="/account">Акаунт</a></li>
 		<li><a href="/directmessages">Сообщения</a></li>
 		<li><%= YoutubeInfoId.find(session[:youtube_info_id]).name %></li>
+		<li><a href="/index/logout">Logout</a></li>
 	<% end %>
-</ul>
+</ul>-->
 <%= yield %>
 
 </body>

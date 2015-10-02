@@ -6,7 +6,7 @@ class IndexController < ApplicationController
   layout "public"
 
   def check_user
-  	unless session[:user_id] || session[:youtube_info_id]
+  	unless session[:user_id] && session[:youtube_info_id]
   		redirect_to root_url 
   		return nil
   	end
@@ -15,6 +15,15 @@ class IndexController < ApplicationController
   def index
   	#session[:youtube_info_id]=nil
   	#session[:user_id]=nil
+    if session[:youtube_info_id] && !session[:user_id]  
+      redirect_to "/index/registration"
+    end
+  end
+
+  def logout
+    session[:user_id]=nil
+    session[:youtube_info_id]=nil
+    redirect_to root_url
   end
 
   def registration
@@ -29,15 +38,27 @@ class IndexController < ApplicationController
 
   def create
     user=User.find_by_youtube_info_id(session[:youtube_info_id])
-  	if session[:youtube_info_id] and !user
-      params[:user][:youtube_info_id]=session[:youtube_info_id]
-      user=User.create(params[:user])
-      user.save
-      params[:anketa][:user_id]=user.id
-      YoutubeInfoId.find(session[:youtube_info_id]).update_attributes(params[:anketa])
-      session[:user_id]=user.id
-  	end
-    redirect_to root_url
+    error_validate=nil
+    begin
+    	if session[:youtube_info_id] and !user
+        params[:user][:youtube_info_id]=session[:youtube_info_id]
+        user=User.create(params[:user])
+        if user.valid?
+          user.save
+          params[:anketa][:user_id]=user.id
+          YoutubeInfoId.find(session[:youtube_info_id]).update_attributes(params[:anketa])
+          session[:user_id]=user.id
+        else
+          error_validate=true
+        end
+    	end
+    rescue
+      error_validate=true
+    end
+
+    respond_to do |format|
+      format.json{render :json=>error_validate.to_json}
+    end
   end
 
   def start
@@ -87,7 +108,7 @@ class IndexController < ApplicationController
   	if session[:user_id]
   		@user=User.find(params[:id])
   	else
-  		redirect_to "/registration"
+  		redirect_to "/index/registration"
   	end
   end
 
