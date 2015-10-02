@@ -124,7 +124,7 @@ section.video-bg{
 .index-description{
 	width: 100%;
 	overflow: hidden;
-    padding: 43px 0 18px;
+    padding: 75px 0 18px;
     background: #e6e6e6;
     position: relative;
 } 
@@ -155,6 +155,7 @@ section.video-bg{
 	font-size: 30px;
 	margin-bottom: 5px;
 }
+
 .text-second-slide, .figure-image{
 	float: left;
 }
@@ -182,7 +183,7 @@ section.video-bg{
 .wrap-third-slide{
 	width: 70%;
 	margin-left: 15%;
-    padding: 43px 0 18px;
+    padding: 43px 0 58px;
     margin-top: 30px;
 }
 .wrap-third-slide figure{
@@ -214,6 +215,9 @@ section.video-bg{
 #slide4{
 	background-color: white;
 	padding: 43px 0 80px;
+}
+.index-preview{
+    position: relative;
 }
 .hands {
     width: 100%;
