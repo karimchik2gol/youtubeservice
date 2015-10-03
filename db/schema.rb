@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150921175322) do
+ActiveRecord::Schema.define(:version => 20151003194542) do
 
   create_table "admins", :force => true do |t|
     t.string   "email"
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(:version => 20150921175322) do
     t.boolean  "including_brand_videos"
     t.boolean  "open_to_other_types_sponsor"
     t.string   "gender_percentage"
+    t.boolean  "channel_size_limit"
   end
 
 end

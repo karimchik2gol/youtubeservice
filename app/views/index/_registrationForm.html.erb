@@ -1,137 +1,148 @@
+<% youtubeinfoid=YoutubeInfoId.find(session[:youtube_info_id]) %>
+<% check_action=params[:action]=="registration" %>
+<div class="registration-form">
+	<h3>Расскажите о себе</h3>
+	<div class="wrap-form-fields">
+			<%= form_for(@user, :url=>@url) do |f| %>
+			  <% if @user.errors.any? %>
+			    <div id="error_explanation">
+			      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-<style type="text/css">
-	.wrap-checkbox{
-		width: 45%;
-	}
-	.second-block{
-		margin-left: 50%;
-	}
-	.first-block{
-		float: left;
-	}
-</style>
+			      <ul>
+			      <% @user.errors.full_messages.each do |msg| %>
+			        <li><%= msg %></li>
+			      <% end %>
+			      </ul>
+			    </div>
+			  <% end %>
 
-<%= form_for(@user, :url=>@url) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+			<div class="wrap-hint-and-fields">
+				<div class="form-fields">
+				  <div class="field">
+				    <%= f.label :email, "E-mail: *" %><br />
+				    <%= f.text_field :email %>
+				  </div>
+				  <div class="field">
+				    <%= f.label :phone, "Телефон: *" %><br />
+				    <%= f.text_field :phone %>
+				  </div>
+				  <div class="field">
+				    <%= f.label :city, "Город: *" %><br />
+				    <%= f.text_field :city %>
+				  </div>
+				  <div class="field">
+					   <%= f.label :category, "Категории:* (минимум две)" %><br />
+					   <%= f.hidden_field :category, :class=>"hidden_category" %>
+					   <div class="category_section">
+					    <% if @user.category && @user.category.include?(",") %>
+					     <% @user.category.split(",").each do |f| %>
+					      <% id=f.gsub("id", "") %>
+					      <% category=Category.find(id.to_i) %>
+					      <span class='selected-category-item' data-id='<%= id %>'><span class='category-label-section'><%= category.name %></span> <span class='destroy-category' onclick='destroy_category(this)'>X</span> </span>
+					     <% end %>
+					    <% end %>
+					   </div>
+					   <div class="select-category">
+					    <select>
+					     <% Category.all.each do |f| %>
+					     	<option value="<%= f.id %>"><%= f.name %></option>
+					     <% end %>
+					    </select>
+					    <button class="add-category">Добавить</button>
+					   </div>
+				  </div>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.open_to_other_types_sponsor || check_action %>checked<% end %> name="anketa[channel_size_limit]">
+					   	<span>Запретить контактировать каналам, у которых в 10 раз меньше подписчиков</span>
+				  </div>
+				</div>
+				<div class="hint">
+					<% youtubeinfoid=YoutubeInfoId.find(session[:youtube_info_id]) %>
+					<h3><%= youtubeinfoid.name %>,</h3>
+					<p>
+						Your direct contact information will NEVER be shared with any 3rd parties.
+						All messages/offers will always come securely through the site.
+					</p>
+				</div>
+				  
+			</div>
+			  <div class="first-block wrap-checkbox">
+			  	  <h4>Какой тип сотрудничества вас интересует?</h4>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.create_videos || check_action %>checked<% end %> name="anketa[create_videos]">
+				    	<span>Создание видео вместе</span>
+				  </div>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.making_channel_toghether || check_action %>checked<% end %> name="anketa[making_channel_toghether]">
+				    	<span>Создание нового канала вместе с видеозаписями каждого сотрудника(каждый человек контролирует определенный день недели)</span>
+				  </div>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.cross_promotions_and_email_lists || check_action %>checked<% end %> name="anketa[cross_promotions_and_email_lists]">
+				    	<span>Продвижения с помощью друг друга(без YouTube) социальные сети, сайты, e-mail рассылка</span>
+				  </div>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.recommended_channel_swapping || check_action %>checked<% end %> name="anketa[recommended_channel_swapping]">
+				    	<span>Обмен "Рекомендованные каналы" на YouTube</span>
+				  </div>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.annotation_or_end_card_or_link_swapping || check_action %>checked<% end %> name="anketa[annotation_or_end_card_or_link_swapping]">
+				    	<span>Обмен ссылками на канал в описании</span>
+				  </div>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.open_to_other_types || check_action %>checked<% end %> name="anketa[open_to_other_types]">
+				    	<span>Открыт к другим видам сотрудничества</span>
+				  </div>
+				  <div class="field not-interested">
+				  	<input type="checkbox" class="signup-form-not_interested" name="not_interested">
+				  	<span>Ничего не интересует</span>
+				  </div>
+			  </div>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :category %><br />
-    <%= f.hidden_field :category, :class=>"hidden_category" %>
-    <div class="category_section">
-    	<% if @user.category && @user.category.include?(",") %>
-    		<% @user.category.split(",").each do |f| %>
-    			<% id=f.gsub("id", "") %>
-    			<% category=Category.find(id.to_i) %>
-    			<span class='selected-category-item' data-id='<%= id %>'><%= category.name %> <span onclick='destroy_category(this)'>Удалить</span> </span>
-    		<% end %>
-    	<% end %>
-    </div>
-    <div class="select-category">
-    	<select>
-    		<% Category.all.each do |f| %>
-    			<option value="<%= f.id %>"><%= f.name %></option>
-    		<% end %>
-    	</select>
-    	<button class="add-category">Add category</button>
-    </div>
-  </div>
-  <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </div>
-  <% youtubeinfoid=YoutubeInfoId.find(session[:youtube_info_id]) %>
-  <% check_action=params[:action]=="registration" %>
-  <div class="first-block wrap-checkbox">
-	  <div class="field">
-	    <label for="anketa[create_videos]">create_videos</label><br />
-	    <input type="checkbox" <% if youtubeinfoid.create_videos || check_action %>checked<% end %> name="anketa[create_videos]">
-	  </div>
-	  <div class="field">
-	    <label for="anketa[making_channel_toghether]">making_channel_toghether</label><br />
-	    <input type="checkbox" <% if youtubeinfoid.making_channel_toghether || check_action %>checked<% end %> name="anketa[making_channel_toghether]">
-	  </div>
-	  <div class="field">
-	    <label for="anketa[cross_promotions_and_email_lists]">cross_promotions_and_email_lists</label><br />
-	    <input type="checkbox" <% if youtubeinfoid.cross_promotions_and_email_lists || check_action %>checked<% end %> name="anketa[cross_promotions_and_email_lists]">
-	  </div>
-	  <div class="field">
-	    <label for="anketa[recommended_channel_swapping]">recommended_channel_swapping</label><br />
-    	<input type="checkbox" <% if youtubeinfoid.recommended_channel_swapping || check_action %>checked<% end %> name="anketa[recommended_channel_swapping]">
-	  </div>
-	  <div class="field">
-	    <label for="anketa[annotation_or_end_card_or_link_swapping]">annotation_or_end_card_or_link_swapping</label><br />
-	    <input type="checkbox" <% if youtubeinfoid.annotation_or_end_card_or_link_swapping || check_action %>checked<% end %> name="anketa[annotation_or_end_card_or_link_swapping]">
-	  </div>
-	  <div class="field">
-	    <label for="anketa[open_to_other_types]">open_to_other_types</label><br />
-	    <input type="checkbox" <% if youtubeinfoid.open_to_other_types || check_action %>checked<% end %> name="anketa[open_to_other_types]">
-	  </div>
-	  <div class="field not-interested">
-	  	<label>Not interesting</label>
-  		<input type="checkbox" class="signup-form-not_interested" name="not_interested">
-	  </div>
-  </div>
-
-  <div class="second-block wrap-checkbox">
-	  <div class="field">
-		   <label for="anketa[brand_product_integration]">brand_product_integration</label><br />
-		   <input type="checkbox" <% if youtubeinfoid.brand_product_integration || check_action %>checked<% end %> name="anketa[brand_product_integration]">
-	  </div>
-	  <div class="field">
-		   <label for="anketa[product_reviews]">product_reviews</label><br />
-		   <input type="checkbox" <% if youtubeinfoid.product_reviews || check_action %>checked<% end %> name="anketa[product_reviews]">
-	  </div>
-	  <div class="field">
-		   <label for="anketa[dedicated_videos]">dedicated_videos</label><br />
-		   <input type="checkbox" <% if youtubeinfoid.dedicated_videos || check_action %>checked<% end %> name="anketa[dedicated_videos]">
-	  </div>
-	  <div class="field">
-		   <label for="anketa[revenue_affiliate]">revenue_affiliate</label><br />
-		   <input type="checkbox" <% if youtubeinfoid.revenue_affiliate || check_action %>checked<% end %> name="anketa[revenue_affiliate]">
-	  </div>
-	  <div class="field">
-		   <label for="anketa[spokesperson]">spokesperson</label><br />
-		   <input type="checkbox" <% if youtubeinfoid.spokesperson || check_action %>checked<% end %> name="anketa[spokesperson]">
-	  </div>
-	  <div class="field">
-		   <label for="anketa[offyoutube_promotion]">offyoutube_promotion</label><br />
-		   <input type="checkbox" <% if youtubeinfoid.offyoutube_promotion || check_action %>checked<% end %> name="anketa[offyoutube_promotion]">
-	  </div>
-	  <div class="field">
-		   <label for="anketa[including_brand_videos]">including_brand_videos</label><br />
-		   <input type="checkbox" <% if youtubeinfoid.including_brand_videos || check_action %>checked<% end %> name="anketa[including_brand_videos]">
-	  </div>
-	  <div class="field">
-		   <label for="anketa[open_to_other_types_sponsor]">open_to_other_types_sponsor</label><br />
-		   <input type="checkbox" <% if youtubeinfoid.open_to_other_types_sponsor || check_action %>checked<% end %> name="anketa[open_to_other_types_sponsor]">
-	  </div>
-	  <div class="field not-interested">
-	  	<label>Not interesting</label>
-  		<input type="checkbox" class="signup-form-not_interested" name="not_interested">
-	  </div>
-  </div>
-  <div class="actions">
-    <%= submit_tag %>
-  </div>
-<% end %>
+			  <div class="second-block wrap-checkbox">
+			  	  <h4>Какие услуги вы готовы предоставить?</h4>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.brand_product_integration || check_action %>checked<% end %> name="anketa[brand_product_integration]">
+					   	<span>Интеграция бренда/продукта в ваши видео</span>
+				  </div>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.product_reviews || check_action %>checked<% end %> name="anketa[product_reviews]">
+					   	<span>Отзывы о продуктах</span>
+				  </div>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.dedicated_videos || check_action %>checked<% end %> name="anketa[dedicated_videos]">
+					   	<span>Выделенное количество видео про бренд</span>
+				  </div>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.revenue_affiliate || check_action %>checked<% end %> name="anketa[revenue_affiliate]">
+					   	<span>Вы получаете процент от выручки(зачастую не предоплата)</span>
+				  </div>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.spokesperson || check_action %>checked<% end %> name="anketa[spokesperson]">
+					   	<span>Докладчик</span>
+				  </div>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.offyoutube_promotion || check_action %>checked<% end %> name="anketa[offyoutube_promotion]">
+					   	<span>Продвижение вне YouTube(сайт, соц. сети)</span>
+				  </div>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.including_brand_videos || check_action %>checked<% end %> name="anketa[including_brand_videos]">
+					   	<span>Добавление видео про бренд/продукт в плейлист</span>
+				  </div>
+				  <div class="field">
+				  		<input type="checkbox" <% if youtubeinfoid.open_to_other_types_sponsor || check_action %>checked<% end %> name="anketa[open_to_other_types_sponsor]">
+					   	<span>Открыт к другим видам услуг</span>
+				  </div>
+				  <div class="field not-interested">
+				  	<input type="checkbox" class="signup-form-not_interested" name="not_interested">
+				  	<span>Ничего не интересует</span>
+				  </div>
+			  </div>
+			  <div class="actions">
+			    <%= submit_tag("Зарегистрироваться") %>
+			  </div>
+			<% end %>
+	</div>
+</div>
 
 <script type="text/javascript">
 	$(".signup-form-not_interested").change(function(){
@@ -151,7 +162,7 @@
 		val=$(".hidden_category").val();
 		if(!val || !val.split(",") || val.split(",").indexOf("id"+valId.val()) < 0){
 			$(".hidden_category").val(val+"id"+valId.val()+",");
-			$(".category_section").append("<span class='selected-category-item' data-id='"+valId.val()+"'>"+valId.text()+" <span onclick='destroy_category(this)'>Удалить</span> </span>")
+			$(".category_section").append("<span class='selected-category-item' data-id='"+valId.val()+"'><span class='category-label-section'>"+valId.text()+"</span> <span onclick='destroy_category(this)' class='destroy-category'>X</span> </span>")
 		}
 	})
 
@@ -182,9 +193,26 @@
 	          url: "/index/create",
 	          data: $("form").serialize(), 
 	          success: function(data){
-	          	//if(!data)
-	          	//	window.location="/";
+	          	if(data)
+	          		add_errors(data);
+	          	else
+	          		window.location="/";
 	          }
 	    });
 	})
+
+	function add_errors(errors){
+		$(".error-registration").remove();
+		for(var i=0; i<errors.length; i++){
+			splitedArray=errors[i].split(" ");
+			cls=splitedArray[0].toLowerCase();
+			console.log("#user_"+cls);
+			prnt=$("#user_"+cls).parent();
+			splitedArray.shift();
+			prnt.append("<p class='error-registration'>"+splitedArray.join(" ")+"<\/p>");
+			$('html, body').animate({
+		        scrollTop: 0
+		    }, 500);
+		}
+	}
 </script>

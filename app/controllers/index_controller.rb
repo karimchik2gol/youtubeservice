@@ -49,7 +49,7 @@ class IndexController < ApplicationController
           YoutubeInfoId.find(session[:youtube_info_id]).update_attributes(params[:anketa])
           session[:user_id]=user.id
         else
-          error_validate=true
+          error_validate=user.errors.to_a
         end
     	end
     rescue

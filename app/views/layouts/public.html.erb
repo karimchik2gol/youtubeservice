@@ -17,6 +17,22 @@
 		<li><a href="/index/logout">Logout</a></li>
 	<% end %>
 </ul>-->
+<% unless session[:user_id] %>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<header>
+		<div class="header">
+			<div class="logo"><a href="/"></a></div>
+			<ul>	
+				<% if session[:youtube_info_id] %>	
+					<li><span class="filling-registration">Заполнение данных</span></li>
+				<% else %>
+					<li><a href="#" class="ajax_start">Зарегистрироваться</a></li>
+					<li><a href="#" class="ajax_start">Войти</a></li>
+				<% end %>
+			</ul>
+		</div>
+	</header>
+<% end %>
 <%= yield %>
 
 </body>
