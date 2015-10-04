@@ -61,6 +61,7 @@
 	color: rgba(0,0,0,0.7);
 }
 .offer-message-info-block{
+	min-height: 200px;
 	margin-left: 43%;
     background-color: #F7F7F7;
 }
