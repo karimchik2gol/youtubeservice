@@ -1,0 +1,21 @@
+<% me=params[:action]=="me" %>
+<table cellpadding="10" cellspacing="0" width="100%">
+	<tr class="offers-header">
+		<th width="35%"><span>От</span></th>
+		<th width="15%"><span>Дата</span></th>
+		<th width="30%"><span>Название</span></th>
+		<% if !me %><th><span>Тип</span></th><% end %>
+		<th><span>Действия</span></th>
+	</tr>
+	<% @topics.each do |f| %>
+		<tr>
+			<% user=User.find(f.from_topic) %>
+			<% youtubeinfoid=YoutubeInfoId.find_by_user_id(user.id) %>
+			<td><a href="/profile/<%= user.id %>"><%= youtubeinfoid.name %></a></td>
+			<td><span><%= f.created_at.strftime("%m/%d/%Y") %></span></td>
+			<td><span><%= f.name %></span></td>
+			<% if !me %><td><%= f.type %></td><% end %>
+			<td><a href="/topic/<%= f.id %>">Прочитать</a></td>
+		</tr>
+	<% end %>
+</table>	

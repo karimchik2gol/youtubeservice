@@ -1,18 +1,23 @@
-<table cellpadding="10" cellspacing="0" border="0" width="100%">
+<% me=params[:action]=="me" %>
+<table cellpadding="10" cellspacing="0" width="100%">
 	<tr class="offers-header">
-		<td class="column-a"><span>Title</span></td>
-		<td class="column-b"><span>Expires</span></td>
-		<td class="column-c"><span>Type</span></td>
-		<td class="column-d"><% if params[:action]=="offer" %><span># Applicants</span><% else %>Channel/Brand<% end %></td>
-		<td class="column-e"><span>Actions</span></td>
+		<th class="column-a"><span>Название</span></th>
+		<% if !me %>
+			<th class="column-b"><span>Истекает</span></th>
+			<th class="column-c"><span>Тип</span></th>
+		<% end %>
+		<th class="column-d"><% if params[:action]=="offer" || me %><span>Участники</span><% else %>Channel/Brand<% end %></th>
+		<th class="column-e"><span>Действия</span></th>
 	</tr>
 	<% @offers.each do |f| %>
 		<tr class="offers-row mine ">
 			<td class="column-a"><span><%= f.name %></span></td>
-			<td><span><%= f.application_deadline %></span></td>
-			<td><span class="type-ellipsis"><%= f.project_type %></span></td>
+			<% if !me %>
+				<td><span><%= f.application_deadline %></span></td>
+				<td><span class="type-ellipsis"><%= f.project_type %></span></td>
+			<% end %>
 			<td>
-				<% if params[:action]=="offers" %>
+				<% if params[:action]=="offers" || me %>
 					<a href="/offers/applicants/<%= f.id %>"><%= Offermessage.where(:offer_id=>f.id).count %></a>
 				<% else %>
 					<% @user=User.find(f.user_id) %>
@@ -20,12 +25,12 @@
 				<% end %>
 			</td>
 			<td>
-				<% if f.user_id!=session[:user_id] %>
-					<a href="/offer/details/<%= f.id %>">More info</a>
+				<% if f.user_id!=session[:user_id] || me %>
+					<a href="/offer/details/<%= f.id %>">Подробней</a>
 				<% else %>
-					<a href="/offers/applicants/<%= f.id %>" class="row-btn red">Applicants</a>
-					<a href="/editoffer/<%= f.id %>" class="row-btn green">Edit</a>
-					<a href="/destroyoffer/<%= f.id %>" data-id="55fc64ee5cdae31e32131a2d" data-user_id="UCV-oV8yecSfMZnzdKAhO_4A" class="delete no-btn">Delete</a>
+					<a href="/offers/applicants/<%= f.id %>" class="row-btn red">Участники</a>
+					<a href="/editoffer/<%= f.id %>" class="row-btn green">Редактировать</a>
+					<a href="/destroyoffer/<%= f.id %>" class="delete no-btn">Удалить</a>
 				<% end %>
 			</td>
 		</tr>

@@ -1,0 +1,167 @@
+.middle-block{
+	overflow: hidden;
+	width: 70%;
+    margin: 100px auto 0 auto;
+    padding: 10px;
+}
+/*.left-menu, .offers-info-block{
+    box-shadow: 1px -1px 2px #D2D2D2;
+    -webkit-box-shadow: 1px -1px 2px #D2D2D2;
+    -moz-box-shadow: 1px -1px 2px #D2D2D2;
+}*/
+.left-menu{
+	padding: 0 10px 20px 10px;
+    border-right: 2px solid #f2f2f2;
+    width: 20%;
+    max-width: 220px;
+    float: left;
+    position: fixed;
+    top: 120px;
+}
+.left-menu ul li{
+	margin-bottom: 5px;
+}
+.left-menu ul li span, .left-menu ul li a, .info-block-name, .my-statistics p span, .demographic-info h3, .graphic_text{
+	font-family: "ChampagneLimousines";
+}
+.left-menu ul li a{
+	font-size: 18px;
+}
+.left-menu ul li a:hover, .info-blocks tr td a:hover{
+	text-decoration: underline;
+}
+.left-menu ul li span{
+	font-size: 20px;
+	font-weight: bold;
+}
+.info-blocks{
+	margin-left: 22%;
+}
+.offers-info-block{
+    background-color: #F7F7F7;
+    min-height: 200px;
+    width: 39%;
+    float: left;
+}
+.info-blocks .offers-header{
+    background-color: #ECECEC;
+}
+.info-blocks tr th, .info-blocks tr td{
+    padding: 5px;
+	vertical-align: top;
+}
+.info-blocks tr th span{
+	font-size: 14px;
+}
+.info-blocks tr{
+	text-align: center;
+}
+.info-blocks tr td a, .info-blocks tr td span{
+	font-size: 14px;
+	color: rgba(0,0,0,0.7);
+}
+.offer-message-info-block{
+	margin-left: 43%;
+    background-color: #F7F7F7;
+}
+.info-block-name{
+	background-color: white;
+    padding: 5px;
+    font-size: 26px;
+}
+.your-profile-info{
+	margin-top: 30px;
+}
+.profile-trailer{
+	margin-right: 20px;
+    width: 50%;
+    float: left;
+    position: relative;
+    padding-bottom: 28.12%;
+    padding-top: 25px;
+    height: 0;
+    margin-bottom: 30px;
+}
+.profile-trailer iframe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.my-statistics p{
+	font-size: 18px;
+}
+.my-statistics p{
+	font-size: 14px;
+}
+.my-statistics p span{
+	font-size: 18px;
+	font-weight: bold;
+}
+.wrap-profile-statistics{
+	background-color: #F7F7F7;
+	overflow: hidden;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.demographic-info{
+	background-color: #F7F7F7;
+	margin: 20px 0;
+	padding: 10px;
+}
+.info-percent-demographic{
+	margin-top: 10px;
+}
+.gender-type-demographic{
+	display: inline-block;
+	width: 140px;
+	font-size: 14px;
+}
+.age-table{
+	line-height: 50px;
+	overflow: hidden;
+	margin: 10px 0;
+	padding: 10px 0;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+}
+.gender-type-demographic{
+	float: left;
+}
+.points-statistic-demographic{
+	text-align: center;
+	width: 50px;
+	height: 50px;
+	float: left;
+	margin-right: 10px;
+	position: relative;
+}
+.points-statistic-demographic span{
+	font-size: 14px;
+}
+.male-female-demographic{
+	line-height: 50px;
+	overflow: hidden;
+}
+.drawing-point-demographic{
+	width: 100%;
+	display: inline-block; 
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background-color: #EA4848;
+}
+.graphic_female{
+	top: 0;
+}
+.points-statistic-demographic .graphic_text{
+	position: relative;
+	z-index: 99;
+	font-size: 18px;
+	font-weight: bold;
+}
+.percent-of-gender{
+	margin-left: 10px;
+	font-weight: bold;
+}

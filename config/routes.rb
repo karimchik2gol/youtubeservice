@@ -10,6 +10,8 @@ Youtubeservice::Application.routes.draw do
 
   get "index/index"
 
+  get "/me", to: "index#me"
+
   get "/index/logout"
   
   get "index/start"

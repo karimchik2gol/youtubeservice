@@ -17,7 +17,16 @@ class IndexController < ApplicationController
   	#session[:user_id]=nil
     if session[:youtube_info_id] && !session[:user_id]  
       redirect_to "/index/registration"
+    elsif session[:youtube_info_id] && session[:user_id]
+      redirect_to "/me"
     end
+  end
+
+  def me
+    @user=User.find(session[:user_id])
+    @youtubeinfooid=YoutubeInfoId.find(session[:youtube_info_id])  
+    @offers=Offer.order("created_at DESC").limit(5).where(:user_id=>session[:user_id])
+    @topics=Topic.order("created_at DESC").limit(5).where("(to_topic = ? or from_topic = ?)", session[:user_id], session[:user_id])
   end
 
   def logout

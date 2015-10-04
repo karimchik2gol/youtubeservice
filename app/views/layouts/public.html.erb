@@ -6,17 +6,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<!--<ul>
-	<li><a href="/search">Поиск</a></li>
-	<% if session[:youtube_info_id] || session[:user_id] %>
-		<li><a href="/offer">Предложения</a></li>
-		<li><a href="/profile/<% if session[:user_id] %><%= session[:user_id] %><% else %>0<% end %>">Профиль</a></li>
-		<li><a href="/account">Акаунт</a></li>
-		<li><a href="/directmessages">Сообщения</a></li>
-		<li><%= YoutubeInfoId.find(session[:youtube_info_id]).name %></li>
-		<li><a href="/index/logout">Logout</a></li>
-	<% end %>
-</ul>-->
+
+<link rel="stylesheet" type="text/css" href="/css/basic_css.css">
 <% unless session[:user_id] %>
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<header>
@@ -32,8 +23,13 @@
 			</ul>
 		</div>
 	</header>
+<% else %>
+	<link rel="stylesheet" type="text/css" href="/css/style_admin.css">
+	<%= render "adminHeader" %>
 <% end %>
+
 <%= yield %>
+
 
 </body>
 </html>

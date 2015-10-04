@@ -1,0 +1,8 @@
+<nav class="left-menu">
+	<ul>
+		<li><span><%= YoutubeInfoId.find(session[:youtube_info_id]).name %></span></li>
+		<li><a href="/offer">Предложения</a></li>
+		<li><a href="/profile/<%= session[:user_id] %>">Профиль</a></li>
+		<li><a href="/account">Акаунт</a></li>
+	</ul>
+</nav>	
