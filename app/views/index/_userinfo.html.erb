@@ -1,8 +1,8 @@
 <% youtubeinfo=YoutubeInfoId.find_by_user_id(@user.id) %>
 <div>
 	<div><a href="/profile/<%= @user.id %>"><img src="<%= youtubeinfo.image %>"></a></div>
-	<div><%= youtubeinfo.name %></div>
-	<div><%= youtubeinfo.average_views_per_video %> views per video</div>
-	<div><%= youtubeinfo.subscribers %> subscribers</div>
-	<div><%= youtubeinfo.views_per_month %> Monthly Views</div>
+	<div><span><%= youtubeinfo.name %></span></div>
+	<div><span><%= youtubeinfo.average_views_per_video %> просмотров за видео</span></div>
+	<div><span><%= youtubeinfo.subscribers %> подписчиков</span></div>
+	<div><span><%= youtubeinfo.views_per_month %> месячные просмотры</span></div>
 </div>
