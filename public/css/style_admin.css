@@ -317,3 +317,6 @@
 	display: inline-block;
 	margin: 5px 0;
 }
+.info-blocks .channels tr .userinfo span{
+	text-align: left;
+}
