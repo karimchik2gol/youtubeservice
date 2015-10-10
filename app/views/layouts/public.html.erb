@@ -2,6 +2,16 @@
 <html>
 <head>
   <title>Youtubeservice</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+  <script>
+	  $(function() {
+	    $("#offer_application").datepicker();
+	  });
+  </script>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -30,6 +40,7 @@
 
 <%= yield %>
 
+<script type="text/javascript" src="/js/basic.js"></script>
 
 </body>
 </html>

@@ -118,7 +118,7 @@ class YoutubeApi
 
   def getProfileImage
     response = $client.execute($plus.people.get, {'userId' => "me"})
-    return JSON.parse(response.body)['image']['url']
+    return JSON.parse(response.body)['image']['url'].gsub("?sz=50", "?sz=100")
   end
 
 

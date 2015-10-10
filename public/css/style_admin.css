@@ -21,7 +21,7 @@
 .left-menu ul li{
 	margin-bottom: 5px;
 }
-.left-menu ul li span, .left-menu ul li a, .info-block-name, .my-statistics p span, .demographic-info h3, .graphic_text{
+.left-menu ul li span, .left-menu ul li a, .info-block-name, .my-statistics p span, .demographic-info h3, .graphic_text, .info-center h3, .new_offer_unless_exists, .field label{
 	font-family: "ChampagneLimousines";
 }
 .left-menu ul li a{
@@ -34,8 +34,9 @@
 	font-size: 20px;
 	font-weight: bold;
 }
-.info-blocks{
+.info-center{
 	margin-left: 22%;
+	padding-top: 10px;
 }
 .offers-info-block{
     background-color: #F7F7F7;
@@ -165,4 +166,154 @@
 .percent-of-gender{
 	margin-left: 10px;
 	font-weight: bold;
+
+}
+
+
+/* OFFERS */
+.offers-menu{
+	margin: 5px 10px;
+}
+.left-menu .offers-menu li a{
+	font-size: 16px;
+}
+.info-blocks tr td .editable-icon{
+	font-size: 18px;
+	margin: 0 5px;
+}
+.info-blocks tr td .remove-icon:hover{
+	color: #CE2323;
+}
+.new_offer_unless_exists{
+	display: inline-block;
+	font-size: 18px;
+	margin-top: 10px;
+}
+.new_offer_unless_exists:hover{
+	text-decoration: underline;
+}
+.info-center h3{
+	font-size: 24px;
+}
+.home-form{
+	margin-top: 10px;
+	width: 60%;
+	max-width: 600px;
+}
+.middle-block-createoffer{
+    width: 60%;
+}
+.middle-block-createoffer .info-center{
+	margin-left: 26%;
+}
+.middle-block-createoffer .info-center h3{
+	font-size: 30px;
+	margin-bottom: 30px;
+}
+.success-creating{
+	display: none;
+	width: 100%;
+	border: 2px solid green;
+	padding: 10px;
+	float: left;
+}
+.middle-block-createoffer .info-center .success-creating h3{
+	margin-bottom: 0;
+	font-size: 24px;
+}
+
+/* PROFILE */
+.brand-href{
+	margin: 10px 0;
+	font-size: 14px;
+	color: gray;
+}
+.brand-href a:hover{
+	text-decoration: underline;
+}
+
+/* ACCOUNT */
+.info-center .registration-form{
+	margin: 0;
+	padding: 0;
+	width: auto;
+}
+.info-center .registration-form .wrap-form-fields{
+	border: 0;
+}
+
+/* SEARCH */
+.list_category,.search-block{
+	background-color: whitesmoke;
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-top: 0;
+    width: 100%;
+}
+.search-block{
+	overflow: hidden;
+	width: 100%;
+	position: relative;
+}
+.item-select-search{
+	width: auto;
+	margin-right: 10px;
+	background-color: #ECECEC;
+}
+.item-select-search label{
+	font-size: 16px;
+}
+.item-select-search label{
+	display: inline-block;
+	width: auto;
+	float: none;
+	font-weight: 100;
+}
+.item-select-search.field{
+	padding: 5px;
+	margin-bottom: 10px;
+}
+.item-select-search.field label{
+	padding: 0;
+	line-height: 16px;
+}
+.item-select-search.field input[type=checkbox]{
+	width: 16px;
+	height: 16px;
+}
+.wrap-search-checkbox{
+	overflow: hidden;
+	margin: 10px 0;
+}
+.item-select-search.field input[type=text]{
+	float: none;
+	width: auto;
+	height: 25px;
+	line-height: 23px;
+	margin-top: 4px;
+	font-size: 14px;
+	padding-left: 2px;
+    border: 1px solid #AAADB1;
+}
+.show-search-menu{
+	font-size: 30px;
+    color: #C5C5C5;
+    position: absolute;
+    top: 5px;
+    right: 20px;
+}
+.item-channel a img{
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+}
+.info-blocks .channels tr th, .info-blocks .channels tr td{
+	padding: 0;
+}
+.info-blocks .channels tr th{
+	vertical-align: middle;
+}
+.info-blocks .channels tr th span{
+	display: inline-block;
+	margin: 5px 0;
 }

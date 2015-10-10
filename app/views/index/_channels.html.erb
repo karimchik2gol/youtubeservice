@@ -1,26 +1,43 @@
-<% @users.each do |f| %>
-	<% begin %>
-		<% youtubeinfoid=YoutubeInfoId.find(f.youtube_info_id.to_i) %>
-	<% rescue %>
-		<% youtubeinfoid=f %>
-		<% f=User.find(f.user_id) %>
-	<% end %>
-	<% @user=f %>
-	<% if !@id || f.category.include?("id"+@id+",") %>
-		<div class="item-channel">
-			<div><a href="/profile/<%= f.id %>"><img src="<%= youtubeinfoid.image %>"></a><a href="/profile/<%= f.id %>"><%= youtubeinfoid.name %></a></div>
-			<% catArray=f.category.split(",") %>
-			<div>
-				<% catArray.each do |f| %>
-					<% category=Category.find(f.gsub("id", "").to_i) %>
-					<span><%= category.name %><% if catArray.last!=f %>, <% end %></span>
-				<% end %>
-			</div>
-			<div>
-				<% genders=youtubeinfoid.gender.split(",") %>
-				<span><%= genders[0] %> <%= genders[1] %>%, <%= genders[2] %> <%= genders[3] %>%</span>
-			</div>
-		</div>
-	<% end %>
+<table cellpadding="10" cellspacing="0" width="100%">
+	<tr class="offers-header">
+		<th width="15%"><span>Изображение</span></th>
+		<th width="1.66%"></th>
+		<th width="25%"><span>Название</span></th>
+		<th width="1.66%"></th>
+		<th width="30%"><span>Категории</span></th>
+		<th width="1.66%"></th>
+		<th width="25%"><span>Процент мужчин и женщин</span></th>
+	</tr>
+	<% @users.each do |f| %>
+		<tr height="10"></tr>
+		<tr class="offers-row mine ">
+			<% begin %>
+				<% youtubeinfoid=YoutubeInfoId.find(f.youtube_info_id.to_i) %>
+			<% rescue %>
+				<% youtubeinfoid=f %>
+				<% f=User.find(f.user_id) %>
+			<% end %>
+			<% @user=f %>
 
-<% end %>
+			<% if !@id || f.category.include?("id"+@id+",") %>
+				<td class="item-channel"><a href="/profile/<%= f.id %>"><img src="<%= youtubeinfoid.image %>"></a></td>
+				<td></td>
+				<td><a href="/profile/<%= f.id %>"><%= youtubeinfoid.name %></a></td>
+				<td></td>
+				<% catArray=f.category.split(",") %>
+				<td>
+					<% catArray.each do |f| %>
+						<% category=Category.find(f.gsub("id", "").to_i) %>
+						<span><%= category.name %><% if catArray.last!=f %>, <% end %></span>
+					<% end %>
+				</td>
+				<td></td>
+				<td>
+					<% genders=youtubeinfoid.gender.split(",") %>
+					<span><%= genders[0] %> <%= genders[1] %>%, <%= genders[2] %> <%= genders[3] %>%</span>
+				</td>
+				<td></td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>

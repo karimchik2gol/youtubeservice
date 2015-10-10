@@ -1,7 +1,7 @@
 <% youtubeinfoid=YoutubeInfoId.find(session[:youtube_info_id]) %>
 <% check_action=params[:action]=="registration" %>
 <div class="registration-form">
-	<h3>Расскажите о себе</h3>
+	<% unless session[:user_id] %><h3>Расскажите о себе <%= @user.email %></h3><% end %>
 	<div class="wrap-form-fields">
 			<%= form_for(@user, :url=>@url) do |f| %>
 			  <% if @user.errors.any? %>
@@ -156,33 +156,11 @@
 		}
 	})
 
-	$(".add-category").click(function(e){
-		e.preventDefault();
-		valId=$(this).parents(".select-category").find("select option:selected");
-		val=$(".hidden_category").val();
-		if(!val || !val.split(",") || val.split(",").indexOf("id"+valId.val()) < 0){
-			$(".hidden_category").val(val+"id"+valId.val()+",");
-			$(".category_section").append("<span class='selected-category-item' data-id='"+valId.val()+"'><span class='category-label-section'>"+valId.text()+"</span> <span onclick='destroy_category(this)' class='destroy-category'>X</span> </span>")
-		}
-	})
-
-	function destroy_category(ths){
-		th=jQuery(ths);
-		parentWrap=th.parents(".selected-category-item");
-		id=parentWrap.data("id");
-		parentWrap.remove();
-		val=$(".hidden_category").val();
-		splitedStr=val.split(",");
-		splitedStr=jQuery.grep(splitedStr, function(value) {
-		  return value != "id"+id;
-		});
-		if(splitedStr.length>0)
-			str=splitedStr.join(",");
-		else
-			str="";
-
-		$(".hidden_category").val(str);
-	}
+	<% if params[:action]=="account" %>
+		upd_url="/account"
+	<% else %>
+		upd_url="/"
+	<% end %>
 
 	$("input[type='submit']").click(function(e){
 		e.preventDefault();
@@ -190,29 +168,15 @@
 	          async: true,
 	          type: "POST",
 	          dataType: 'json',
-	          url: "/index/create",
+	          url: "<%= @url %>",
 	          data: $("form").serialize(), 
 	          success: function(data){
 	          	if(data)
-	          		add_errors(data);
+	          		add_errors("#user_", data);
 	          	else
-	          		window.location="/";
+	          		window.location=upd_url;
 	          }
 	    });
 	})
 
-	function add_errors(errors){
-		$(".error-registration").remove();
-		for(var i=0; i<errors.length; i++){
-			splitedArray=errors[i].split(" ");
-			cls=splitedArray[0].toLowerCase();
-			console.log("#user_"+cls);
-			prnt=$("#user_"+cls).parent();
-			splitedArray.shift();
-			prnt.append("<p class='error-registration'>"+splitedArray.join(" ")+"<\/p>");
-			$('html, body').animate({
-		        scrollTop: 0
-		    }, 500);
-		}
-	}
 </script>

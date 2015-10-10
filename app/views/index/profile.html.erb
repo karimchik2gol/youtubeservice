@@ -1,71 +1,100 @@
-<% youtubeinfooid=YoutubeInfoId.find_by_user_id(@user.id) %>
-<% user=@user %>
-<div><%= youtubeinfooid.name %></div>
-<div><a href="https://www.youtube.com/channel/<%= youtubeinfooid.channel_id %>" target="_blank">https://www.youtube.com/<%= youtubeinfooid.channel_id %></a></div>
-<div>
-	<% categoryIds=user.category.split(",").map{|f| f=f.gsub("id", "").to_i} %>
-	<% Category.find(categoryIds).each do |f| %>
-		<a href="/category/<%= f.id %>"><%= f.name %></a>
-	<% end %>
-</div>
+<div class="middle-block">
+	<%= render "leftMenu" %>
+	<div class="info-center">
+		<% youtubeinfooid=YoutubeInfoId.find_by_user_id(@user.id) %>
+		<% user=@user %>
+		<div><h3><%= youtubeinfooid.name %></h3></div>
+		<div class="brand-href"><a href="https://www.youtube.com/channel/<%= youtubeinfooid.channel_id %>" target="_blank">https://www.youtube.com/<%= youtubeinfooid.channel_id %></a></div>
+		<div>
+			<% categoryIds=user.category.split(",").map{|f| f=f.gsub("id", "").to_i} %>
+			<% Category.find(categoryIds).each do |f| %>
+				<a href="/category/<%= f.id %>"><%= f.name %></a>
+			<% end %>
+		</div>
 
-<% if session[:user_id]!=params[:id] %>
-	<div>
-		<a href="#" class="new_topic">Collabration</a>
+		<% if session[:user_id].to_i!=params[:id].to_i %>
+			<div>
+				<a href="#" class="new_topic">Collabration</a>
+			</div>
+			<div class="topic-new" style="display:none;">
+				<%= form_for(Topic.new, :url=>"/index/createtopic/#{params[:id]}") do |f| %>
+					<div>
+						<%= f.label :name %>
+						<%= f.text_field :name %>
+					</div>
+
+					<div>
+						<%= f.label :project_type %>
+						<select name="topic[project_type]">
+							<option value="GAVNO">GAVNO</option>
+							<option value="GAVNO">GAVNO</option>
+							<option value="GAVNO">GAVNO</option>
+							<option value="GAVNO">GAVNO</option>
+						</select>
+					</div>
+
+					<div>
+						<%= f.label :hepping_to, "I'm happing to" %>
+						<%= f.text_field :happing_to %>
+						<%= f.label :date_happing %>
+						<%= f.text_field :date_happing %>
+
+					</div>
+
+					<div>
+						<%= f.label :description %>
+						<%= f.text_area :description %>
+					</div>
+
+					<div>
+						<%= f.label :best %>
+						<%= f.text_field :best %>
+					</div>
+					<button>GO</button>
+				<% end %>
+			</div>	
+		<% end %>
+
+		<% @youtubeinfooid=youtubeinfooid %>
+		<%= render "profileInfo" %>
+
+		<div class="top-countries-by-views">
+			<h3>Топ страны по просмотрам:</h3>
+			<% index=0 %>
+			<% countries=@youtubeinfooid.country.split(",") %>
+			<% countries.each do |f| %>
+				<% if index%2==0 %>
+					<div class="item-country"><span><%= "#{f}" %></span> <span><%= "#{countries[index+1]}%" %></span></div>
+				<% end %>
+				<% index+=1 %>
+			<% end %>
+		</div>
+		<div class="interested-collaboration">
+			<h3 class="interested-in">Заинтересован в:</h3>
+			<div class="wrap-blocks-collaboration">
+				<div class="collaboration-block">
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.create_videos %><i class="fa fa-check"></i><% end %> Создание видео вместе</p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.making_channel_toghether %><i class="fa fa-check"></i><% end %> Создание нового канала вместе с видеозаписями каждого сотрудника(каждый человек контролирует определенный день недели)</p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.cross_promotions_and_email_lists %><i class="fa fa-check"></i><% end %> Продвижения с помощью друг друга(без YouTube) социальные сети, сайты, e-mail рассылка</p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.recommended_channel_swapping %><i class="fa fa-check"></i><% end %> Обмен "Рекомендованные каналы" на YouTube</p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.annotation_or_end_card_or_link_swapping %><i class="fa fa-check"></i><% end %> Обмен ссылками на канал в описании</p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.open_to_other_types %><i class="fa fa-check"></i><% end %> Открыт к другим видам сотрудничества</p></div>
+				</div>
+
+				<div class="sponsor-block">
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.brand_product_integration %><i class="fa fa-check"></i><% end %> Интеграция бренда/продукта в ваши видео</p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.product_reviews %><i class="fa fa-check"></i><% end %> Отзывы о продуктах</p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.dedicated_videos %><i class="fa fa-check"></i><% end %> Выделенное количество видео про бренд</p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.revenue_affiliate %><i class="fa fa-check"></i><% end %> Вы получаете процент от выручки(зачастую не предоплата)</p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.spokesperson %><i class="fa fa-check"></i><% end %> Докладчик</p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.offyoutube_promotion %><i class="fa fa-check"></i><% end %> Продвижение вне YouTube(сайт, соц. сети)</p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.including_brand_videos %><i class="fa fa-check"></i><% end %> Добавление видео про бренд/продукт в плейлист</p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.open_to_other_types_sponsor %><i class="fa fa-check"></i><% end %> Открыт к другим видам услуг</p></div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="topic-new" style="display:none;">
-		<%= form_for(Topic.new, :url=>"/index/createtopic/#{params[:id]}") do |f| %>
-			<div>
-				<%= f.label :name %>
-				<%= f.text_field :name %>
-			</div>
-
-			<div>
-				<%= f.label :project_type %>
-				<select name="topic[project_type]">
-					<option value="GAVNO">GAVNO</option>
-					<option value="GAVNO">GAVNO</option>
-					<option value="GAVNO">GAVNO</option>
-					<option value="GAVNO">GAVNO</option>
-				</select>
-			</div>
-
-			<div>
-				<%= f.label :hepping_to, "I'm happing to" %>
-				<%= f.text_field :happing_to %>
-				<%= f.label :date_happing %>
-				<%= f.text_field :date_happing %>
-
-			</div>
-
-			<div>
-				<%= f.label :description %>
-				<%= f.text_area :description %>
-			</div>
-
-			<div>
-				<%= f.label :best %>
-				<%= f.text_field :best %>
-			</div>
-			<button>GO</button>
-		<% end %>
-	</div>	
-<% end %>
-
-<% @youtubeinfooid=youtubeinfooid %>
-
-<div>
-	<h3>Top countries by views</h3>
-	<% index=0 %>
-	<% countries=@youtubeinfooid.country.split(",") %>
-	<% countries.each do |f| %>
-		<% if index%2==0 %>
-			<div><%= "#{f} #{countries[index+1]}" %></div>
-		<% end %>
-		<% index+=1 %>
-	<% end %>
 </div>
-
 <script type="text/javascript">
 	$(".new_topic").click(function(){
 		$(".topic-new").show();

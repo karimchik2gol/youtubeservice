@@ -1,41 +1,88 @@
-<%= form_for(@offer, :url=>@url) do |f| %>
-  <div class="field">
-    <%= f.label :project_type %><br />
-    <%= f.text_field :project_type %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :application_deadline %><br />
-    <%= f.text_field :application_deadline %>
-  </div>
-  <div class="field">
-    <%= f.label :targe_audience_geos %><br />
-    <%= f.text_field :targe_audience_geos %>
-  </div>
-  <div class="field">
-    <%= f.label :location_dependent %><br />
-    <%= f.text_field :location_dependent %>
-  </div>
-  <div class="field">
-    <%= f.label :location_dependent_boolean %><br />
-    <%= f.check_box :location_dependent_boolean %>
-  </div>
-  <div class="field">
-    <%= f.label :target_channel_categories %><br />
-    <%= f.text_field :target_channel_categories %>
-  </div>
-  <div class="field">
-    <%= f.label :subscriber_range %><br />
-    <%= f.text_field :subscriber_range %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<h3>Создание предложения</h3>
+<div class="home-form">
+  <%= form_for(@offer, :url=>@url) do |f| %>
+    <div class="field">
+      <%= f.label :name, "Название: *" %><br />
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :description, "Описание: *" %><br />
+      <%= f.text_area :description %>
+    </div>
+    <div class="field">
+      <%= f.label :application_deadline, "Время окончания предложения: *" %><br />
+      <%= f.text_field :application_deadline, :id=>"offer_application" %>
+    </div>
+    <div class="field">
+      <%= f.label :project_type, "Категория:" %><br />
+      <select name="offer[project_type]">
+        <% Offer::OFFERS_ARRAY_CATEGORY.each do |f| %>
+          <option class="<%= f %>"><%= f %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="field">
+      <%= f.label :targe_audience_geos, "Страна целевой аудитории:" %><br />
+      <%= f.text_field :targe_audience_geos %>
+    </div>
+    <div class="field">
+      <%= f.label :location_dependent, "Город:" %><br />
+      <%= f.text_field :location_dependent %>
+    </div>
+    <!--
+    <div class="field">
+      <%= f.label :location_dependent_boolean %><br />
+      <%= f.check_box :location_dependent_boolean %>
+    </div>-->
+    <div class="field">
+      <%= f.label :target_channel_categories, "Категории канала:" %><br />
+      <%= f.hidden_field :target_channel_categories, :class=>"hidden_category" %>
+      <div class="category_section"></div>
+      <div class="select-category">
+         <select>
+           <% Category.all.each do |f| %>
+            <option value="<%= f.id %>"><%= f.name %></option>
+           <% end %>
+         </select>
+         <button class="add-category">Добавить</button>
+       </div>
+    </div>
+    <div class="field">
+      <%= f.label :subscriber_range, "Диапазон подписчиков" %><br />
+      <%= f.text_field :subscriber_range %>
+    </div>
+    <div class="success-creating">
+      <h3>Предложение создано успешно</h3>
+    </div>
+    <div class="actions">
+      <%= f.submit("Создать предложение") %>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $("input[type='submit']").click(function(e){
+    e.preventDefault();
+    $.ajax({
+            async: true,
+            type: "POST",
+            dataType: 'json',
+            url: "<%= @url %>",
+            data: $("form").serialize(), 
+            success: function(data){
+              if(data)
+                add_errors("#offer_", data);
+              else
+                success_creating();
+            }
+      });
+  })
+
+  function success_creating(){
+    $(".success-creating").show();
+    $(".error-registration").remove();
+    setTimeout(function(){
+      window.location="/offer";
+    }, 1000);
+  }
+</script>

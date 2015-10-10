@@ -1,7 +1,18 @@
 <nav class="left-menu">
 	<ul>
-		<li><span><%= YoutubeInfoId.find(session[:youtube_info_id]).name %></span></li>
-		<li><a href="/offer">Предложения</a></li>
+		<li><a href="/me"><span><%= YoutubeInfoId.find(session[:youtube_info_id]).name %></span></a></li>
+		<li>
+			<% actions_offers=["offers", "collabration", "createoffer"] %>
+			<a href="/offer">Предложения</a>
+			<% if actions_offers.include?(params[:action]) %>
+				<ul class="offers-menu">
+					<li><a href="/offer">Ваши предложения</a></li>
+					<li><a href="/sponsors">Спонсоры</a></li>
+					<li><a href="/collabration">Сотрудничество</a></li>
+					<li><a href="/createoffer">Создать предложение</a></li>
+				</ul>
+			<% end %>
+		</li>
 		<li><a href="/profile/<%= session[:user_id] %>">Профиль</a></li>
 		<li><a href="/account">Акаунт</a></li>
 	</ul>

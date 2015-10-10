@@ -1,6 +1,7 @@
-<div class="list-category">
+<div class="list_category category_section">
+	<h3>Категории</h3>
 	<% categories=Category.all.sort_by!{ |m| m.name.downcase } %>
 	<% categories.each do |f| %>
-		<div class="item-list-category"><a href="/category/<%= f.id %>"><%= f.name %></a></div>
+		<span class="selected-category-item"><a href="/category/<%= f.id %>" class="category-label-section"><%= f.name %></a></span>
 	<% end %>
 </div>

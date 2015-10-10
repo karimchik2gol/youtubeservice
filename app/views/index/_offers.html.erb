@@ -1,38 +1,44 @@
 <% me=params[:action]=="me" %>
-<table cellpadding="10" cellspacing="0" width="100%">
-	<tr class="offers-header">
-		<th class="column-a"><span>Название</span></th>
-		<% if !me %>
-			<th class="column-b"><span>Истекает</span></th>
-			<th class="column-c"><span>Тип</span></th>
-		<% end %>
-		<th class="column-d"><% if params[:action]=="offer" || me %><span>Участники</span><% else %>Channel/Brand<% end %></th>
-		<th class="column-e"><span>Действия</span></th>
-	</tr>
-	<% @offers.each do |f| %>
-		<tr class="offers-row mine ">
-			<td class="column-a"><span><%= f.name %></span></td>
+<% if @offers.count>0 %>
+	<table cellpadding="10" cellspacing="0" width="100%">
+		<tr class="offers-header">
+			<th class="column-a"><span>Название</span></th>
 			<% if !me %>
-				<td><span><%= f.application_deadline %></span></td>
-				<td><span class="type-ellipsis"><%= f.project_type %></span></td>
+				<th class="column-b"><span>Дата окончания</span></th>
+				<th class="column-c"><span>Категория</span></th>
 			<% end %>
-			<td>
-				<% if params[:action]=="offers" || me %>
-					<a href="/offers/applicants/<%= f.id %>"><%= Offermessage.where(:offer_id=>f.id).count %></a>
-				<% else %>
-					<% @user=User.find(f.user_id) %>
-					<%= render "userinfo" %>
-				<% end %>
-			</td>
-			<td>
-				<% if f.user_id!=session[:user_id] || me %>
-					<a href="/offer/details/<%= f.id %>">Подробней</a>
-				<% else %>
-					<a href="/offers/applicants/<%= f.id %>" class="row-btn red">Участники</a>
-					<a href="/editoffer/<%= f.id %>" class="row-btn green">Редактировать</a>
-					<a href="/destroyoffer/<%= f.id %>" class="delete no-btn">Удалить</a>
-				<% end %>
-			</td>
+			<th class="column-d"><span><% if params[:action]=="offers" || me %>Участники<% else %>Канал<% end %></span></th>
+			<th class="column-e"><span>Действия</span></th>
 		</tr>
-	<% end %>
-</table>
+		<% @offers.each do |f| %>
+			<tr class="offers-row mine ">
+				<td class="column-a"><span><%= f.name %></span></td>
+				<% if !me %>
+					<td><span><%= f.application_deadline %></span></td>
+					<td><span class="type-ellipsis"><%= f.project_type %></span></td>
+				<% end %>
+				<td>
+					<% if params[:action]=="offers" || me %>
+						<a href="/offers/applicants/<%= f.id %>"><%= Offermessage.where(:offer_id=>f.id).count %></a>
+					<% else %>
+						<% @user=User.find(f.user_id) %>
+						<%= render "userinfo" %>
+					<% end %>
+				</td>
+				<td>
+					<% if f.user_id!=session[:user_id] || me %>
+						<a href="/offer/details/<%= f.id %>">Подробней</a>
+					<% else %>
+						<a href="/editoffer/<%= f.id %>" class="row-btn green editable-icon"><i class="fa fa-pencil"></i></a>
+						<a href="/destroyoffer/<%= f.id %>" class="delete no-btn editable-icon remove-icon"><i class="fa fa-times"></i></a>
+					<% end %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	<div style="padding: 10px;">
+		<h3>На данный момент предложений нету</h3>
+		<a href="/createoffer" class="new_offer_unless_exists">Создать предложение</a>
+	</div>
+<% end %>

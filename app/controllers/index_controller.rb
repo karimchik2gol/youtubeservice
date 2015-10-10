@@ -133,7 +133,15 @@ class IndexController < ApplicationController
   def createofferpost
   	params[:offer][:user_id]=session[:user_id]
   	offer=Offer.create(params[:offer])
-  	redirect_to request.referrer
+    if offer.valid?
+      offer.save
+      error_validate=false
+    else
+      error_validate=offer.errors.to_a
+    end
+  	respond_to do |format|
+      format.json{render :json=>error_validate.to_json}
+    end
   end
 
   def editoffer
@@ -176,9 +184,22 @@ class IndexController < ApplicationController
 
   def update_account
     @user=User.find(session[:user_id])
-    @user.update_attributes(params[:user])
+    error_validate=nil
+    if session[:youtube_info_id] and session[:user_id]
+      params[:user][:youtube_info_id]=session[:youtube_info_id]
+      @user.assign_attributes(params[:user])
+      if @user.valid?
+        @user.save
+        params[:anketa][:user_id]=@user.id
+        YoutubeInfoId.find(session[:youtube_info_id]).update_attributes(params[:anketa])
+      else
+        error_validate=@user.errors.to_a
+      end
+    end
 
-    redirect_to request.referrer
+    respond_to do |format|
+      format.json{render :json=>error_validate.to_json}
+    end
   end
 
   def offerdetails
