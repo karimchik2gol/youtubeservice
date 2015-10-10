@@ -1,11 +1,11 @@
 <div class="search-block wrap-checkbox" data-id="<%= @id=params[:id] %>">
 	<% count_users=@users.count %>
-	<a href="#" class="show-search-menu" <% if count_users>3 %>style="display: none;"<% end %>>
+	<a href="#" class="show-search-menu">
 		<i class="fa fa-chevron-circle-down" <% if count_users<4 %>style="display:none;"<% end %>></i>
 		<i class="fa fa-chevron-circle-up" <% if count_users>3 %>style="display:none;"<% end %>></i>
 	</a>
 	<h3>Фильтры:</h3>
-	<div class="wrap-search-checkbox">
+	<div class="wrap-search-checkbox" <% if count_users>3 %>style="display: none;"<% end %>>
 	<div class="item-select-search field">
 		<input type="checkbox" name="search[gender_percentage_cont]" value="male">
 		<label for="search[gender_percentage_cont]">Мужчины</label>
