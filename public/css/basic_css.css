@@ -234,6 +234,9 @@ header .logo a{
     margin-right: 10px;
     color: #EA4848;
 }
+.item-collaboration-block i.fa-check{
+    color: #0F5FF1;
+ }
 .sponsor-block{
     float: none;
     margin-left: 52%;

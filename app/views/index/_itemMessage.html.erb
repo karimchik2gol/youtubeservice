@@ -1,0 +1,7 @@
+<% f=@message %>
+<% youtubeinfoid=YoutubeInfoId.find_by_user_id(f.from_message) %>
+<% user=User.find_by_youtube_info_id(youtubeinfoid.id) %>
+<div class="item-message">
+	<p><strong><a href="/profile/<%= user.id %>"><%= youtubeinfoid.name %></a> <span><%= f.created_at.strftime("%d/%m/%Y %H:%M:%S") %></span></strong></p>
+	<p><%= f.text %></p>
+</div>

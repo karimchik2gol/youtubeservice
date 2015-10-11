@@ -320,3 +320,57 @@
 .info-blocks tr .userinfo{
 	text-align: center;
 }
+.topic-message, .item-message{
+	background-color: #F7F7F7;
+	padding: 10px;
+}
+.item-message{
+	margin: 20px 0;
+}
+.item-message p{
+	margin: 5px 0;
+}
+.new-message{
+	margin-top: 10px;
+}
+.field.new-message{
+	padding-bottom: 0;
+}
+.field.new-message textarea, .field textarea#topic_description{
+	height: 150px;
+}
+.message-write{
+	margin: 20px 0;
+}
+.new-topic{
+	transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    padding: 8px 16px;
+    margin: 0 auto;
+    background-color: #D43D3D;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    margin: 10px 0;
+}
+.new-topic:hover{
+	background-color: #CE2323;
+}
+.topic-new{
+	margin: 10px;
+}
+#topic_happing_to, #happing #topic_date{
+	float: left;
+    display: inline-block;
+    width: auto;
+}
+#topic_happing_to_select, #topic_date_happing{
+	display: inline-block;
+    width: auto;
+	margin-right: 10px;
+}
+#happing label{
+	line-height: 45px;
+	margin-right: 10px;
+}

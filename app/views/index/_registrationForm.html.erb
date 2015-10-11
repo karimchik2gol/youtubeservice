@@ -52,7 +52,8 @@
 					   </div>
 				  </div>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.open_to_other_types_sponsor || check_action %>checked<% end %> name="anketa[channel_size_limit]">
+				  		<input type="hidden" <% if youtubeinfoid.open_to_other_types_sponsor || check_action %>value="1"<% end %> name="anketa[channel_size_limit]">
+				  		<input type="checkbox" <% if youtubeinfoid.open_to_other_types_sponsor || check_action %>checked<% end %>>
 					   	<span>Запретить контактировать каналам, у которых в 10 раз меньше подписчиков</span>
 				  </div>
 				</div>
@@ -69,27 +70,33 @@
 			  <div class="first-block wrap-checkbox">
 			  	  <h4>Какой тип сотрудничества вас интересует?</h4>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.create_videos || check_action %>checked<% end %> name="anketa[create_videos]">
+				  		<input type="hidden" <% if youtubeinfoid.create_videos || check_action %>value="1"<% end %> name="anketa[create_videos]">
+				  		<input type="checkbox" <% if youtubeinfoid.create_videos || check_action %>checked<% end %>>
 				    	<span>Создание видео вместе</span>
 				  </div>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.making_channel_toghether || check_action %>checked<% end %> name="anketa[making_channel_toghether]">
+				  		<input type="hidden" <% if youtubeinfoid.making_channel_toghether || check_action %>value="1"<% end %> name="anketa[making_channel_toghether]">
+				  		<input type="checkbox" <% if youtubeinfoid.making_channel_toghether || check_action %>checked<% end %>>
 				    	<span>Создание нового канала вместе с видеозаписями каждого сотрудника(каждый человек контролирует определенный день недели)</span>
 				  </div>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.cross_promotions_and_email_lists || check_action %>checked<% end %> name="anketa[cross_promotions_and_email_lists]">
+				  		<input type="hidden" <% if youtubeinfoid.cross_promotions_and_email_lists || check_action %>value="1"<% end %> name="anketa[cross_promotions_and_email_lists]">
+				  		<input type="checkbox" <% if youtubeinfoid.cross_promotions_and_email_lists || check_action %>checked<% end %>>
 				    	<span>Продвижения с помощью друг друга(без YouTube) социальные сети, сайты, e-mail рассылка</span>
 				  </div>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.recommended_channel_swapping || check_action %>checked<% end %> name="anketa[recommended_channel_swapping]">
+				  		<input type="hidden" <% if youtubeinfoid.recommended_channel_swapping || check_action %>value="1"<% end %> name="anketa[recommended_channel_swapping]">
+				  		<input type="checkbox" <% if youtubeinfoid.recommended_channel_swapping || check_action %>checked<% end %>>
 				    	<span>Обмен "Рекомендованные каналы" на YouTube</span>
 				  </div>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.annotation_or_end_card_or_link_swapping || check_action %>checked<% end %> name="anketa[annotation_or_end_card_or_link_swapping]">
+				  		<input type="hidden" <% if youtubeinfoid.annotation_or_end_card_or_link_swapping || check_action %>value="1"<% end %> name="anketa[annotation_or_end_card_or_link_swapping]">
+				  		<input type="checkbox" <% if youtubeinfoid.annotation_or_end_card_or_link_swapping || check_action %>checked<% end %>>
 				    	<span>Обмен ссылками на канал в описании</span>
 				  </div>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.open_to_other_types || check_action %>checked<% end %> name="anketa[open_to_other_types]">
+				  		<input type="hidden" <% if youtubeinfoid.open_to_other_types || check_action %>value="1"<% end %> name="anketa[open_to_other_types]">
+				  		<input type="checkbox" <% if youtubeinfoid.open_to_other_types || check_action %>checked<% end %>>
 				    	<span>Открыт к другим видам сотрудничества</span>
 				  </div>
 				  <div class="field not-interested">
@@ -101,35 +108,43 @@
 			  <div class="second-block wrap-checkbox">
 			  	  <h4>Какие услуги вы готовы предоставить?</h4>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.brand_product_integration || check_action %>checked<% end %> name="anketa[brand_product_integration]">
+				  		<input type="hidden" <% if youtubeinfoid.brand_product_integration || check_action %>value="1"<% end %> name="anketa[brand_product_integration]">
+				  		<input type="checkbox" <% if youtubeinfoid.brand_product_integration || check_action %>checked<% end %>>
 					   	<span>Интеграция бренда/продукта в ваши видео</span>
 				  </div>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.product_reviews || check_action %>checked<% end %> name="anketa[product_reviews]">
+				  		<input type="hidden" <% if youtubeinfoid.product_reviews || check_action %>value="1"<% end %> name="anketa[product_reviews]">
+				  		<input type="checkbox" <% if youtubeinfoid.product_reviews || check_action %>checked<% end %>>
 					   	<span>Отзывы о продуктах</span>
 				  </div>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.dedicated_videos || check_action %>checked<% end %> name="anketa[dedicated_videos]">
+				  		<input type="hidden" <% if youtubeinfoid.dedicated_videos || check_action %>value="1"<% end %> name="anketa[dedicated_videos]">
+				  		<input type="checkbox" <% if youtubeinfoid.dedicated_videos || check_action %>checked<% end %>>
 					   	<span>Выделенное количество видео про бренд</span>
 				  </div>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.revenue_affiliate || check_action %>checked<% end %> name="anketa[revenue_affiliate]">
+				  		<input type="hidden" <% if youtubeinfoid.revenue_affiliate || check_action %>value="1"<% end %> name="anketa[revenue_affiliate]">
+				  		<input type="checkbox" <% if youtubeinfoid.revenue_affiliate || check_action %>checked<% end %>>
 					   	<span>Вы получаете процент от выручки(зачастую не предоплата)</span>
 				  </div>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.spokesperson || check_action %>checked<% end %> name="anketa[spokesperson]">
+				  		<input type="hidden" <% if youtubeinfoid.spokesperson || check_action %>value="1"<% end %> name="anketa[spokesperson]">
+				  		<input type="checkbox" <% if youtubeinfoid.spokesperson || check_action %>checked<% end %>>
 					   	<span>Докладчик</span>
 				  </div>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.offyoutube_promotion || check_action %>checked<% end %> name="anketa[offyoutube_promotion]">
+				  		<input type="hidden" <% if youtubeinfoid.offyoutube_promotion || check_action %>value="1"<% end %> name="anketa[offyoutube_promotion]">
+				  		<input type="checkbox" <% if youtubeinfoid.offyoutube_promotion || check_action %>checked<% end %>>
 					   	<span>Продвижение вне YouTube(сайт, соц. сети)</span>
 				  </div>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.including_brand_videos || check_action %>checked<% end %> name="anketa[including_brand_videos]">
+				  		<input type="hidden" <% if youtubeinfoid.including_brand_videos || check_action %>value="1"<% end %> name="anketa[including_brand_videos]">
+				  		<input type="checkbox" <% if youtubeinfoid.including_brand_videos || check_action %>checked<% end %>>
 					   	<span>Добавление видео про бренд/продукт в плейлист</span>
 				  </div>
 				  <div class="field">
-				  		<input type="checkbox" <% if youtubeinfoid.open_to_other_types_sponsor || check_action %>checked<% end %> name="anketa[open_to_other_types_sponsor]">
+				  		<input type="hidden" <% if youtubeinfoid.open_to_other_types_sponsor || check_action %>value="1"<% end %> name="anketa[open_to_other_types_sponsor]">
+				  		<input type="checkbox" <% if youtubeinfoid.open_to_other_types_sponsor || check_action %>checked<% end %>>
 					   	<span>Открыт к другим видам услуг</span>
 				  </div>
 				  <div class="field not-interested">
@@ -146,11 +161,18 @@
 
 <script type="text/javascript">
 	$(".signup-form-not_interested").change(function(){
-		$(this).parents(".wrap-checkbox").find("input[type='checkbox']").removeAttr("checked");
+		inputs=$(this).parents(".wrap-checkbox").find("input[type='checkbox']");
+		inputs.removeAttr("checked");
+		$(this).parents(".wrap-checkbox").find("input[type='hidden']").val("0");
 		$(this).prop('checked', true);
 	})
 
 	$("input[type='checkbox']").change(function(){
+		if($(this).is(":checked"))
+			$(this).prev().val("1");
+		else
+			$(this).prev().val("0");
+
 		if($(this).attr("class")!="signup-form-not_interested"){
 			$(this).parents(".wrap-checkbox").find(".signup-form-not_interested").prop('checked', false);
 		}

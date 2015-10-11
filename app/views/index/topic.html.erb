@@ -1,24 +1,59 @@
-<div>
-	<% user=User.find(@topic.from_topic) %>
-	<% youtubeinfoid=YoutubeInfoId.find_by_user_id(user.id) %>
-	<h3><%= @topic.name %></h3>
-	<div>From: <a href="/profile/<%= user.id %>"><%= youtubeinfoid.name %></a></div>
-	<div>Project type: <%= @topic.project_type %></div>
-	<div><%= @topic.happing_to %> date: <%= @topic.happing_to %></div>
-	<div><%= @topic.description %></div>
+<div class="middle-block">
+	<%= render "leftMenu" %>
+	<div class="info-blocks info-center">
+		<div class="topic-message">
+			<% user=User.find(@topic.from_topic) %>
+			<% youtubeinfoid=YoutubeInfoId.find_by_user_id(user.id) %>
+			<h3>Тема: <strong><%= @topic.name %></strong></h3>
+			<div><p>От: <a href="/profile/<%= user.id %>"><strong><%= youtubeinfoid.name %></strong></a></p></div>
+			<div><p>Категория: <strong><%= @topic.project_type %></strong></p></div>
+			<div><p><%= @topic.happing_to %> дата: <strong><%= @topic.date_happing %></strong></p></div>
+			<div><p>Описание: <strong><%= @topic.description %></strong></p></div>
+		</div>
+
+		<div class="message-write">			
+			<%= form_for(Message.new, :url=>"/index/createmessage/#{user.id}") do |f| %>
+				<div class="field new-message">
+					<%= f.hidden_field :topic_id, :value=>"#{@topic.id}" %>
+					<label>Текст:</label>
+					<%= f.text_area :text %>
+				</div>
+				<input type="submit" value="Отправить">
+			<% end %>	
+		</div>
+
+		<div class="block-messages">
+			<% @messages.each do |f| %>
+				<% youtubeinfoid=YoutubeInfoId.find_by_user_id(f.from_message) %>
+				<% user=User.find_by_youtube_info_id(youtubeinfoid.id) %>
+				<div class="item-message">
+					<p><strong><a href="/profile/<%= user.id %>"><%= youtubeinfoid.name %></a> <span><%= f.created_at.strftime("%d/%m/%Y %H:%M:%S") %></span></strong></p>
+					<p><%= f.text %></p>
+				</div>
+			<% end %>
+		</div>
+	</div>
 </div>
 
-<div>
-	<% @messages.each do |f| %>
-		<% youtubeinfoid=YoutubeInfoId.find_by_user_id(f.from_message) %>
-		<div>
-			<p><%= youtubeinfoid.name %> <span><%= f.created_at.strftime("%d/%m/%Y %H:%M:S") %></span></p>
-			<p><%= f.text %></p>
-		</div>
-	<% end %>
-	<%= form_for(Message.new, :url=>"/index/createmessage/#{user.id}") do |f| %>
-		<%= f.hidden_field :topic_id, :value=>"#{@topic.id}" %>
-		<%= f.text_area :text %>
-		<button>GO</button>
-	<% end %>
-</div>
+<script type="text/javascript">
+	$("input[type='submit']").click(function(e){
+	    e.preventDefault();
+	    $.ajax({
+	            async: true,
+	            type: "POST",
+	            dataType: 'html',
+	            url: $("form").attr("action"),
+	            data: $("form").serialize(), 
+	            success: function(data){
+	              if(data!="null"){
+	              	$(".block-messages").prepend(data);
+	              	$("textarea").val("");
+	              	$(".error-registration").remove();
+	              }
+	              else
+	                add_errors("#message_", ["text Поле заполнено неверно"]);
+
+	            }
+	      });
+	  })
+</script>

@@ -30,8 +30,7 @@ function add_errors(cls_start, errors){
 	for(var i=0; i<errors.length; i++){
 		splitedArray=errors[i].split(" ");
 		cls=splitedArray[0].toLowerCase();
-		console.log(cls_start+cls)
-		prnt=$(cls_start+cls).parent();
+		prnt=$(cls_start+cls).parents(".field");
 		splitedArray.shift();
 		prnt.append("<p class='error-registration'>"+splitedArray.join(" ").replace(/[a-zA-Z]/g, "")+"<\/p>");
 		$('html, body').animate({

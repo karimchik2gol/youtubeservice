@@ -13,44 +13,47 @@
 		</div>
 
 		<% if session[:user_id].to_i!=params[:id].to_i %>
-			<div>
-				<a href="#" class="new_topic">Collabration</a>
-			</div>
+			<button class="new-topic">Связаться</button>
+			<div class="success-creating"><h3>Предложение создано успешно</h3></div>
+
 			<div class="topic-new" style="display:none;">
 				<%= form_for(Topic.new, :url=>"/index/createtopic/#{params[:id]}") do |f| %>
-					<div>
-						<%= f.label :name %>
+					<div class="field">
+						<%= f.label :name, "Тема сообщения: *" %>
 						<%= f.text_field :name %>
 					</div>
 
-					<div>
-						<%= f.label :project_type %>
+					<div class="field">
+						<%= f.label :project_type, "Тип предложения: *" %>
 						<select name="topic[project_type]">
-							<option value="GAVNO">GAVNO</option>
-							<option value="GAVNO">GAVNO</option>
-							<option value="GAVNO">GAVNO</option>
-							<option value="GAVNO">GAVNO</option>
+							<% Offer::OFFERS_ARRAY_CATEGORY.each do |f| %>
+					          <% if youtubeinfooid[f[1]] %><option class="<%= f[1] %>"><%= f[0] %></option><% end %>
+					        <% end %>
 						</select>
 					</div>
 
-					<div>
-						<%= f.label :hepping_to, "I'm happing to" %>
-						<%= f.text_field :happing_to %>
-						<%= f.label :date_happing %>
-						<%= f.text_field :date_happing %>
-
+					<div class="field" id="happing">
+						<div style="overflow:hidden;">
+							<%= f.label :happing_to, "Я надеюсь ", :id=>"topic_happing_to" %>
+							<select name="topic[happing_to]" id="topic_happing_to_select">
+								<option value="начать">начать</option>
+								<option value="закончить">закончить</option>
+							</select>
+							<%= f.text_field :date_happing %>
+							<%= f.label :date_happing, " числа", :id=>"topic_date" %>
+						</div>
 					</div>
 
-					<div>
-						<%= f.label :description %>
+					<div class="field">
+						<%= f.label :description, "Сообщение:*" %>
 						<%= f.text_area :description %>
 					</div>
 
-					<div>
-						<%= f.label :best %>
-						<%= f.text_field :best %>
+					<div class="field">
+						<%= f.label :best, "С наилучшими пожеланиями, " %>
+						<%= f.text_field :best, :value=>"#{YoutubeInfoId.find(session[:youtube_info_id]).name}" %>
 					</div>
-					<button>GO</button>
+					<input type="submit">
 				<% end %>
 			</div>	
 		<% end %>
@@ -73,30 +76,56 @@
 			<h3 class="interested-in">Заинтересован в:</h3>
 			<div class="wrap-blocks-collaboration">
 				<div class="collaboration-block">
-					<div class="item-collaboration-block"><p><% if @youtubeinfooid.create_videos %><i class="fa fa-check"></i><% end %> Создание видео вместе</p></div>
-					<div class="item-collaboration-block"><p><% if @youtubeinfooid.making_channel_toghether %><i class="fa fa-check"></i><% end %> Создание нового канала вместе с видеозаписями каждого сотрудника(каждый человек контролирует определенный день недели)</p></div>
-					<div class="item-collaboration-block"><p><% if @youtubeinfooid.cross_promotions_and_email_lists %><i class="fa fa-check"></i><% end %> Продвижения с помощью друг друга(без YouTube) социальные сети, сайты, e-mail рассылка</p></div>
-					<div class="item-collaboration-block"><p><% if @youtubeinfooid.recommended_channel_swapping %><i class="fa fa-check"></i><% end %> Обмен "Рекомендованные каналы" на YouTube</p></div>
-					<div class="item-collaboration-block"><p><% if @youtubeinfooid.annotation_or_end_card_or_link_swapping %><i class="fa fa-check"></i><% end %> Обмен ссылками на канал в описании</p></div>
-					<div class="item-collaboration-block"><p><% if @youtubeinfooid.open_to_other_types %><i class="fa fa-check"></i><% end %> Открыт к другим видам сотрудничества</p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.create_videos %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Создание видео вместе</span></p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.making_channel_toghether %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Создание нового канала вместе с видеозаписями каждого сотрудника(каждый человек контролирует определенный день недели)</span></p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.cross_promotions_and_email_lists %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Продвижения с помощью друг друга(без YouTube) социальные сети, сайты, e-mail рассылка</span></p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.recommended_channel_swapping %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Обмен "Рекомендованные каналы" на YouTube</span></p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.annotation_or_end_card_or_link_swapping %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Обмен ссылками на канал в описании</span></p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.open_to_other_types %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Открыт к другим видам сотрудничества</span></p></div>
 				</div>
 
 				<div class="sponsor-block">
-					<div class="item-collaboration-block"><p><% if @youtubeinfooid.brand_product_integration %><i class="fa fa-check"></i><% end %> Интеграция бренда/продукта в ваши видео</p></div>
-					<div class="item-collaboration-block"><p><% if @youtubeinfooid.product_reviews %><i class="fa fa-check"></i><% end %> Отзывы о продуктах</p></div>
-					<div class="item-collaboration-block"><p><% if @youtubeinfooid.dedicated_videos %><i class="fa fa-check"></i><% end %> Выделенное количество видео про бренд</p></div>
-					<div class="item-collaboration-block"><p><% if @youtubeinfooid.revenue_affiliate %><i class="fa fa-check"></i><% end %> Вы получаете процент от выручки(зачастую не предоплата)</p></div>
-					<div class="item-collaboration-block"><p><% if @youtubeinfooid.spokesperson %><i class="fa fa-check"></i><% end %> Докладчик</p></div>
-					<div class="item-collaboration-block"><p><% if @youtubeinfooid.offyoutube_promotion %><i class="fa fa-check"></i><% end %> Продвижение вне YouTube(сайт, соц. сети)</p></div>
-					<div class="item-collaboration-block"><p><% if @youtubeinfooid.including_brand_videos %><i class="fa fa-check"></i><% end %> Добавление видео про бренд/продукт в плейлист</p></div>
-					<div class="item-collaboration-block"><p><% if @youtubeinfooid.open_to_other_types_sponsor %><i class="fa fa-check"></i><% end %> Открыт к другим видам услуг</p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.brand_product_integration %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Интеграция бренда/продукта в ваши видео</span></p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.product_reviews %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Отзывы о продуктах</span></p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.dedicated_videos %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Выделенное количество видео про бренд</span></p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.revenue_affiliate %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Вы получаете процент от выручки(зачастую не предоплата)</span></p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.spokesperson %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Докладчик</span></p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.offyoutube_promotion %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Продвижение вне YouTube(сайт, соц. сети)</span></p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.including_brand_videos %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Добавление видео про бренд/продукт в плейлист</span></p></div>
+					<div class="item-collaboration-block"><p><% if @youtubeinfooid.open_to_other_types_sponsor %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Открыт к другим видам услуг</span></p></div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
-	$(".new_topic").click(function(){
+	$(".new-topic").click(function(){
 		$(".topic-new").show();
+	})
+
+	$("input[type='submit']").click(function(e){
+	    e.preventDefault();
+		$.ajax({
+		        async: true,
+		        type: "POST",
+		        dataType: 'json',
+		        url: $("form").attr("action"),
+		        data: $("form").serialize(), 
+		        success: function(data){
+	              	$(".error-registration").remove();
+		        	if(data)
+		          		add_errors("#topic_", data);
+		          	else
+		          	{
+		          		$("#topic_name, input[name='topic[project_type]'], #topic_date_happing, #topic_description").val("");
+		          		$(".topic-new").toggle(100);
+		          		$(".success-creating").toggle(100);
+		          		setTimeout(function(){$(".success-creating").toggle(100)}, 2000);
+		          		$('html, body').animate({
+					        scrollTop: 0
+					    }, 500);
+		          	}
+		        }
+	      });
 	})
 </script>

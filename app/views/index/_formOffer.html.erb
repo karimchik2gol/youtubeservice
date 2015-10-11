@@ -17,7 +17,7 @@
       <%= f.label :project_type, "Категория:" %><br />
       <select name="offer[project_type]">
         <% Offer::OFFERS_ARRAY_CATEGORY.each do |f| %>
-          <option class="<%= f %>"><%= f %></option>
+          <option class="<%= f[0] %>"><%= f[0] %></option>
         <% end %>
       </select>
     </div>

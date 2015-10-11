@@ -227,8 +227,16 @@ class IndexController < ApplicationController
     params[:topic][:to_topic]=params[:id]
     params[:topic][:from_topic]=session[:user_id]
     topic=Topic.create(params[:topic])
-    topic.save
-    redirect_to request.referrer
+    error=nil
+    if topic.valid?
+      topic.save
+    else
+      error=topic.errors.to_a
+    end
+
+    respond_to do |format|
+      format.json{render :json=>error.to_json}
+    end
   end
 
   def directmessages
@@ -249,10 +257,24 @@ class IndexController < ApplicationController
     if topic
       params[:message][:to_message]=params[:id]
       params[:message][:from_message]=session[:user_id]
-      message=Message.create(params[:message])
-      message.save
+      @message=Message.create(params[:message])
+      if @message.valid?
+        error=true
+        @message.save
+      else
+        error=nil
+      end
+    else
+      error=nil
     end
-    redirect_to request.referrer
+    
+    respond_to do |format|
+      if error
+        format.html{render :partial=>"itemMessage.html.erb"}
+      else
+        format.html{render :json=>nil.to_json}
+      end
+    end
   end
   #LOGIN ADMIN
   def admin
