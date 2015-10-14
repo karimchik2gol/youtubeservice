@@ -2,7 +2,7 @@ class IndexController < ApplicationController
   skip_before_filter :check_admin
   before_filter :check_user, only: [:applicants, :offers, :createoffer, :createofferpost, :editoffer, :account, :collabration, :destroyoffer,
                                     :updateoffer, :update_account, :offerdetails, :profile, :offerapplycreate, :createtopic, :directmessages,
-                                    :topic, :createmessage]
+                                    :topic, :createmessage, :searchingProfile, :sponsors, :createyslyga, :sponsorsdetails]
   layout "public"
 
   def check_user
