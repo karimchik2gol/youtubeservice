@@ -1,0 +1,29 @@
+<h1>Listing yslygis</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Category</th>
+    <th>Date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @yslygis.each do |yslygi| %>
+  <tr>
+    <td><%= yslygi.name %></td>
+    <td><%= yslygi.description %></td>
+    <td><%= yslygi.category %></td>
+    <td><%= yslygi.date %></td>
+    <td><%= link_to 'Show', yslygi %></td>
+    <td><%= link_to 'Edit', edit_yslygi_path(yslygi) %></td>
+    <td><%= link_to 'Destroy', yslygi, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Yslygi', new_yslygi_path %>

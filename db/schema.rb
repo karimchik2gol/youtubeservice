@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151003194542) do
+ActiveRecord::Schema.define(:version => 20151014104116) do
 
   create_table "admins", :force => true do |t|
     t.string   "email"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20151003194542) do
     t.text     "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "yslygi_id"
   end
 
   create_table "offers", :force => true do |t|
@@ -151,6 +152,17 @@ ActiveRecord::Schema.define(:version => 20151003194542) do
     t.boolean  "open_to_other_types_sponsor"
     t.string   "gender_percentage"
     t.boolean  "channel_size_limit"
+  end
+
+  create_table "yslygis", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "category"
+    t.string   "date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
+    t.integer  "to_topic"
   end
 
 end

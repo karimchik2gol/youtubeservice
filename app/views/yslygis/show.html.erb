@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @yslygi.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @yslygi.description %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @yslygi.category %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @yslygi.date %>
+</p>
+
+
+<%= link_to 'Edit', edit_yslygi_path(@yslygi) %> |
+<%= link_to 'Back', yslygis_path %>

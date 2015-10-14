@@ -1,4 +1,4 @@
-<h3>Создание предложения</h3>
+<h3><% if params[:action]=="editoffer" %>Редактирование предложения<% else %>Создание предложения<% end %></h3>
 <div class="home-form">
   <%= form_for(@offer, :url=>@url) do |f| %>
     <div class="field">
@@ -37,7 +37,15 @@
     <div class="field">
       <%= f.label :target_channel_categories, "Категории канала:" %><br />
       <%= f.hidden_field :target_channel_categories, :class=>"hidden_category" %>
-      <div class="category_section"></div>
+      <div class="category_section">
+        <% if params[:action]=="editoffer" && @offer.target_channel_categories && @offer.target_channel_categories.include?(",") %>
+         <% @offer.target_channel_categories.split(",").each do |f| %>
+          <% id=f.gsub("id", "") %>
+          <% category=Category.find(id.to_i) %>
+          <span class='selected-category-item' data-id='<%= id %>'><span class='category-label-section'><%= category.name %></span> <span class='destroy-category' onclick='destroy_category(this)'>X</span> </span>
+          <% end %>
+        <% end %>
+      </div>
       <div class="select-category">
          <select>
            <% Category.all.each do |f| %>
@@ -52,10 +60,10 @@
       <%= f.text_field :subscriber_range %>
     </div>
     <div class="success-creating">
-      <h3>Предложение создано успешно</h3>
+      <h3>Предложение <% if params[:action]!="editoffer" %>создано<% else %>обновлено<% end %> успешно</h3>
     </div>
     <div class="actions">
-      <%= f.submit("Создать предложение") %>
+      <input type="submit" value="<% if params[:action]!="editoffer" %>Создать<% else %>Обновить<% end %> предложение">
     </div>
   <% end %>
 </div>
@@ -79,10 +87,14 @@
   })
 
   function success_creating(){
-    $(".success-creating").show();
     $(".error-registration").remove();
+    $(".success-creating").show();
     setTimeout(function(){
-      window.location="/offer";
+      <% if params[:action]=="editoffer" %>
+        $(".success-creating").hide();
+      <% else %>
+        window.location="/offer";
+      <% end %>
     }, 1000);
   }
 </script>

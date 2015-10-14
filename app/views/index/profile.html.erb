@@ -14,7 +14,9 @@
 
 		<% if session[:user_id].to_i!=params[:id].to_i %>
 			<button class="new-topic">Связаться</button>
-			<div class="success-creating"><h3>Предложение создано успешно</h3></div>
+			<button class="new-yslyga">Связаться по поводу услуги</button>
+			<div class="success-creating success-creating-topic"><h3>Предложение создано успешно</h3></div>
+			<div class="success-creating success-creating-yslygi"><h3>Услуга создана успешно</h3></div>
 
 			<div class="topic-new" style="display:none;">
 				<%= form_for(Topic.new, :url=>"/index/createtopic/#{params[:id]}") do |f| %>
@@ -56,6 +58,38 @@
 					<input type="submit">
 				<% end %>
 			</div>	
+
+			<div class="yslyga-new" style="display:none;">
+				<%= form_for(Yslygi.new, :url=>"/index/createyslyga/#{params[:id]}") do |f| %>
+					<div class="field">
+						<%= f.label :name, "Тема сообщения: *" %>
+						<%= f.text_field :name %>
+					</div>
+
+					<div class="field">
+						<%= f.label :category, "Тип услуги: *" %>
+						<select name="yslygi[category]">
+							<% Yslygi::OFFERS_ARRAY_CATEGORY.each do |f| %>
+					          <% if youtubeinfooid[f[1]] %><option class="<%= f[1] %>"><%= f[0] %></option><% end %>
+					        <% end %>
+						</select>
+					</div>
+
+					<div class="field">
+						<div style="overflow:hidden;">
+							<%= f.label :date, "Дата: *" %>
+							<%= f.text_field :date %>
+						</div>
+					</div>
+
+					<div class="field">
+						<%= f.label :description, "Сообщение:*" %>
+						<%= f.text_area :description %>
+					</div>
+
+					<input type="submit">
+				<% end %>
+			</div>
 		<% end %>
 
 		<% @youtubeinfooid=youtubeinfooid %>
@@ -76,6 +110,7 @@
 			<h3 class="interested-in">Заинтересован в:</h3>
 			<div class="wrap-blocks-collaboration">
 				<div class="collaboration-block">
+					<h3>Сотрудничество:</h3>
 					<div class="item-collaboration-block"><p><% if @youtubeinfooid.create_videos %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Создание видео вместе</span></p></div>
 					<div class="item-collaboration-block"><p><% if @youtubeinfooid.making_channel_toghether %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Создание нового канала вместе с видеозаписями каждого сотрудника(каждый человек контролирует определенный день недели)</span></p></div>
 					<div class="item-collaboration-block"><p><% if @youtubeinfooid.cross_promotions_and_email_lists %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Продвижения с помощью друг друга(без YouTube) социальные сети, сайты, e-mail рассылка</span></p></div>
@@ -85,6 +120,7 @@
 				</div>
 
 				<div class="sponsor-block">
+					<h3>Услуги:</h3>
 					<div class="item-collaboration-block"><p><% if @youtubeinfooid.brand_product_integration %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Интеграция бренда/продукта в ваши видео</span></p></div>
 					<div class="item-collaboration-block"><p><% if @youtubeinfooid.product_reviews %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Отзывы о продуктах</span></p></div>
 					<div class="item-collaboration-block"><p><% if @youtubeinfooid.dedicated_videos %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Выделенное количество видео про бренд</span></p></div>
@@ -100,30 +136,39 @@
 </div>
 <script type="text/javascript">
 	$(".new-topic").click(function(){
-		$(".topic-new").show();
+		$(".yslyga-new").hide();
+		$(".topic-new").toggle();
+	})
+
+	$(".new-yslyga").click(function(){
+		$(".topic-new").hide();
+		$(".yslyga-new").toggle();
 	})
 
 	$("input[type='submit']").click(function(e){
 	    e.preventDefault();
+	    th=$(this);
 		$.ajax({
 		        async: true,
 		        type: "POST",
 		        dataType: 'json',
-		        url: $("form").attr("action"),
-		        data: $("form").serialize(), 
+		        url: th.parents("form").attr("action"),
+		        data: th.parents("form").serialize(), 
 		        success: function(data){
+	              	cls=th.parents("form").attr("class").split("_")[1];
 	              	$(".error-registration").remove();
+
 		        	if(data)
-		          		add_errors("#topic_", data);
+		          		add_errors("#"+cls+"_", data);
 		          	else
 		          	{
-		          		$("#topic_name, input[name='topic[project_type]'], #topic_date_happing, #topic_description").val("");
-		          		$(".topic-new").toggle(100);
-		          		$(".success-creating").toggle(100);
-		          		setTimeout(function(){$(".success-creating").toggle(100)}, 2000);
+		          		$("#"+cls+"_name, #"+cls+"_date_happing, #"+cls+"_description, #"+cls+"_date").val("");
+		          		$("."+cls+"-new").show(100);
+		          		$(".success-creating-"+cls).show(100);
 		          		$('html, body').animate({
 					        scrollTop: 0
 					    }, 500);
+		          		setTimeout(function(){$(".success-creating-"+cls).hide()}, 2000);
 		          	}
 		        }
 	      });

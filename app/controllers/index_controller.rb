@@ -155,11 +155,18 @@ class IndexController < ApplicationController
 
   def updateoffer
   	@offer=Offer.find(params[:id])
+    @offer.assign_attributes(params[:offer])
+    error_validate=false
   	if @offer.user_id==session[:user_id]
-  		@offer.update_attributes(params[:offer])
-  		redirect_to "/editoffer/#{@offer.id}"
-  	else
-  		redirect_to root_url
+      if @offer.valid?
+  		  @offer.save
+      else
+        error_validate=offer.errors.to_a
+      end
+
+      respond_to do |format|
+        format.json{render :json=>error_validate.to_json}
+      end
   	end
   end
 
@@ -208,6 +215,14 @@ class IndexController < ApplicationController
 
   def offerapplycreate
     hash={:user_id=>session[:user_id], :offer_id=>params[:id]}
+    if Offermessage.where(hash).count<1
+      Offermessage.create(hash).save
+    end
+    redirect_to request.referrer
+  end
+
+  def yslygaapplycreate
+    hash={:user_id=>session[:user_id], :yslygi_id=>params[:id]}
     if Offermessage.where(hash).count<1
       Offermessage.create(hash).save
     end
@@ -275,6 +290,37 @@ class IndexController < ApplicationController
         format.html{render :json=>nil.to_json}
       end
     end
+  end
+
+  def searchingProfile
+    @users=YoutubeInfoId.where("lower(name) LIKE ?", "%#{params[:title].mb_chars.downcase}%")
+    respond_to do |format|
+      format.html{render :partial=>"channels.html.erb"}
+    end    
+  end
+
+  def sponsors
+    @yslygi=Yslygi.order("created_at DESC").where(:to_topic=>session[:user_id])
+  end
+
+  def createyslyga
+    params[:yslygi][:to_topic]=params[:id]
+    params[:yslygi][:user_id]=session[:user_id]
+    topic=Yslygi.create(params[:yslygi])
+    error=nil
+    if topic.valid?
+      topic.save
+    else
+      error=topic.errors.to_a
+    end
+
+    respond_to do |format|
+      format.json{render :json=>error.to_json}
+    end
+  end
+
+  def sponsorsdetails
+    @yslyga=Yslygi.find(params[:id])
   end
   #LOGIN ADMIN
   def admin

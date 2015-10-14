@@ -1,0 +1,19 @@
+<% @user=User.find(@yslyga.user_id) %>
+<% youtubeinfoid=YoutubeInfoId.find_by_user_id(@user.id) %>
+
+<div class="middle-block">
+	<%= render "leftMenu" %>
+	<div class="info-center">
+		<div class="middle-offer">
+			<h5 class="main-details-offer"><img src="<%= youtubeinfoid.image %>" width="50" height="50"><a href="/profile/<%= @user.id %>"><%= youtubeinfoid.name %></a></h5>
+
+			<div class="offer-information">	
+				<h3>Информация:</h3>			
+				<p><b>Название: </b><%= @yslyga.name %></p>
+				<p><b>Категория:</b> <%= @yslyga.category %></p>
+				<p><b>Описание:</b> <%= @yslyga.description %></p>
+				<p><b>Крайний срок подачи заявок:</b> <%= @yslyga.date %></p>
+			</div>
+		</div>
+	</div>
+</div>

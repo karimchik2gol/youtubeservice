@@ -38,3 +38,19 @@ function add_errors(cls_start, errors){
 	    }, 500);
 	}
 }
+
+$(".searching-input button").click(function(e){
+	th=$(this);
+	e.preventDefault();
+	$.ajax({
+	          async: true,
+	          type: "POST",
+	          dataType: 'html',
+	          url: "/index/searchingProfile",
+	          data: {"title":th.parent().find("input").val()}, 
+	          success: function(data){
+	          	$(".channels").empty();
+	          	$(".channels").append(data);
+	          }
+	});
+})

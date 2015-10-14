@@ -1,0 +1,39 @@
+<div class="middle-block">
+	<%= render "leftMenu" %>
+	<div class="info-blocks info-center">
+		<% if @yslygi.count>0 %>
+			<table cellpadding="10" cellspacing="0" width="100%">
+				<tr class="offers-header">
+					<th class="column-a"><span>Название</span></th>
+					<th class="column-b"><span>Дата окончания</span></th>
+					<th class="column-c"><span>Категория</span></th>
+					<th class="column-d"><span>Канал</span></th>
+					<th class="column-e"><span>Действия</span></th>
+				</tr>
+				<% @yslygi.each do |f| %>
+					<tr class="offers-row mine">
+						<td class="column-a"><span><%= f.name %></span></td>
+						<td><span><%= f.date %></span></td>
+						<td><span class="type-ellipsis"><%= f.category %></span></td>
+						<td>
+							<% @user=User.find(f.user_id) %>
+							<%= render "userinfo" %>
+						</td>
+						<td>
+							<% if f.user_id!=session[:user_id] %>
+								<a href="/sponsors/details/<%= f.id %>">Подробней</a>
+							<% else %>
+								<a href="/editsponsor/<%= f.id %>" class="row-btn green editable-icon"><i class="fa fa-pencil"></i></a>
+								<a href="/destroysponsor/<%= f.id %>" class="delete no-btn editable-icon remove-icon"><i class="fa fa-times"></i></a>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</table>
+		<% else %>
+			<div style="padding: 10px;">
+				<h3>На данный момент услуг нету</h3>
+			</div>
+		<% end %>
+	</div>
+</div>

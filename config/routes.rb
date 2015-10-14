@@ -1,4 +1,7 @@
 Youtubeservice::Application.routes.draw do
+  resources :yslygis
+
+
   resources :offers
 
 
@@ -12,6 +15,16 @@ Youtubeservice::Application.routes.draw do
 
   get "/me", to: "index#me"
 
+  post "/index/createyslyga/:id", to: "index#createyslyga"
+
+  get "/sponsors", to: "index#sponsors"
+
+  get "/sponsors/details/:id", to: "index#sponsorsdetails"
+
+  get "/yslygaapplycreate/:id", to: "index#yslygaapplycreate"
+  
+  post "/index/searchingProfile", to: "index#searchingProfile"
+  
   get "/index/logout"
   
   get "index/start"

@@ -1,24 +1,42 @@
-<div>Colabration detail</div>
-<div>
-	<h3><%= @offer.name %></h3>
-	<div>
-		<% if Offermessage.where(:user_id=>session[:user_id], :offer_id=>params[:id]).count>0 %><span>You have sent the message to this user</span><% else %><a href="/offerapplycreate/<%= params[:id] %>">Apply project</a><% end %>
-	</div>
-	<div>
-		<p>Offered by</p>
-		<% @user=User.find(@offer.user_id) %>
-		<%= render "userinfo" %>
-		<p><b>Project Type</b> <%= @offer.project_type %></p>
-		<p><b>Description</b> <%= @offer.description %></p>
-		<p><b>Application deadline</b> <%= @offer.application_deadline %></p>
-		<p><b>Channel Partners Wanted</b> 0</p>
-	</div>
+<% @user=User.find(@offer.user_id) %>
+<% youtubeinfoid=YoutubeInfoId.find_by_user_id(@user.id) %>
+<div class="middle-block">
+	<%= render "leftMenu" %>
+	<div class="info-center">
+		<div class="middle-offer">
+			<h5 class="main-details-offer"><img src="<%= youtubeinfoid.image %>" width="50" height="50"><a href="/profile/<%= @user.id %>"><%= youtubeinfoid.name %></a></h5>
 
-	<div>
-		<h3>Applicant Requirements</h3>
-		<% if !@offer.targe_audience_geos.empty? %><div><b>Target Audience Geos</b> <%= @offer.targe_audience_geos %></div><% end %>
-		<% if !@offer.location_dependent.empty? %><div><b>Location Dependent?</b> <%= @offer.location_dependent %></div><% end %>
-		<% if !@offer.target_channel_categories.empty? %><div><b>Target Channel Categories</b> <%= @offer.target_channel_categories %></div><% end %>
-		<% if !@offer.subscriber_range.empty? %><div><b>Subscriber Range	(0 - 100)</b> <%= @offer.subscriber_range %></div><% end %>
+			<div class="offer-information">	
+				<h3>Информация:</h3>			
+				<p><b>Название: </b><%= @offer.name %></p>
+				<p><b>Категория:</b> <%= @offer.project_type %></p>
+				<p><b>Описание:</b> <%= @offer.description %></p>
+				<p><b>Крайний срок подачи заявок:</b> <%= @offer.application_deadline %></p>
+				<p><b>Текущее количество партнеров:</b> <%= Offermessage.where(:offer_id=>@offer.id).count %></p>
+			</div>
+			
+			<div>
+				<h3>Дополнительная информация:</h3>
+				<% if !@offer.targe_audience_geos.empty? %><p><b>Страна целевой аудитории:</b> <%= @offer.targe_audience_geos %></p><% end %>
+				<% if !@offer.location_dependent.empty? %><p><b>Город:</b> <%= @offer.location_dependent %></p><% end %>
+				<% if !@offer.target_channel_categories.empty? %>
+					<p><b>Категории канала:</b> 
+						<% @offer.target_channel_categories.split(",").each do |f| %>
+					      <% id=f.gsub("id", "") %>
+					      <% category=Category.find(id.to_i) %>
+					      <span class='selected-category-item' data-id='<%= id %>'><a href="/category/<%= category.id %>" class='category-label-section'><%= category.name %></a></span>
+					     <% end %>
+					</p>
+				<% end %>
+				<% if !@offer.subscriber_range.empty? %><p><b>Диапазон подписчиков:</b> <%= @offer.subscriber_range %></p><% end %>
+			</div>
+			<div>
+				<% if Offermessage.where(:user_id=>session[:user_id], :offer_id=>params[:id]).count>0 %>
+					<span>Вы отправили сообщение по этому предложению</span>
+				<% else %>
+					<a class="apply-offer" href="/offerapplycreate/<%= params[:id] %>">Связаться по поводу предложения</a>
+				<% end %>
+			</div>
+		</div>
 	</div>
 </div>
