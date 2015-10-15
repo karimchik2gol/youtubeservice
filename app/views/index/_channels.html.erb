@@ -12,27 +12,37 @@
 		<% @users.each do |f| %>
 			<tr height="10"></tr>
 			<tr class="offers-row mine ">
+				<% begin %>
 					<% youtubeinfoid=YoutubeInfoId.find(f.youtube_info_id.to_i) %>
+				<% rescue %>
+					<% youtubeinfoid=f %>
+					<% if f.user_id %>
+						<% f=User.find(f.user_id) %>
+					<% else %>
+						<% f=nil %>
+					<% end %>
+				<% end %>
 				<% @user=f %>
-
-				<% if !@id || f.category.include?("id"+@id+",") %>
-					<td class="item-channel"><a href="/profile/<%= f.id %>"><img src="<%= youtubeinfoid.image %>"></a></td>
-					<td></td>
-					<td><a href="/profile/<%= f.id %>"><%= youtubeinfoid.name %></a></td>
-					<td></td>
-					<% catArray=f.category.split(",") %>
-					<td>
-						<% catArray.each do |f| %>
-							<% category=Category.find(f.gsub("id", "").to_i) %>
-							<span><%= category.name %><% if catArray.last!=f %>, <% end %></span>
-						<% end %>
-					</td>
-					<td></td>
-					<td>
-						<% genders=youtubeinfoid.gender.split(",") %>
-						<span><%= genders[0] %> <%= genders[1] %>%, <%= genders[2] %> <%= genders[3] %>%</span>
-					</td>
-					<td></td>
+				<% if f %>
+					<% if !@id || f.category.include?("id"+@id+",") %>
+						<td class="item-channel"><a href="/profile/<%= f.id %>"><img src="<%= youtubeinfoid.image %>"></a></td>
+						<td></td>
+						<td><a href="/profile/<%= f.id %>"><%= youtubeinfoid.name %></a></td>
+						<td></td>
+						<% catArray=f.category.split(",") %>
+						<td>
+							<% catArray.each do |f| %>
+								<% category=Category.find(f.gsub("id", "").to_i) %>
+								<span><%= category.name %><% if catArray.last!=f %>, <% end %></span>
+							<% end %>
+						</td>
+						<td></td>
+						<td>
+							<% genders=youtubeinfoid.gender.split(",") %>
+							<span><%= genders[0] %> <%= genders[1] %>%, <%= genders[2] %> <%= genders[3] %>%</span>
+						</td>
+						<td></td>
+					<% end %>
 				<% end %>
 			</tr>
 		<% end %>
