@@ -12,12 +12,7 @@
 		<% @users.each do |f| %>
 			<tr height="10"></tr>
 			<tr class="offers-row mine ">
-				<% begin %>
 					<% youtubeinfoid=YoutubeInfoId.find(f.youtube_info_id.to_i) %>
-				<% rescue %>
-					<% youtubeinfoid=f %>
-					<% f=User.find(f.user_id) %>
-				<% end %>
 				<% @user=f %>
 
 				<% if !@id || f.category.include?("id"+@id+",") %>
