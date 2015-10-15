@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151014104116) do
+ActiveRecord::Schema.define(:version => 20151015141614) do
 
   create_table "admins", :force => true do |t|
     t.string   "email"
@@ -152,6 +152,11 @@ ActiveRecord::Schema.define(:version => 20151014104116) do
     t.boolean  "open_to_other_types_sponsor"
     t.string   "gender_percentage"
     t.boolean  "channel_size_limit"
+    t.boolean  "obmen_like_yslygi"
+    t.boolean  "obmen_like"
+    t.boolean  "obmen_like_yslyga"
+    t.boolean  "reklama_v_rolike"
+    t.boolean  "reklama_v_rolike_yslyga"
   end
 
   create_table "yslygis", :force => true do |t|

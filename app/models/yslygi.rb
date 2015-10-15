@@ -5,10 +5,10 @@ class Yslygi < ActiveRecord::Base
   						["Интеграция бренда/продукта в ваши видео", "brand_product_integration"],
   						["Отзывы о продуктах", "product_reviews"],
   						["Выделенное количество видео про бренд", "dedicated_videos"],
-  						["Вы получаете процент от выручки(зачастую не предоплата)", "revenue_affiliate"],
-  						["Докладчик", "spokesperson"],
   						["Продвижение вне YouTube(сайт, соц. сети)", "offyoutube_promotion"],
   						["Добавление видео про бренд/продукт в плейлист", "including_brand_videos"],
+              ["Обмен лайками", "obmen_like_yslyga"],
+              ["Реклама о вас моем ролике","reklama_v_rolike_yslyga"],
   						["Открыт к другим видам услуг", "open_to_other_types_sponsor"]
   						]
 

@@ -39,9 +39,8 @@ function add_errors(cls_start, errors){
 	}
 }
 
-$(".searching-input button").click(function(e){
+$(".searching-input input[type='text']").keyup(function(e){
 	th=$(this);
-	e.preventDefault();
 	$.ajax({
 	          async: true,
 	          type: "POST",

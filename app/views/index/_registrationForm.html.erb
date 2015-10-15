@@ -67,6 +67,7 @@
 				</div>
 				  
 			</div>
+			<div style="overflow:hidden;">
 			  <div class="first-block wrap-checkbox">
 			  	  <h4>Какой тип сотрудничества вас интересует?</h4>
 				  <div class="field">
@@ -93,6 +94,16 @@
 				  		<input type="hidden" <% if youtubeinfoid.annotation_or_end_card_or_link_swapping || check_action %>value="1"<% end %> name="anketa[annotation_or_end_card_or_link_swapping]">
 				  		<input type="checkbox" <% if youtubeinfoid.annotation_or_end_card_or_link_swapping || check_action %>checked<% end %>>
 				    	<span>Обмен ссылками на канал в описании</span>
+				  </div>
+				  <div class="field">
+				  		<input type="hidden" <% if youtubeinfoid.obmen_like || check_action %>value="1"<% end %> name="anketa[obmen_like]">
+				  		<input type="checkbox" <% if youtubeinfoid.obmen_like || check_action %>checked<% end %>>
+				    	<span>Обмен лайками</span>
+				  </div>
+				  <div class="field">
+				  		<input type="hidden" <% if youtubeinfoid.reklama_v_rolike || check_action %>value="1"<% end %> name="anketa[reklama_v_rolike]">
+				  		<input type="checkbox" <% if youtubeinfoid.reklama_v_rolike || check_action %>checked<% end %>>
+				    	<span>Обменой рекламой в ролике</span>
 				  </div>
 				  <div class="field">
 				  		<input type="hidden" <% if youtubeinfoid.open_to_other_types || check_action %>value="1"<% end %> name="anketa[open_to_other_types]">
@@ -123,16 +134,6 @@
 					   	<span>Выделенное количество видео про бренд</span>
 				  </div>
 				  <div class="field">
-				  		<input type="hidden" <% if youtubeinfoid.revenue_affiliate || check_action %>value="1"<% end %> name="anketa[revenue_affiliate]">
-				  		<input type="checkbox" <% if youtubeinfoid.revenue_affiliate || check_action %>checked<% end %>>
-					   	<span>Вы получаете процент от выручки(зачастую не предоплата)</span>
-				  </div>
-				  <div class="field">
-				  		<input type="hidden" <% if youtubeinfoid.spokesperson || check_action %>value="1"<% end %> name="anketa[spokesperson]">
-				  		<input type="checkbox" <% if youtubeinfoid.spokesperson || check_action %>checked<% end %>>
-					   	<span>Докладчик</span>
-				  </div>
-				  <div class="field">
 				  		<input type="hidden" <% if youtubeinfoid.offyoutube_promotion || check_action %>value="1"<% end %> name="anketa[offyoutube_promotion]">
 				  		<input type="checkbox" <% if youtubeinfoid.offyoutube_promotion || check_action %>checked<% end %>>
 					   	<span>Продвижение вне YouTube(сайт, соц. сети)</span>
@@ -141,6 +142,16 @@
 				  		<input type="hidden" <% if youtubeinfoid.including_brand_videos || check_action %>value="1"<% end %> name="anketa[including_brand_videos]">
 				  		<input type="checkbox" <% if youtubeinfoid.including_brand_videos || check_action %>checked<% end %>>
 					   	<span>Добавление видео про бренд/продукт в плейлист</span>
+				  </div>
+				  <div class="field">
+				  		<input type="hidden" <% if youtubeinfoid.obmen_like_yslyga || check_action %>value="1"<% end %> name="anketa[obmen_like_yslyga]">
+				  		<input type="checkbox" <% if youtubeinfoid.obmen_like_yslyga || check_action %>checked<% end %>>
+				    	<span>Обмен лайками</span>
+				  </div>
+				  <div class="field">
+				  		<input type="hidden" <% if youtubeinfoid.reklama_v_rolike_yslyga || check_action %>value="1"<% end %> name="anketa[reklama_v_rolike_yslyga]">
+				  		<input type="checkbox" <% if youtubeinfoid.reklama_v_rolike_yslyga || check_action %>checked<% end %>>
+				    	<span>Реклама вас в моем ролике</span>
 				  </div>
 				  <div class="field">
 				  		<input type="hidden" <% if youtubeinfoid.open_to_other_types_sponsor || check_action %>value="1"<% end %> name="anketa[open_to_other_types_sponsor]">
@@ -152,8 +163,9 @@
 				  	<span>Ничего не интересует</span>
 				  </div>
 			  </div>
+			</div>
 			  <div class="actions">
-			    <%= submit_tag("Зарегистрироваться") %>
+			  	<input type="submit" value="<% if params[:action]=='account' %>Обновить<% else %>Зарегистрироваться<% end %>">
 			  </div>
 			<% end %>
 	</div>

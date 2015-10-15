@@ -7,6 +7,8 @@ class Offer < ActiveRecord::Base
   						["Продвижение вне Ютуба(соц. сети, e-mail рассылки, сайты)", "cross_promotions_and_email_lists"],
   						["Обмен \"Рекомендованные каналы\"", "recommended_channel_swapping"],
   						["Обмен ссылками на канал в описании", "annotation_or_end_card_or_link_swapping"],
+  						["Обмен лайками", "obmen_like"],
+  						["Обменой рекламой в ролике","reklama_v_rolike"],
   						["Другое", "open_to_other_types"]
   						]
 

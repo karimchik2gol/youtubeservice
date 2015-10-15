@@ -99,7 +99,7 @@ class IndexController < ApplicationController
   end
 
   def searchingCheckbox
-  	youtubeinfoid=YoutubeInfoId.search(params[:search])
+  	youtubeinfoid=YoutubeInfoId.order("created_at DESC").search(params[:search])
   	@users=youtubeinfoid.result
     @id=params[:id] if params[:id] and !params[:id].to_s.empty?
 
@@ -293,7 +293,7 @@ class IndexController < ApplicationController
   end
 
   def searchingProfile
-    @users=YoutubeInfoId.where("lower(name) LIKE ?", "%#{params[:title].mb_chars.downcase}%")
+    @users=YoutubeInfoId.order("created_at DESC").where("lower(name) LIKE ?", "%#{params[:title].mb_chars.downcase}%")
     respond_to do |format|
       format.html{render :partial=>"channels.html.erb"}
     end    
