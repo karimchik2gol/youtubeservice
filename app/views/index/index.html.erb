@@ -1,91 +1,47 @@
 <% unless session[:user_id] %>
-	<section class="video-bg" id="slide1">
-		<div class="middle-label-video">
-			<span>Join the world's most active network of content creators, influencers sponsors</span>
-			<button class="join-button ajax_start">Присоединиться (БЕСПЛАТНО)</button>
-			<a href="#slide2" class="learn-more-index">Узнать подробности</a>
-		</div>
-		<div class="index-video">
-			<video poster="http://channelpages.com/assets/videos/video.jpg" autoplay="autoplay" src="http://channelpages.com/assets/videos/video.webm" style="position: absolute; z-index: 0; top: 0px; left: 0px; min-width: 100%; min-height: 100%;" loop></video>
-		</div>
-	</section>
-
-	<section class="index-description" id="slide2">
-		<div class="center-second-slide">
-			<div class="text-second-slide">
-				<h3>Immediately start appearing in sponsor search results.</h3>
-				<p>Brands, small businesses, ad & creative agencies, along with fellow creators from across the world use Channel Pages to find video partners for collaborations, promotional videos, and integrated marketing campaigns. Make sure you show up when they search for creators like you.</p>
+	<main class="main">
+		<section class="bg-slider">
+			<div class="bg-slide bg-slide-1"></div>
+			<div class="bg-slide bg-slide-2" style="opacity: 0;"></div>
+			<div class="bg-slide bg-slide-3" style="opacity: 0;"></div>
+			<div class="content">
+				<h1><hr><span>Раскрутка каналов</span><hr></h1>
+				<p>Добавляйте свои канали , общайтесь с другими авторами, добро пожаловать в соц сеть для Ютуберов <a href="/" class="ajax_start">подробнее</a></p>
+				<button><span class="fon-text">Добавить свой канал</span><span class="background-fon-button"></span></button>
 			</div>
-			<figure class="figure-image">
-				<img class="img-responsive" alt="ChannelPages" src="http://channelpages.com/assets/img/v2/ipad01.jpg?1426018313">			
-			</figure>
-			<a href="#slide3" class="btn-down"></a>
-		</div>
-	</section>
-
-	<section class="index-preview" id="slide3">
-		<div class="wrap-third-slide">
-			<h3>Explore new collaboration opportunities.</h3>
-			<p>Easily search by channel location, size, audience demographics, and other criteria that help you find the perfect collaboration partner. Or, apply to collaboration opportunities other channels have posted.</p>
-			<figure><iframe width="560" height="315" src="https://www.youtube.com/embed/JQlSnG45dSg" frameborder="0" allowfullscreen></iframe></figure>
-			<a href="#slide4" class="btn-down"></a>
-		</div>
-	</section>
-
-	<section class="hands"></section>
-
-	<section class="index-description" id="slide4">
-		<div class="center-fourth-slide">
-			<figure class="figure-image">
-				<img class="img-responsive" alt="ChannelPages" src="http://channelpages.com/assets/img/v2/ipad02.jpg?1426018314">			
-			</figure>
-			<div class="text-fourth-slide">
-				<h3>Grow even faster with our managed collaborations!</h3>
-				<p>Every week we launch new managed collaboration opportunities. Similar sized channels are invited to participate in curated playlists tied to themes (“Hot Summer Looks", "Epic Minecraft Fails", etc.), sponsored original content series, and more!</p>
+		</section>
+		<section class="main-info">
+			<div class="item-main-info">
+				<h3>Поиск Ютуб каналов</h3>
+				<p>Some text will be here...Some text will be here...Some text will be here...Some text will be here...Some text will be here...</p>
 			</div>
-		</div>
-		<a href="#slide5" class="btn-down"></a>
-	</section>
-
-	<section class="index-instruction" id="slide5">
-		<div class="wrapper-index-instruction">
-			<h3>100% Free easy to join now...</h3>
-
-			<div class="row">
-				<div class="col-sm-4">
-					<figure>
-						<img alt="ChannelPages" src="http://channelpages.com/assets/img/v2/step01.png?1426018314">				
-					</figure>
-
-					<h3>STEP 1</h3>
-					<p>Sync your YouTube account to Channel Pages and confirm your direct contact info (always kept private).</p>
-				</div>
-
-				<div class="col-sm-4">
-					<figure>
-						<img alt="ChannelPages" src="http://channelpages.com/assets/img/v2/step02.png?1426018314">				
-					</figure>
-
-					<h3>STEP 2</h3>
-					<p>Review your channel profile page, and make sure everything looks good.</p>
-				</div>
-
-				<div class="col-sm-4">
-					<figure>
-						<img alt="ChannelPages" src="http://channelpages.com/assets/img/v2/step03.png?1426018314">				
-					</figure>
-
-					<h3>STEP 3</h3>
-					<p>Once verified, find other channels to start collaborations. Get found by paid sponsors.</p>
-				</div>
-				<button class="join-button ajax_start">Присоединиться (БЕСПЛАТНО)</button>
+			<div class="item-main-info">
+				<h3>Дополнительный доход</h3>
+				<p>Some text will be here...Some text will be here...Some text will be here...Some text will be here...Some text will be here...</p>
 			</div>
-		</div>
-	</section>
+			<div class="item-main-info">
+				<h3>Раскрутка каналов</h3>
+				<p>Some text will be here...Some text will be here...Some text will be here...Some text will be here...Some text will be here...</p>
+			</div>
+		</section>
+	</main>
 <% end %>
 
 <script type="text/javascript">
 	$newWindow=true;
+	$startSlide=0;
+	function slide(){
+		if($startSlide==3)
+			$startSlide=1;
+		else
+			$startSlide+=1;
+
+		$(".bg-slide").attr("style", "opacity: 0;");
+		$(".bg-slide-"+$startSlide).attr("style", "opacity: 1;");
+	}
+
+	setInterval(slide, 5000);
+
 	$(".ajax_start").click(function(e){
 		e.preventDefault();
 		$.ajax({

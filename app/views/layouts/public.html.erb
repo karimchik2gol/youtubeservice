@@ -12,24 +12,19 @@
 	    $("#offer_application, #topic_date_happing, #yslygi_date").datepicker();
 	  });
   </script>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/basic_css.css">
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<link rel="stylesheet" type="text/css" href="/css/basic_css.css">
 <% unless session[:user_id] %>
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<header>
-		<div class="header">
-			<div class="logo"><a href="/"></a></div>
-			<ul>	
-				<% if session[:youtube_info_id] %>	
-					<li><span class="filling-registration">Заполнение данных</span></li>
-				<% else %>
-					<li><a href="#" class="ajax_start">Зарегистрироваться</a></li>
-					<li><a href="#" class="ajax_start">Войти</a></li>
-				<% end %>
+		<div class="head">
+			<ul>
+				<li><a href="/">Главная</a></li>
+				<li><button class="ajax_start">Войти</button></li>
 			</ul>
 		</div>
 	</header>
