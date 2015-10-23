@@ -246,6 +246,13 @@ body .registration-form .top-header-form i.fa-info-circle{
     font-size: 26px;
     cursor: pointer;
 }
+body .registration-form .actions{
+	margin: 10px;
+}
+body .registration-form .actions input{
+	font-size: 18px;
+	padding: 10px 20px;
+}
 .info-block-hint{
 	display: inline-block;
     float: right;
