@@ -192,6 +192,7 @@ section.video-bg{
 
 
 
+/* NEW DESIGN */
 
  @font-face {
     font-family: "Bebas";
@@ -200,154 +201,69 @@ section.video-bg{
  }
 
 .head{
-	overflow: hidden;
-	max-width: 1000px;
-	margin: 0 auto;
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .head ul{
-	float: right;
+    float: right;
     display: inline-block;
     font-size: 14px;
 }
 .head ul li{
-	display: inline-block;
-	margin: 0 10px;
-	padding: 10px 0;
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 0;
 }
 .head ul li a, .head ul li button{
-	font-size: 20px;
-	font-family: Bebas;
+    font-size: 20px;
+    font-family: Bebas;
 }
 .head ul li a:hover{
-	text-decoration: underline;
+    text-decoration: underline;
 }
 .head ul li button{
-	padding: 5px 20px;
+    padding: 5px 20px;
+    background-color: #1d87e0;
+    color: white;
+    cursor: pointer;
+}
+body .registration-form{
+	padding: 0px;
+}
+body .registration-form .top-header-form{
+	padding: 10px;
+	color: white;
 	background-color: #1d87e0;
-	color: white;
-	cursor: pointer;
 }
-.bg-slider{
-	background-color: black;
-	position: relative;
-	height: 500px;
-	width: 100%;
+body .registration-form .wrap-form-fields .wrap-hint-and-fields{
+	padding: 10px;
 }
-.bg-slide{
-	transition: all 2s ease-in-out;
-    -webkit-transition: all 2s ease-in-out;
-    -moz-transition: all 2s ease-in-out;
-
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-size: 100%;
-	background-repeat: no-repeat;
+body .registration-form .top-header-form i.fa-info-circle{
+	line-height: 35px;
+    font-size: 26px;
+    cursor: pointer;
 }
-.bg-slide-1{
-	background-image: url(../images/1slide.jpg);
-}
-.bg-slide-2{
-	background-image: url(../images/2slide.jpg);
-}
-.bg-slide-3{
-	background-image: url(../images/3slide.jpg);
-}
-.content{
-	width: 1000px;
-	left: 50%;
-	margin-left: -500px;
-	position: absolute;
-	text-align: center;
-	z-index: 99;
-	top: 100px;
-}
-.content h1{
-	height: 61px;
-	line-height: 61px;
-}
-.content h1 span{
-	font-size: 50px;
-	color: white;
-	font-family: Bebas;
-}
-.content h1 hr{
+.info-block-hint{
 	display: inline-block;
+    float: right;
+    position: relative;
+}
+.info-block-hint:hover .hint-content{
+	display: block;
+}
+.hint-content{
+	display: none;
+	position: absolute;
+	bottom: 100%;
+	right: 0;
 	width: 200px;
-	height: 2px;
+}
+.hint-content p{
+	font-size: 14px;
+	color: black;
+	padding: 10px;
 	background-color: white;
-	margin: -20px 20px 0 20px;
-    vertical-align: middle;
-}
-.content p{
-	font-family: Bebas;
-	font-size: 18px;
-	color: white;
-	margin-top: 20px;
-}
-.content p a{
-	color: #1d82e0;
-	font-weight: bold;
-	font-family: Bebas;
-}
-.content button{
-	position: relative;
-	cursor: pointer;
-	margin-top: 70px;
-	padding: 15px 60px;
-	background-color: rgba(0,0,0,0);
-	border: 2px solid #b94942;
-	font-family: Bebas;
-	font-size: 20px;
-	color: white;
-}
-.content button:hover .background-fon-button{
-	height: 100%;
-}
-.content button .background-fon-button{
-	z-index: 0;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background-color: #b94942;
-	width: 100%;
-	height: 0;
-
-	transition: all 0.1s ease-in-out;
-    -webkit-transition: all 0.1s ease-in-out;
-    -moz-transition: all 0.1s ease-in-out;
-}
-.fon-text{
-	position: relative;
-	z-index: 999;
-}
-.main-info{
-	max-width: 1000px;
-	margin: 0 auto;
-	margin: 30px auto;
-	overflow: hidden;
-}
-.item-main-info{
-	display: inline-block;
-	width: 26%;
-	margin: 0 3.4%;
-	height: 200px;
-	background-color: #eb3e3e;
-}
-.item-main-info h3{
-	text-align: center;
-	margin: 10px;
-	font-family: Bebas;
-	font-size: 24px;
-	font-weight: 100;
-	padding-bottom: 5px;
-	color: white;
-	border-bottom: 2px solid white;
-}
-.item-main-info p{
-	margin: 10px;
-	color: white;
+    border: 2px solid #147390;
 }

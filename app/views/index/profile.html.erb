@@ -12,7 +12,7 @@
 			<% end %>
 		</div>
 
-		<% if session[:user_id].to_i!=params[:id].to_i %>
+		<% if session[:user_id] && session[:user_id].to_i!=params[:id].to_i %>
 			<button class="new-topic">Связаться</button>
 			<button class="new-yslyga">Связаться по поводу услуги</button>
 			<div class="success-creating success-creating-topic"><h3>Предложение создано успешно</h3></div>
@@ -90,6 +90,8 @@
 					<input type="submit">
 				<% end %>
 			</div>
+		<% elsif !session[:user_id] %>
+			<a class="enter-for-collaborate ajax_start"><span class="fon-text">Войдите, чтобы связаться с каналом</span><span class="background-fon-button"></span></a>
 		<% end %>
 
 		<% @youtubeinfooid=youtubeinfooid %>

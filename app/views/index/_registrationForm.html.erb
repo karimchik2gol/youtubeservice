@@ -1,7 +1,17 @@
 <% youtubeinfoid=YoutubeInfoId.find(session[:youtube_info_id]) %>
 <% check_action=params[:action]=="registration" %>
+
+
+<% if check_action %>
+	<style type="text/css">
+		body{
+			background-color: #f1f1f1;
+		}
+	</style>
+<% end %>
+
 <div class="registration-form">
-	<% unless session[:user_id] %><h3>Расскажите о себе <%= @user.email %></h3><% end %>
+	<% unless session[:user_id] %><h3 class="top-header-form">Основная информация <%= @user.email %></h3><% end %>
 	<div class="wrap-form-fields">
 			<%= form_for(@user, :url=>@url) do |f| %>
 			  <% if @user.errors.any? %>
@@ -67,7 +77,13 @@
 				</div>
 				  
 			</div>
-			<div style="overflow:hidden;">
+			<h3 class="top-header-form">Дополнительная информация 
+				<div class="info-block-hint">
+					<div class="hint-content"><p>Додаючи критерії для співпраці, тим самим приваблюючи нових клієнтів до вашого каналу </p></div>
+					<i class="fa fa-info-circle"></i>
+				</div>
+			</h3>
+			<div class="wrap-hint-and-fields" style="overflow:hidden;">
 			  <div class="first-block wrap-checkbox">
 			  	  <h4>Какой тип сотрудничества вас интересует?</h4>
 				  <div class="field">

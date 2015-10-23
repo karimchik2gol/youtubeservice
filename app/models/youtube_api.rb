@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-root="/home/deployer/apps/blog/shared/bundle/ruby/1.9.1/gems/google-api-client-0.8.6/lib/"
+root=""#/home/deployer/apps/blog/shared/bundle/ruby/1.9.1/gems/google-api-client-0.8.6/lib/"
 require 'rubygems'
 require "#{root}google/api_client"
 require "#{root}google/api_client/client_secrets"
@@ -148,6 +148,7 @@ class YoutubeApi
   end
 
   def average_posted_videos_per_month
+    return nil if $hash_DATA[:published_at].nil?
     time_in_month=(Time.now - $hash_DATA[:published_at]).to_f/(3600*24)
     (($hash_DATA[:video_count].to_i/time_in_month)*30).round(2)
   end
@@ -213,6 +214,7 @@ class YoutubeApi
   end
 
   def average_views_per_video
+    return $hash_DATA[:views].to_i if $hash_DATA[:views].to_i==0
     $hash_DATA[:views].to_i/$hash_DATA[:video_count].to_i
   end
 
@@ -226,13 +228,17 @@ class YoutubeApi
       :parameters => opts
     )
 
-    dataItems=youtube_data_response.data.items[0]['brandingSettings']['channel']
-    name=dataItems['title']
-    description=dataItems['description']
-    trailer=dataItems['unsubscribedTrailer']
-    videoCount=youtube_data_response.data.items[0]['statistics']['videoCount']
-    publishedAt=youtube_data_response.data.items[0]['snippet']['publishedAt']
-    return name, description, trailer, videoCount, publishedAt
+    if youtube_data_response.data.items[0]['brandingSettings']
+      dataItems=youtube_data_response.data.items[0]['brandingSettings']['channel']
+      name=dataItems['title']
+      description=dataItems['description']
+      trailer=dataItems['unsubscribedTrailer']
+      videoCount=youtube_data_response.data.items[0]['statistics']['videoCount']
+      publishedAt=youtube_data_response.data.items[0]['snippet']['publishedAt']
+      return name, description, trailer, videoCount, publishedAt
+    else
+      return nil
+    end
   end
 
   def demographic(opts)
@@ -259,6 +265,8 @@ class YoutubeApi
       :api_method => $youtube_analytics.reports.query,
       :parameters => opts
     )
+
+    return 0 if analytics_response.data.rows[0].nil?
 
     gainedSubscribers=analytics_response.data.rows[0][0].to_i
     lostSubscribers=analytics_response.data.rows[0][1].to_i

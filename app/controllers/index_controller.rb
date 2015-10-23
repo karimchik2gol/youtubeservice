@@ -1,7 +1,7 @@
 class IndexController < ApplicationController
   skip_before_filter :check_admin
   before_filter :check_user, only: [:applicants, :offers, :createoffer, :createofferpost, :editoffer, :account, :collabration, :destroyoffer,
-                                    :updateoffer, :update_account, :offerdetails, :profile, :offerapplycreate, :createtopic, :directmessages,
+                                    :updateoffer, :update_account, :offerdetails, :offerapplycreate, :createtopic, :directmessages,
                                     :topic, :createmessage, :searchingProfile, :sponsors, :createyslyga, :sponsorsdetails]
   layout "public"
 
@@ -114,11 +114,11 @@ class IndexController < ApplicationController
   end
 
   def profile
-  	if session[:user_id]
-  		@user=User.find(params[:id])
-  	else
-  		redirect_to "/index/registration"
-  	end
+  	#if session[:user_id]
+  	@user=User.find(params[:id])
+  	#else
+  	#	redirect_to "/index/registration"
+  	#end
   end
 
   def offers

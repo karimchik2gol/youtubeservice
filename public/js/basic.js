@@ -53,3 +53,16 @@ $(".searching-input input[type='text']").keyup(function(e){
 	          }
 	});
 })
+
+$(".ajax_start").click(function(e){
+		e.preventDefault();
+		$.ajax({
+	          async: true,
+	          type: "GET",
+	          dataType: 'json',
+	          url: "/index/start",
+	          success: function(data){
+				window.location=data;
+	          }
+	    });
+	})
