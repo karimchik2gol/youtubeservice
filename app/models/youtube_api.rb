@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-root=""#/home/deployer/apps/blog/shared/bundle/ruby/1.9.1/gems/google-api-client-0.8.6/lib/"
+root="/home/deployer/apps/blog/shared/bundle/ruby/1.9.1/gems/google-api-client-0.8.6/lib/"
 require 'rubygems'
 require "#{root}google/api_client"
 require "#{root}google/api_client/client_secrets"
@@ -110,6 +110,7 @@ class YoutubeApi
       $hash_DATA[:country]=countries(opts)
       $hash_DATA[:subscribers]=subscribers(opts)
       $hash_DATA[:image]=getProfileImage
+      puts $hash_DATA
     rescue Google::APIClient::TransmissionError => e
       puts e.result.body
     end
@@ -156,12 +157,14 @@ class YoutubeApi
   def average_likes(opts)
     opts["metrics"]="likes"
     number_of_likes=get_data(opts)
+    return 0 if number_of_likes.to_i==0
     (number_of_likes.to_f/$hash_DATA[:video_count].to_f).round(2)
   end
 
   def average_sharing(opts)
     opts["metrics"]="shares"
     number_of_sharing=get_data(opts)
+    return 0 if number_of_sharing.to_i==0
     (number_of_sharing.to_f/$hash_DATA[:video_count].to_f).round(2)
   end
 

@@ -56,6 +56,7 @@ $(".searching-input input[type='text']").keyup(function(e){
 
 $(".ajax_start").click(function(e){
 		e.preventDefault();
+		$(".loading").show();
 		$.ajax({
 	          async: true,
 	          type: "GET",
