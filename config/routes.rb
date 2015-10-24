@@ -13,6 +13,8 @@ Youtubeservice::Application.routes.draw do
 
   get "index/index"
 
+  get "index/destroy_user"
+  
   get "/me", to: "index#me"
 
   post "/index/createyslyga/:id", to: "index#createyslyga"

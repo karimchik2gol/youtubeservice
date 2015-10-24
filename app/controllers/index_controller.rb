@@ -322,6 +322,13 @@ class IndexController < ApplicationController
   def sponsorsdetails
     @yslyga=Yslygi.find(params[:id])
   end
+
+  def destroy_user
+    user=User.find(session[:user_id])
+    user.destroy
+    session[:user_id]=nil
+    redirect_to root_url
+  end
   #LOGIN ADMIN
   def admin
   end
