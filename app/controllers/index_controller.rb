@@ -326,6 +326,7 @@ class IndexController < ApplicationController
   def destroy_user
     user=User.find(session[:user_id])
     user.destroy
+    session[:youtube_info_id]=nil
     session[:user_id]=nil
     redirect_to root_url
   end
