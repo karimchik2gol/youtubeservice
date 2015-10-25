@@ -1205,6 +1205,9 @@ a{
 a,p,span{
 	font-family: "Open Sans";
 }
+body{
+    background-color: #f6f6f6;
+}
 
 .footer, .middle-label-video, .center-second-slide, .col-sm-4, input[type=text], .left-menu, .field textarea, .success-creating, .collaboration-block, .sponsor-block, .list_category, .search-block{	
 	box-sizing: border-box;
@@ -1333,11 +1336,14 @@ a,p,span{
     font-size: 18px;
 }
 .top-countries-by-views, .interested-collaboration{
-    background-color: #F7F7F7;
+    background-color: white;
     padding: 10px;
     margin: 20px 0;
 }
 .item-country{
+    text-align: center;
+    float: left;
+    width: 33%;
     font-size: 14px;
 }
 .item-country span{
@@ -1352,16 +1358,34 @@ a,p,span{
     text-align: center;
 }
 .wrap-blocks-collaboration{
+    padding-top: 2px;
     overflow: hidden;
-    margin-top: 10px;
+    position: relative;
+}
+.wrap-blocks-collaboration hr{
+    width: 2px;
+    position: absolute;
+    height: 100%;
+    display: inline;
+    text-align: center;
+    background-color: #ebebeb;
 }
 .interested-collaboration{
-    padding: 10px 0;
+    padding: 0 0 10px 0;
+}
+.collaboration-block{
+    box-shadow: 1px -2px 2px #f6b6b6;
+}
+.sponsor-block{
+    box-shadow: 1px -2px 2px #c3d9f8;
 }
 .collaboration-block, .sponsor-block{
     padding: 10px;
     float: left;
-    width: 48%;
+    width: 50%;
+}
+.collaboration-block h3, .sponsor-block h3{
+    text-align: center;
 }
 .item-collaboration-block{
     margin-bottom: 10px;
@@ -1370,12 +1394,15 @@ a,p,span{
     margin-right: 10px;
     color: #EA4848;
 }
+.collaboration-block .item-collaboration-block i.fa-check{
+    color: #f18080;
+}
 .item-collaboration-block i.fa-check{
-    color: #0F5FF1;
+    color: #89b5f2;
  }
 .sponsor-block{
     float: none;
-    margin-left: 52%;
+    margin-left: 50%;
 }
 
 
@@ -1441,12 +1468,13 @@ header, .registration-form{
     -moz-box-shadow: 1px -1px 2px #D2D2D2;
 }*/
 .left-menu{
-    padding: 0 10px 20px 10px;
+    padding: 10px 10px 20px 10px;
     border-right: 2px solid #f2f2f2;
     width: 220px;
     float: left;
     position: fixed;
     top: 120px;
+    background-color: white;
 }
 .left-menu ul li{
     margin-bottom: 5px;
@@ -1465,6 +1493,7 @@ header, .registration-form{
     font-weight: bold;
 }
 .info-center{
+    overflow: hidden;
     margin-left: 250px;
     padding-top: 10px;
 }
@@ -1511,21 +1540,26 @@ header, .registration-form{
     margin-top: 30px;
 }
 .profile-trailer{
-    margin-right: 20px;
     width: 50%;
     float: left;
     position: relative;
-    padding-bottom: 28.12%;
-    padding-top: 25px;
+    padding-bottom: 29.12%;
     height: 0;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 .profile-trailer iframe{
     position: absolute;
-    top: 0;
     left: 0;
+    margin-bottom: 10px;
     width: 100%;
-    height: 100%;
+    cursor: pointer;
+    height: calc(100% - 28px);
+    height: -webkit-calc(100% - 28px);
+    height: -moz-calc(100% - 28px);
+}
+.my-statistics{
+    overflow: hidden;
+    margin-top: 28px;
 }
 .my-statistics p{
     font-size: 18px;
@@ -1537,16 +1571,27 @@ header, .registration-form{
     font-size: 18px;
     font-weight: bold;
 }
+.my-statistics h3{
+    margin: 10px 0;
+}
+.country-percentage{
+    color: #f29b9b;
+    font-weight: bold;
+    font-family: arial, sans-serif;
+    font-size: 18px;
+}
 .wrap-profile-statistics{
-    background-color: #F7F7F7;
+    box-shadow: 0px -2px 2px #f6b6b6;
+    background-color: white;
     overflow: hidden;
     padding: 10px;
     margin-bottom: 10px;
 }
 .demographic-info{
-    background-color: #F7F7F7;
+    background-color: white;
     margin: 20px 0;
     padding: 10px;
+    box-shadow: 0px -2px 2px #f6b6b6;
 }
 .info-percent-demographic{
     margin-top: 10px;
@@ -2084,4 +2129,43 @@ footer{
     font-size: 14px;
     color: #8f98ac;
     text-align: center;
+}
+
+.top-block-profile{
+    overflow: hidden;
+    background-color: white;
+    margin-bottom: 15px;
+}
+.left-top-profile{
+    float: left;
+    padding: 10px 0;
+    text-align: center;
+    width: 200px;
+    background-color: #F6494F;
+}
+.left-top-profile img{
+    display: inline;
+}
+.left-top-profile h3{
+    color: white;
+    font-family: arial, sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+}
+.left-top-profile{
+}
+.right-top-profile{
+    margin: 10px 10px 10px 220px;
+}
+.right-top-profile h3{
+    margin-bottom: 5px;
+}
+.right-top-profile p i{
+    color: #e75a4d;
+}
+.right-top-profile p{
+    font-size: 14px;
+}
+.profile-trailer h3{
+    margin-bottom: 10px;
 }

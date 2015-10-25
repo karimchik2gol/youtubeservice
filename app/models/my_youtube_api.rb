@@ -4,7 +4,7 @@ class MyYoutubeApi
     @authorization = Signet::OAuth2::Client.new({
       :authorization_uri => 'https://accounts.google.com/o/oauth2/auth',
       :token_credential_uri => 'https://accounts.google.com/o/oauth2/token',
-      :redirect_uri => "http://li1275-251.members.linode.com/youtube/auth"}.update(options)#http://localhost:3000
+      :redirect_uri => "http://localhost:3000/youtube/auth"}.update(options)#http://li1275-251.members.linode.com
     )
   end
 

@@ -3,13 +3,39 @@
 	<div class="info-center">
 		<% youtubeinfooid=YoutubeInfoId.find_by_user_id(@user.id) %>
 		<% user=@user %>
-		<div><h3><%= youtubeinfooid.name %></h3></div>
-		<div class="brand-href"><a href="https://www.youtube.com/channel/<%= youtubeinfooid.channel_id %>" target="_blank">https://www.youtube.com/<%= youtubeinfooid.channel_id %></a></div>
-		<div>
-			<% categoryIds=user.category.split(",").map{|f| f=f.gsub("id", "").to_i} %>
-			<% Category.find(categoryIds).each do |f| %>
-				<a href="/category/<%= f.id %>"><%= f.name %></a>
-			<% end %>
+
+		<div class="top-block-profile">
+			<div class="left-top-profile">
+				<img src="<%= youtubeinfooid.image %>">
+				<h3><%= youtubeinfooid.name %></h3>
+			</div>
+			<div class="right-top-profile">
+				<h3>Основная информация</h3>
+				<p>
+					<em>Ютуб канал:</em> 
+					<i class="fa fa-youtube-play"></i>
+					<a href="https://www.youtube.com/channel/<%= youtubeinfooid.channel_id %>" target="_blank"><strong>https://www.youtube.com/<%= youtubeinfooid.channel_id %></strong></a>
+				</p>
+
+				<p>
+					<em>Город:</em>
+					<strong><%= user.city %></strong>
+				</p>
+
+				<p>
+					<em>Направление:</em>
+					<strong>
+						<% categoryIds=user.category.split(",").map{|f| f=f.gsub("id", "").to_i} %>
+						<% categos=Category.find(categoryIds) %>
+						<% categos.each do |f| %>
+							<a href="/category/<%= f.id %>"><%= f.name %></a>
+							<% if f.id!=categos.last.id %>
+								<span>,</span>
+							<% end %>
+						<% end %>
+					</strong>
+				</p>
+			</div>
 		</div>
 
 		<% if session[:user_id] && session[:user_id].to_i!=params[:id].to_i %>
@@ -97,19 +123,7 @@
 		<% @youtubeinfooid=youtubeinfooid %>
 		<%= render "profileInfo" %>
 
-		<div class="top-countries-by-views">
-			<h3>Топ страны по просмотрам:</h3>
-			<% index=0 %>
-			<% countries=@youtubeinfooid.country.split(",") %>
-			<% countries.each do |f| %>
-				<% if index%2==0 %>
-					<div class="item-country"><span><%= "#{f}" %></span> <span><%= "#{countries[index+1]}%" %></span></div>
-				<% end %>
-				<% index+=1 %>
-			<% end %>
-		</div>
 		<div class="interested-collaboration">
-			<h3 class="interested-in">Заинтересован в:</h3>
 			<div class="wrap-blocks-collaboration">
 				<div class="collaboration-block">
 					<h3>Сотрудничество:</h3>
@@ -122,7 +136,7 @@
 					<div class="item-collaboration-block"><p><% if @youtubeinfooid.reklama_v_rolike %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Обменой рекламой в ролике</span></p></div>
 					<div class="item-collaboration-block"><p><% if @youtubeinfooid.open_to_other_types %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Открыт к другим видам сотрудничества</span></p></div>
 				</div>
-
+				<hr>
 				<div class="sponsor-block">
 					<h3>Услуги:</h3>
 					<div class="item-collaboration-block"><p><% if @youtubeinfooid.brand_product_integration %><i class="fa fa-check"></i><% else %><i class="fa fa-minus"></i><% end %><span class="label-profile"> Интеграция бренда/продукта в ваши видео</span></p></div>
