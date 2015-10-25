@@ -1188,7 +1188,11 @@
     src: local("ChampagneLimousines"),
       url(../fonts/ChampagneLimousines.ttf);
  }
-
+@font-face {
+    font-family: "Enigmatic";
+    src: local("Enigmatic"),
+      url(../fonts/Enigmatic.ttf);
+ }
 html,body,*{
 	padding: 0;
 	margin: 0;
@@ -1217,7 +1221,7 @@ body{
 
 .loading-name, .wrap-checkbox h4, .center-second-slide p, .center-second-slide h3, .wrap-third-slide p, .wrap-third-slide h3, .center-fourth-slide p, .center-fourth-slide h3, .index-instruction h3, 
 .index-instruction p, .registration-form h3, .registration-form label, .error-registration{
-    font-family: "ChampagneLimousines";
+    font-family: "Enigmatic";
 }
 
 
@@ -1253,9 +1257,8 @@ body{
     width: 100%;
     padding: 0 0 5px;
     margin: 0;
-    font-weight: bold;
     color: #000000;
-    font-size: 24px;
+    font-size: 18px;
     line-height: 22px;
 }
 .field input[type=text], .field select, .field textarea{
@@ -1479,8 +1482,11 @@ header, .registration-form{
 .left-menu ul li{
     margin-bottom: 5px;
 }
-.left-menu ul li span, .left-menu ul li a, .info-block-name, .my-statistics p span, .demographic-info h3, .graphic_text, .info-center h3, .new_offer_unless_exists, .field label{
+.left-menu ul li a{
     font-family: "ChampagneLimousines";
+}
+.left-menu ul li span, .info-block-name, .my-statistics p span, .demographic-info h3, .graphic_text, .info-center h3, .new_offer_unless_exists, .field label{
+    font-family: "Enigmatic";
 }
 .left-menu ul li a{
     font-size: 18px;
@@ -1490,18 +1496,20 @@ header, .registration-form{
 }
 .left-menu ul li span{
     font-size: 20px;
-    font-weight: bold;
 }
 .info-center{
     overflow: hidden;
     margin-left: 250px;
-    padding-top: 10px;
+    margin-top: 10px;
 }
 .offers-info-block{
-    background-color: #F7F7F7;
+    background-color: white;
     min-height: 200px;
     width: 39%;
     float: left;
+}
+.info-blocks{
+    background-color: white;
 }
 .info-blocks .offers-header{
     background-color: #ECECEC;
@@ -1523,7 +1531,7 @@ header, .registration-form{
 .offer-message-info-block{
     min-height: 200px;
     margin-left: 43%;
-    background-color: #F7F7F7;
+    background-color: white;
 }
 .offer-message-info-block p, .offers-info-block p{
     font-size: 14px;
@@ -1533,7 +1541,7 @@ header, .registration-form{
 }
 .info-block-name{
     background-color: white;
-    padding: 5px;
+    padding: 5px 10px;
     font-size: 26px;
 }
 .your-profile-info{
@@ -1569,7 +1577,6 @@ header, .registration-form{
 }
 .my-statistics p span{
     font-size: 18px;
-    font-weight: bold;
 }
 .my-statistics h3{
     margin: 10px 0;
@@ -1642,7 +1649,6 @@ header, .registration-form{
     position: relative;
     z-index: 99;
     font-size: 18px;
-    font-weight: bold;
 }
 .percent-of-gender{
     margin-left: 10px;
@@ -1667,14 +1673,15 @@ header, .registration-form{
 }
 .new_offer_unless_exists{
     display: inline-block;
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 10px;
 }
 .new_offer_unless_exists:hover{
     text-decoration: underline;
 }
 .info-center h3{
-    font-size: 24px;
+    font-size: 20px;
+    font-weight: 100;
 }
 .home-form{
     margin-top: 10px;
@@ -1688,8 +1695,8 @@ header, .registration-form{
     margin-left: 26%;
 }
 .middle-block-createoffer .info-center h3{
-    font-size: 30px;
-    margin-bottom: 30px;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 .success-creating{
     display: none;
@@ -1725,7 +1732,6 @@ header, .registration-form{
 
 /* SEARCH */
 .list_category,.search-block{
-    background-color: whitesmoke;
     padding: 10px;
     margin-bottom: 15px;
     margin-top: 0;
@@ -1739,10 +1745,10 @@ header, .registration-form{
 .item-select-search{
     width: auto;
     margin-right: 10px;
-    background-color: #ECECEC;
+    background-color: rgba(245, 245, 245, 0.51);
 }
 .item-select-search label{
-    font-size: 16px;
+    font-size: 14px;
 }
 .item-select-search label{
     display: inline-block;
@@ -1904,7 +1910,8 @@ header, .registration-form{
     border: 1px solid rgba(156, 156, 156, 0.37);
     padding: 12px 55px 12px 5px;
     font-size: 18px;
-    width: 100%;
+    width: 98%;
+    margin-left: 1%;
     background-color: whitesmoke;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -1913,7 +1920,7 @@ header, .registration-form{
 .searching-input button{
     position: absolute;
     height: 100%;
-    right: 0;
+    right: 1%;
     width: 50px;
     background-color: #D06060;
     font-size: 20px;
@@ -2085,7 +2092,7 @@ header, .registration-form{
     color: white;
 }
 .enter-for-collaborate{
-    font-family: "ChampagneLimousines";
+    font-family: "Enigmatic";
     font-size: 20px;
     border: 1px solid #EA4848;
     padding: 10px;
