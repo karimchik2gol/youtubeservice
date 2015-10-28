@@ -1,10 +1,11 @@
+<% action=params[:action] %>
 <% if session[:youtube_info_id] %>
 	<nav class="left-menu">
 		<ul>
-			<li><a href="/me"><span><%= YoutubeInfoId.find(session[:youtube_info_id]).name %></span></a></li>
+			<li <% if action=="me" %>class="active_menu_li"<% end %>><a href="/me"><span><%= YoutubeInfoId.find(session[:youtube_info_id]).name %></span></a></li>
 			<li>
 				<% actions_offers=["offers", "collabration", "createoffer"] %>
-				<a href="/offer">Предложения</a>
+				<a href="/offer" <% if action=="offers" %>class="active_menu_li"<% end %>>Предложения</a>
 				<% if actions_offers.include?(params[:action]) %>
 					<ul class="offers-menu">
 						<li><a href="/offer">Ваши предложения</a></li>
@@ -14,8 +15,8 @@
 					</ul>
 				<% end %>
 			</li>
-			<li><a href="/profile/<%= session[:user_id] %>">Профиль</a></li>
-			<li><a href="/account">Акаунт</a></li>
+			<li <% if action=="profile" %>class="active_menu_li"<% end %>><a href="/profile/<%= session[:user_id] %>">Профиль</a></li>
+			<li <% if action=="account" %>class="active_menu_li"<% end %>><a href="/account">Акаунт</a></li>
 		</ul>
 	</nav>	
 <% else %>
