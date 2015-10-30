@@ -6,75 +6,88 @@
 		</div>
 	<% end %>
 
-	<div class="my-statistics" <% if @youtubeinfooid.trailer %>style="margin-left: 52%; width: auto;"<% end %>>
+	<div class="my-statistics" <% if @youtubeinfooid.trailer %>style="margin-left: 420px;width: 460px;"<% end %>>
+		<h3>Статистика</h3>
 		<p>Просмотры за месяц: <span><%= @youtubeinfooid.views_per_month %></span></p>
 		<p>Среднее к-во просмотров на видео: <span><%= @youtubeinfooid.average_views_per_video %></span></p>
 		<p>Среднее к-во лайков на видео: <span><%= @youtubeinfooid.average_likes %></span></p>
 		<p>Среднее к-во добавляемых видео в месяц: <span><%= @youtubeinfooid.average_posted_videos_per_month %></span></p>
-		<h3>Топ страны по просмотрам:</h3>
-		<% index=0 %>
-		<% countries=@youtubeinfooid.country.split(",") %>
-		<% countries.each do |f| %>
-			<% if index%2==0 %>
-				<div class="item-country"><span class="country-percentage"><%= "#{countries[index+1]}%" %></span> <span><%= "#{f}" %></span></div>
-			<% end %>
-			<% index+=1 %>
-		<% end %>
-
 	</div>
 </div>
 
-<div class="demographic-info">
-	<h3>Демографические данные</h3>
-	<% gender={} %>
-	<% i=0 %>
-	<% demographic=@youtubeinfooid.demographic.split(",") %>
-	<% demographic.each do |f| %>
-		<% if i%3==0 %>
-			<% gend=demographic[i+1] %>
-			<% if !gender[gend] %>
-				<% gender[gend]={} %>
-			<% end %>
+<div class="wrap-second-block-profile">
+	<div class="demographic-info">
+		<h3>Демографические данные</h3>
+		<% gender={} %>
+		<% i=0 %>
+		<% demographic=@youtubeinfooid.demographic.split(",") %>
+		<% demographic.each do |f| %>
+			<% if i%3==0 %>
+				<% gend=demographic[i+1] %>
+				<% if !gender[gend] %>
+					<% gender[gend]={} %>
+				<% end %>
 
-			<% percent=demographic[i] %>
-			<% if gender[gend][percent] %>
-				<% gender[gend][percent]+=demographic[i+2].to_f %>
-			<% else %>
-				<% gender[gend][percent]=demographic[i+2].to_f %>
+				<% percent=demographic[i] %>
+				<% if gender[gend][percent] %>
+					<% gender[gend][percent]+=demographic[i+2].to_f %>
+				<% else %>
+					<% gender[gend][percent]=demographic[i+2].to_f %>
+				<% end %>
 			<% end %>
+			<% i+=1 %>
 		<% end %>
-		<% i+=1 %>
-	<% end %>
-	<% x=0 %>
+		<% x=0 %>
 
-	<div class="info-percent-demographic">
-		<% agesArray=["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65-"] %>
-		<% gend=Hash[*@youtubeinfooid.gender.split(",").flatten(1)] %>
-		<% gender.each do |k,v| %>
-			<% if gender.to_a[1][0]==k %>
-				<div class="age-table">
-					<span class="gender-type-demographic">Возраст</span>
-					<% agesArray.each do |f| %>
-						<div class="points-statistic-demographic"><span><%= f %></span></div>
-					<% end %>
-				</div>
-			<% end %>
-			<div class="male-female-demographic">
-				<span class="gender-type-demographic"><% if k=="male" %>Мужчины<% else %>Женщины<% end %><span class="percent-of-gender"><%= gend[k] %>%</span></span>
-				<% i=0 %>
-				<% agesArray.each do |f| %>
-					<div class="points-statistic-demographic">
-						<% value=v["age"+f.to_s] %>
-						<% if value %>
-							<span class="graphic_text"><%= value %>%</span>
-							<div class="drawing-point-demographic graphic_<%= k %>" style="height: <%= (value+1).to_i %>px;"></div>
-						<% else %>
-							<span class="graphic_text">0%</span>
+		<div class="info-percent-demographic">
+			<% agesArray=["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65-"] %>
+			<% gend=Hash[*@youtubeinfooid.gender.split(",").flatten(1)] %>
+			<% gender.each do |k,v| %>
+				<% if gender.to_a[1][0]==k %>
+					<div class="age-table">
+						<span class="gender-type-demographic">Возраст</span>
+						<% agesArray.each do |f| %>
+							<div class="points-statistic-demographic"><span><%= f %></span></div>
 						<% end %>
 					</div>
 				<% end %>
-			</div>
-		<% end %>
+				<div class="male-female-demographic">
+					<span class="gender-type-demographic"><% if k=="male" %>Мужчины<% else %>Женщины<% end %><span class="percent-of-gender"><%= gend[k] %>%</span></span>
+					<% i=0 %>
+					<% agesArray.each do |f| %>
+						<div class="points-statistic-demographic">
+							<% value=v["age"+f.to_s] %>
+							<% if value %>
+								<span class="graphic_text"><%= value %>%</span>
+								<div class="drawing-point-demographic graphic_<%= k %>" style="height: <%= (value+1).to_i %>px;"></div>
+							<% else %>
+								<span class="graphic_text">0%</span>
+							<% end %>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+
 	</div>
 
+	<div class="countries-info">
+		<h3>Топ страны по просмотрам:</h3>
+		<% index=0 %>
+		<% countries=@youtubeinfooid.country.split(",") %>
+		<% sum=0 %>
+		<% countries.each{|f| sum+=f.to_i} %>
+		<% one_percent=sum.to_f/100 %>
+
+		<% countries.each do |f| %>
+			<% if index%2==0 %>
+				<div class="item-country">
+					<span><%= "#{f}" %></span> 
+					<span class="width-country" style="width: <%= 190*((countries[index+1].to_i/one_percent)/100) %>px;"></span>
+					<span><%= countries[index+1].to_i %>%</span>
+				</div>
+			<% end %>
+			<% index+=1 %>
+		<% end %>
+	</div>
 </div>

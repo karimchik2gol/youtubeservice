@@ -18,7 +18,7 @@ class IndexController < ApplicationController
     if session[:youtube_info_id] && !session[:user_id]  
       redirect_to "/index/registration"
     elsif session[:youtube_info_id] && session[:user_id]
-      redirect_to "/me"
+      redirect_to "/profile/#{session[:user_id]}"
     end
   end
 

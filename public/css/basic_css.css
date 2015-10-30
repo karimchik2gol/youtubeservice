@@ -1347,18 +1347,12 @@ body{
 .top-countries-by-views, .interested-collaboration{
     background-color: white;
     padding: 10px;
-    margin: 20px 0;
+    margin: 15px 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
 }
 .item-country{
-    text-align: center;
-    float: left;
-    width: 33%;
-    font-size: 14px;
-}
-.item-country span{
-    display: inline-block;
-    width: 100px;
-    margin-bottom: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 .top-countries-by-views h3{
     margin-bottom: 10px;
@@ -1383,10 +1377,10 @@ body{
     padding: 0 0 10px 0;
 }
 .collaboration-block{
-    box-shadow: 1px -2px 2px #f6b6b6;
+   /* box-shadow: 1px -2px 2px #f6b6b6; */
 }
 .sponsor-block{
-    box-shadow: 1px -2px 2px #c3d9f8;
+   /* box-shadow: 1px -2px 2px #c3d9f8; */
 }
 .collaboration-block, .sponsor-block{
     padding: 10px;
@@ -1466,7 +1460,7 @@ header, .registration-form{
 
 .middle-block{
     overflow: hidden;
-    width: 70%;
+    width: 1095px;
     margin: auto;
     padding: 10px;
     min-height: 240px;
@@ -1478,12 +1472,13 @@ header, .registration-form{
 }*/
 .left-menu{
     padding: 10px 10px 20px 10px;
-    border-right: 2px solid #f2f2f2;
-    width: 220px;
+    width: 180px;
+    height: 250px;
     float: left;
-    position: fixed;
+    position: absolute;
     top: 120px;
     background-color: white;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
 }
 .left-menu ul li{
     margin-bottom: 5px;
@@ -1508,8 +1503,7 @@ header, .registration-form{
     font-size: 20px;
 }
 .info-center{
-    overflow: hidden;
-    margin-left: 250px;
+    margin-left: 195px;
     margin-top: 110px;
 }
 .offers-info-block{
@@ -1558,14 +1552,15 @@ header, .registration-form{
     margin-top: 30px;
 }
 .profile-trailer{
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
     background-color: white;
-    width: 50%;
+    width: 400px;
     float: left;
     position: relative;
     padding-bottom: 29.12%;
     height: 0;
     margin-bottom: 10px;
-    box-shadow: -2px -2px 2px #f6b6b6;
+    /*box-shadow: -2px -2px 2px #f6b6b6;*/
 }
 .profile-trailer iframe{
     position: absolute;
@@ -1578,13 +1573,14 @@ header, .registration-form{
     height: -moz-calc(100% - 28px);
 }
 .my-statistics{
-    box-shadow: 2px -2px 2px #f6b6b6;
+    /*box-shadow: 2px -2px 2px #f6b6b6;*/
     overflow: hidden;
-    padding: 28px 10px 10px 10px; 
+    padding: 0 10px; 
     background-color: white;
     height: 100%;
     width: 100%;
     position: absolute;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
 }
 .my-statistics p{
     font-size: 18px;
@@ -1606,16 +1602,18 @@ header, .registration-form{
 }
 .wrap-profile-statistics{
     padding-top: 2px;
-    overflow: hidden;
     position: relative;
     margin-bottom: 10px;
-    min-height: 200px;
+    min-height: 276px;
 }
 .demographic-info{
     background-color: white;
-    margin: 20px 0;
     padding: 10px;
-    box-shadow: 0px -2px 2px #f6b6b6;
+    display: inline-block;
+    width: 550px;
+    height: 220px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+   /* box-shadow: 0px -2px 2px #f6b6b6;*/
 }
 .info-percent-demographic{
     margin-top: 10px;
@@ -1638,8 +1636,8 @@ header, .registration-form{
 }
 .points-statistic-demographic{
     text-align: center;
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     float: left;
     margin-right: 10px;
     position: relative;
@@ -1856,7 +1854,7 @@ header, .registration-form{
     font-size: 18px;
     color: white;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 .new-yslyga{
     margin-left: 10px;
@@ -1865,10 +1863,10 @@ header, .registration-form{
     background-color: #CE2323;
 }
 .topic-new, .yslyga-new{
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     background-color: white;
     padding: 10px;
-    box-shadow: 0px -2px 2px #f6b6b6;
+    /*box-shadow: 0px -2px 2px #f6b6b6;*/
 }
 #topic_happing_to, #happing #topic_date{
     float: left;
@@ -2163,13 +2161,15 @@ footer{
 .top-block-profile{
     overflow: hidden;
     background-color: white;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
 }
 .left-top-profile{
     float: left;
     padding: 30px 0;
     text-align: center;
-    width: 200px;
+    width: 212px;
+    height: 190px;
     background-color: #F6494F;
 }
 .left-top-profile img{
@@ -2186,7 +2186,7 @@ footer{
 .left-top-profile{
 }
 .right-top-profile{
-    margin: 10px 10px 10px 220px;
+    margin: 10px 10px 10px 242px;
 }
 .right-top-profile h3{
     margin-bottom: 5px;
@@ -2202,4 +2202,40 @@ footer{
 }
 .left-menu ul .active_menu_li{
     border-left: 5px solid #cb302e;
+}
+.countries-info{
+    display: inline-block;
+    width: 290px;
+    height: 220px;
+    margin-left: 15px;
+    padding: 10px;
+    vertical-align: top;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+.wrap-second-block-profile{
+    height: 240px;
+    margin: 15px 0;
+}
+.countries-info h3{
+    margin-bottom: 10px;
+}
+.width-country{
+    display: inline-block;
+    height: 22px;
+    margin-bottom: 5px;
+    float: right;
+}
+.countries-info div:nth-child(2n) .width-country{
+    background-color: #ef3f3f;
+}
+.countries-info div:nth-child(3n) .width-country{
+    background-color: #3f92ef;
+}
+.countries-info div:last-child .width-country{
+    background-color: #37973e;
+}
+.item-country span:last-child{
+    float: right;
+    margin-right: 10px;
 }
