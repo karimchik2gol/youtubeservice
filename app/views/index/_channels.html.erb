@@ -22,12 +22,16 @@
 						<% f=nil %>
 					<% end %>
 				<% end %>
+
 				<% @user=f %>
 				<% if f %>
 					<% if !@id || f.category.include?("id"+@id+",") %>
-						<td class="item-channel"><a href="/profile/<%= f.id %>"><img src="<%= youtubeinfoid.image %>"></a></td>
+						<td class="item-channel"><a href="/profile/<%= f.id %>" target="_blank"><img src="<%= youtubeinfoid.image %>"></a></td>
 						<td></td>
-						<td><a href="/profile/<%= f.id %>"><%= youtubeinfoid.name %></a></td>
+						<td>
+							<p class="channel-table-name"><a href="/profile/<%= f.id %>" target="_blank"><%= youtubeinfoid.name %></a></p>
+							<p class="channel-write"><a href="/profile/<%= f.id %>" target="_blank">Написать</a></p>
+						</td>
 						<td></td>
 						<% catArray=f.category.split(",") %>
 						<td>

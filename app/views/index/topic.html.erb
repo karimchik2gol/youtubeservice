@@ -12,7 +12,11 @@
 		</div>
 
 		<div class="message-write">			
-			<%= form_for(Message.new, :url=>"/index/createmessage/#{user.id}") do |f| %>
+			<% id=user.id %>
+			<% if id==session[:user_id] %>
+				<% id=@topic.to_topic %>
+			<% end %>
+			<%= form_for(Message.new, :url=>"/index/createmessage/#{id}") do |f| %>
 				<div class="field new-message">
 					<%= f.hidden_field :topic_id, :value=>"#{@topic.id}" %>
 					<label>Текст:</label>

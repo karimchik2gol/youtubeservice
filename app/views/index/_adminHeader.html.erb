@@ -3,7 +3,8 @@
 		<div class="logo"><a href="/"></a></div>
 		<ul>	
 			<li><a href="/search">Поиск</a></li>
-			<li><a href="/directmessages">Сообщения</a></li>
+			<% mess=Message.where("read = ? and to_message = ?", false, session[:user_id]) %>
+			<li><a href="/directmessages">Сообщения <% if mess.count>0 %><span>(<%= mess.count %>)</span><% end %></a></li>
 			<li><a href="/index/logout">Выход</a></li>
 		</ul>
 	</div>

@@ -14,7 +14,7 @@
 		float: none;
 	}
 	.slider{
-		margin: 15px 25px 0 7px;
+		margin: 15px 10px 0 7px;
 	}
 </style>
 <div class="search-block wrap-checkbox" data-id="<%= @id=params[:id] %>">
@@ -23,7 +23,7 @@
 		<i class="fa fa-chevron-circle-down" <% if count_users<4 %>style="display:none;"<% end %>></i>
 		<i class="fa fa-chevron-circle-up" <% if count_users>3 %>style="display:none;"<% end %>></i>
 	</a>
-	<h3>Фильтры:</h3>
+	<h3>Поиск по сотрудничеству:</h3>
 	<div class="wrap-search-checkbox" <% if count_users>3 %>style="display: none;"<% end %>>
 	<div class="item-select-search field">
 		<input type="checkbox" name="search[gender_percentage_cont]" value="male">
@@ -97,59 +97,6 @@
 	<div class="item-select-search field">
 		<input type="checkbox" name="search[including_brand_videos_eq]">
 		<label for="search[including_brand_videos_eq]">Добавление видео про продукт</label>
-	</div>
-	</div>
-
-
-
-	<div class="wrap-search-checkbox wrap-search-checkbox-text" <% if count_users>3 %>style="display: none;"<% end %>>
-	<div class="item-select-search field">
-		<label>Возраст</label><br/>
-		<input type="text" name="search[age_gteq_gteq]" value="0" data-index="0">
-		<input type="text" name="search[age_lteq_lteq]" value="100" data-index="1">
-		<div class="slider" data-value="100"></div>
-	</div>
-
-	<div class="item-select-search field">
-		<label>К-во подписчиков</label><br/>
-		<input type="text" name="search[subscribers_gteq]" value="0" data-index="0">
-		<input type="text" name="search[subscribers_lteq]" value="1000000" data-index="1">
-		<div class="slider" data-value="1000000"></div>
-	</div>
-
-	<div class="item-select-search field">
-		<label>Просмотры за месяц</label><br/>
-		<input type="text" name="search[views_per_month_gteq]" value="0" data-index="0">
-		<input type="text" name="search[views_per_month_lteq]" value="1000000" data-index="1">
-		<div class="slider" data-value="1000000"></div>
-	</div>
-
-	<div class="item-select-search field">
-		<label>Среднее к-во просмотров на видео</label><br/>
-		<input type="text" name="search[average_views_per_video_gteq]" value="0" data-index="0">
-		<input type="text" name="search[average_views_per_video_lteq]" value="20000" data-index="1">
-		<div class="slider" data-value="20000"></div>
-	</div>
-
-	<div class="item-select-search field">
-		<label>Среднее к-во "Поделиться"</label><br/>
-		<input type="text" name="search[average_sharing_gteq]" value="0" data-index="0">
-		<input type="text" name="search[average_sharing_lteq]" value="15" data-index="1">
-		<div class="slider" data-value="15"></div>
-	</div>
-
-	<div class="item-select-search field">
-		<label>Среднее к-вл лайков</label><br/>
-		<input type="text" name="search[average_likes_gteq]" value="0" data-index="0">
-		<input type="text" name="search[average_likes_lteq]" value="20000" data-index="1">
-		<div class="slider" data-value="20000"></div>
-	</div>
-
-	<div class="item-select-search field">
-		<label>Среднее к-во видео в месяц</label><br/>
-		<input type="text" name="search[average_posted_videos_per_month_gteq]" value="0" data-index="0">
-		<input type="text" name="search[average_posted_videos_per_month_lteq]" value="100" data-index="1">
-		<div class="slider" data-value="100"></div>
 	</div>
 	</div>
 </div>

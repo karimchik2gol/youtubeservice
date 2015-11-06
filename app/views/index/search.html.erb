@@ -1,9 +1,10 @@
 <div class="middle-block">
 	<%= render "leftMenu" %>
 	<div class="info-blocks info-center">
+		<div class="searching-input"><input type="text" placeholder="Поиск..."><button><i class="fa fa-search"></i></button></div>
 		<%= render "listCategory.html.erb" %>
 		<%= render "searchTemplate.html.erb" %>
-		<div class="searching-input"><input type="text" placeholder="Поиск..."><button><i class="fa fa-search"></i></button></div>
-		<div class="channels"><%= render "channels" %></div>
+		<h3 class="label-channels">Каналы (<%= User.all.count %>)</h3>
+		<div class="channels searching-channel"><%= render "channels" %></div>
 	</div>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151015141614) do
+ActiveRecord::Schema.define(:version => 20151101140057) do
 
   create_table "admins", :force => true do |t|
     t.string   "email"
@@ -49,8 +49,9 @@ ActiveRecord::Schema.define(:version => 20151015141614) do
     t.integer  "to_message"
     t.string   "text"
     t.integer  "topic_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "read",         :default => false
   end
 
   create_table "offermessages", :force => true do |t|

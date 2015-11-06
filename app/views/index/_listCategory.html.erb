@@ -1,7 +1,9 @@
 <div class="list_category category_section">
 	<h3>Категории</h3>
 	<% categories=Category.all.sort_by!{ |m| m.name.downcase } %>
-	<% categories.each do |f| %>
-		<span class="selected-category-item"><a href="/category/<%= f.id %>" class="category-label-section"><%= f.name %></a></span>
-	<% end %>
+	<div class="wrap-category-name">
+		<% categories.each do |f| %>
+			<span class="selected-category-item" <% if params[:action]=="category" && params[:id]==f.id%>style="background-color: red"<% end %>><a href="/category/<%= f.id %>" class="category-label-section"><%= f.name %></a></span>
+		<% end %>
+	</div>
 </div>

@@ -261,6 +261,9 @@ class IndexController < ApplicationController
   def topic
     @topic=Topic.where("id = ? and (to_topic = ? or from_topic = ?)", params[:id], session[:user_id], session[:user_id]).first
     if @topic
+      mess=Message.where("topic_id = ? and read = ? and to_message = ?", @topic.id, false, session[:user_id])
+      mess.update_all(:read=>true)
+      
       @messages=Message.order("created_at DESC").limit(30).find_all_by_topic_id(@topic.id)
     else
       redirect_to request.referrer
@@ -270,12 +273,16 @@ class IndexController < ApplicationController
   def createmessage
     topic=Topic.where("id = ? and (to_topic = ? or from_topic = ?)", params[:message][:topic_id], params[:id], params[:id]).first
     if topic
-      params[:message][:to_message]=params[:id]
-      params[:message][:from_message]=session[:user_id]
-      @message=Message.create(params[:message])
-      if @message.valid?
-        error=true
-        @message.save
+      if params[:id]!=session[:user_id]
+        params[:message][:to_message]=params[:id]
+        params[:message][:from_message]=session[:user_id]
+        @message=Message.create(params[:message])
+        if @message.valid?
+          error=true
+          @message.save
+        else
+          error=nil
+        end
       else
         error=nil
       end
