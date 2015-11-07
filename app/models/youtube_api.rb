@@ -217,7 +217,7 @@ class YoutubeApi
   end
 
   def average_views_per_video
-    return $hash_DATA[:views].to_i if $hash_DATA[:views_count].to_i==0
+    return $hash_DATA[:views].to_i if $hash_DATA[:video_count].to_i==0
     $hash_DATA[:views].to_i/$hash_DATA[:video_count].to_i
   end
 

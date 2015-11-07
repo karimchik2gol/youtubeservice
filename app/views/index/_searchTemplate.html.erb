@@ -25,78 +25,87 @@
 	</a>
 	<h3>Поиск по сотрудничеству:</h3>
 	<div class="wrap-search-checkbox" <% if count_users>3 %>style="display: none;"<% end %>>
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[gender_percentage_cont]" value="male">
-		<label for="search[gender_percentage_cont]">Мужчины</label>
-	</div>
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[gender_percentage_cont]" value="female">
-		<label for="search[gender_percentage_cont]">Женщины</label>
-	</div>
 
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[create_videos_eq]">
-		<label for="search[create_videos_eq]">Создание видео вместе</label>
-	</div>
 
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[making_channel_toghether_eq]">
-		<label for="search[making_channel_toghether_eq]">Создание канала вместе</label>
-	</div>
+	<div class="wrap-checkboxes">
+		<div class="search-collaboration">
+			<div class="item-select-search field">
+				<input type="checkbox" name="search[create_videos_eq]">
+				<label for="search[create_videos_eq]">Создание видео вместе</label>
+			</div>
 
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[cross_promotions_and_email_lists_eq]">
-		<label for="search[cross_promotions_and_email_lists_eq]">Продвижение вне Ютуба</label>
-	</div>
+			<div class="item-select-search field">
+				<input type="checkbox" name="search[making_channel_toghether_eq]">
+				<label for="search[making_channel_toghether_eq]">Создание канала вместе</label>
+			</div>
 
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[recommended_channel_swapping_eq]">
-		<label for="search[recommended_channel_swapping_eq]">Обмен "Рекомендованными каналами"</label>
-	</div>
+			<div class="item-select-search field">
+				<input type="checkbox" name="search[cross_promotions_and_email_lists_eq]">
+				<label for="search[cross_promotions_and_email_lists_eq]">Продвижение вне Ютуба</label>
+			</div>
 
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[annotation_or_end_card_or_link_swapping_eq]">
-		<label for="search[annotation_or_end_card_or_link_swapping_eq]">Обмен ссылками в описании</label>
-	</div>
+			<div class="item-select-search field">
+				<input type="checkbox" name="search[recommended_channel_swapping_eq]">
+				<label for="search[recommended_channel_swapping_eq]">Обмен "Рекомендованными каналами"</label>
+			</div>
 
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[open_to_other_types_eq]">
-		<label for="search[open_to_other_types_eq]">Другие виды сотрудничества</label>
-	</div>
+			<div class="item-select-search field">
+				<input type="checkbox" name="search[annotation_or_end_card_or_link_swapping_eq]">
+				<label for="search[annotation_or_end_card_or_link_swapping_eq]">Обмен ссылками в описании</label>
+			</div>
 
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[brand_product_integration_eq]">
-		<label for="search[brand_product_integration_eq]">Интеграция бренда</label>
-	</div>
+			<div class="item-select-search field">
+				<input type="checkbox" name="search[obmen_like_eq]">
+				<label for="search[search[obmen_like_eq]">Обмен лайками</label>
+			</div>
 
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[product_reviews_eq]">
-		<label for="search[product_reviews_eq]">Обзор на продукты</label>
-	</div>
+			<div class="item-select-search field">
+				<input type="checkbox" name="search[reklama_v_rolike_eq]">
+				<label for="search[search[reklama_v_rolike_eq]">Обменой рекламой в ролике</label>
+			</div>
 
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[dedicated_videos_eq]">
-		<label for="search[dedicated_videos_eq]">Выделенное к-во видео</label>
-	</div>
+			<div class="item-select-search field">
+				<input type="checkbox" name="search[open_to_other_types_eq]">
+				<label for="search[open_to_other_types_eq]">Другие виды сотрудничества</label>
+			</div>
+		</div>
 
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[revenue_affiliate_eq]">
-		<label for="search[revenue_affiliate_eq]">Выручка от %</label>
-	</div>
+		<div class="yslygi-search">
+			<div class="item-select-search field">
+				<input type="checkbox" name="search[brand_product_integration_eq]">
+				<label for="search[brand_product_integration_eq]">Интеграция бренда</label>
+			</div>
 
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[spokesperson_eq]">
-		<label for="search[spokesperson_eq]">Докладчик</label>
-	</div>
+			<div class="item-select-search field">
+				<input type="checkbox" name="search[product_reviews_eq]">
+				<label for="search[product_reviews_eq]">Обзор на продукты</label>
+			</div>
 
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[offyoutube_promotion_eq]">
-		<label for="search[offyoutube_promotion_eq]">Продвижение вне YouTube</label>
-	</div>
+			<div class="item-select-search field">
+				<input type="checkbox" name="search[dedicated_videos_eq]">
+				<label for="search[dedicated_videos_eq]">Выделенное к-во видео</label>
+			</div>
 
-	<div class="item-select-search field">
-		<input type="checkbox" name="search[including_brand_videos_eq]">
-		<label for="search[including_brand_videos_eq]">Добавление видео про продукт</label>
+			<div class="item-select-search field">
+				<input type="checkbox" name="search[offyoutube_promotion_eq]">
+				<label for="search[offyoutube_promotion_eq]">Продвижение вне YouTube</label>
+			</div>
+
+			<div class="item-select-search field">
+				<input type="checkbox" name="anketa[obmen_like_yslyga]">
+				<label for="anketa[obmen_like_yslyga]">Обмен лайками</label>
+			</div>
+
+			<div class="item-select-search field">
+				<input type="checkbox" name="search[reklama_v_rolike_yslyga_eq]">
+				<label for="search[reklama_v_rolike_yslyga_eq]">Обменой рекламой в ролике</label>
+			</div>
+
+			<div class="item-select-search field">
+				<input type="checkbox" name="search[including_brand_videos_eq]">
+				<label for="search[including_brand_videos_eq]">Добавление видео про продукт</label>
+			</div>
+		</div>
 	</div>
 	</div>
 </div>

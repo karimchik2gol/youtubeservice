@@ -6,7 +6,7 @@
 		</div>
 	<% end %>
 
-	<div class="my-statistics" <% if @youtubeinfooid.trailer %>style="margin-left: 420px;width: 460px;"<% end %>>
+	<div class="my-statistics" <% if @youtubeinfooid.trailer %>style="margin-left: 420px;"<% end %>>
 		<h3>Статистика</h3>
 		<p>Просмотры за месяц: <span><%= @youtubeinfooid.views_per_month %></span></p>
 		<p>Среднее к-во просмотров на видео: <span><%= @youtubeinfooid.average_views_per_video %></span></p>
